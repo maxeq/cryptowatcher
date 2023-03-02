@@ -4,16 +4,15 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Header from '@/components/header'
 import H1Template from '@/components/h1template'
+import Layout from '@/components/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Cryptocurrencies() {
     const names = ['Bitcoin', 'Ethereum', 'Dogecoin', 'Cardano', 'Binance Coin', 'XRP', 'Polkadot', 'Solana', 'Uniswap', 'Litecoin'];
     return (
-        <>
-        <div className="py-24 sm:py-24 lg:py-10">
+        <>      <Layout>
         <H1Template text="Cryptocurrency Market Overview" />
-        <div className="mx-auto max-w-7xl px-2 lg:px-4">
             <table className={`table mx-auto`}>
                 <tbody>
                     <tr className={`table-header`}>
@@ -44,8 +43,7 @@ export default function Cryptocurrencies() {
                     ))}
                 </tbody>
             </table>
-        </div>
-        </div>
+        </Layout>
         </>
     )
 }

@@ -4,11 +4,14 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Header from '@/components/header'
 import styles from '@/styles/header.module.css';
+import Layout from '@/components/Layout'
+import H1Template from '@/components/h1template'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Alerts() {
     return (
-        <>
-        </>
+<Layout>
+<H1Template text="Hunt the crypto whale. Get 'em." />
+</Layout>
     )
 }
