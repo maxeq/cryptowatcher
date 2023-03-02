@@ -10,8 +10,13 @@ const useTicker = () => {
     try {
 
       const response = await fetch(
-        `https://api.binance.com/api/v3/ticker/24hr`
-        );
+        `https://api.binance.com/api/v3/ticker/24hr`, { mode: 'no-cors' })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        });
 
       const data = await response.json();
       console.log(data)
@@ -40,7 +45,7 @@ const useTicker = () => {
   }, [cryptocurrencies]);
 
   useEffect(() => {
-    const interval = setInterval(fetchCrypto, 3000);
+    const interval = setInterval(fetchCrypto, 10000);
 
     return () => clearInterval(interval);
   });
