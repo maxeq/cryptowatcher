@@ -3,21 +3,20 @@ import Head from "next/head";
 function Meta() {
   return (
     <Head>
-      <title>Crypto Price Tracker App | Code of Relevancy</title>
+      <title>CryptoWatcher stays hunting the Whales</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
         name="description"
-        content="Crypto price tracker app is developed by Code of Relevancy"
+        content="Watch the price of cryptocurrencies in real time"
       />
       <meta
         name="keywords"
-        content="code, relavancy, crypto price tracker app, next.js, typescript, tailwind css, binance, crypto, cryptocurrencies, decentralized, security, blockchain"
+        content="crypto, cryptocurrency, price, tracker, app, code, bitcoin, etherium, litecoin, dogecoin"
       />
-      <meta name="author" content="Parimal Nakrani" />
+      <meta name="author" content="maxonx" />
       <meta
         name='msapplication-TileImage'
-        content='/code-of-relevancy-logo.png'
       />
 
       {/* Open Graph Tags */}
@@ -25,11 +24,11 @@ function Meta() {
       <meta property='og:title' content='Crypto Price Tracker App' />
       <meta
         property='og:description'
-        content='Crypto price tracker app is developed by Code of Relevancy'
+        content='Watch the price of cryptocurrencies in real time'
       />
       <meta
         property='og:url'
-        content='https://linktr.ee/codeofrelevancy?utm_source=weather-app&utm_medium=meta&utm_campaign=promotion'
+        content='https://t.me/more_media'
       />
       <meta property='og:site_name' content='Code of Relevancy' />
       <meta property='og:image' content='/code-of-relevancy-logo.png' />
@@ -37,18 +36,13 @@ function Meta() {
       <meta property='og:image:height' content='200' />
       <meta property='og:locale' content='en_US' />
 
-      {/* Twitter Tags */}
-      <meta name='twitter:title' content='Crypto Price Tracker App' />
+      <meta name='twitter:title' content='CryptoWatcher stays hunting the Whales' />
       <meta
         name='twitter:description'
-        content='Crypto price tracker app is developed by Code of Relevancy'
+        content='CryptoWatcher website developed by @more_media'
       />
-      <meta name='twitter:image' content='/code-of-relevancy-logo.png' />
-      <meta name='twitter:image:alt' content='Code of Relevancy' />
-      <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:site' content='@codeofrelevancy' />
+      <meta name='telegram:site' content='@more_media' />
 
-      {/* App Favicon */}
       <link rel="icon" href="/favicon.ico" />
     </Head>
   );
