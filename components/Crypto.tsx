@@ -28,7 +28,7 @@ function Crypto({ crypto }: Props) {
     : "text-gray-300";
 
   return (
-    <div className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
+    <div className="max-w p-6 bg-black shadow-purple-400hover:shadow-slat e-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
       <img className="w-10 h-10 mb-2 rounded-full" src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto.iconCode}.png`} />
       {/* TODO: crypto card code */}
       <h5 className="mb-1 text-2xl font-semibold tracking-tight">

@@ -8,7 +8,7 @@ export default function Ticker() {
   console.log('cryptocurrencies:', cryptocurrencies);
 
   return (
-      <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cryptocurrencies.map((crypto) => (
           <Crypto key={crypto.id} crypto={crypto} />
         ))}

@@ -13,57 +13,29 @@
   text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px;
 }
 
-div.container {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Box sizing rule to include padding and border in element width */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* Set default font family and font size */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-footer {
-  margin-top: auto;
-
-}
-
 .title {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 20px;
   background-color: rgb(255, 255, 255);
   background-image: linear-gradient(88deg, rgb(191, 204, 10) 0%, rgb(36, 238, 9) 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
-  padding: 2% 0% 1% 10%;
-
+  text-align: center;
 }
 
-
-.html
+.Header
 {
-
+padding: 2rem;
 }
 
 .table {
-  width: 100%;
   box-sizing: border-box;
-  border-spacing: 0px;
   transform: translateZ(0px);
   border-collapse: collapse;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
-  max-width: 1300px;
-  margin: 0 auto; /* center the element horizontally */
+  width: 100%;
 }
 
 .table-header {
@@ -83,8 +55,6 @@ footer {
 .table td {
   border: 1px solid #333;
   padding: 10px 0px 10px 20px;
-  border-left: none;
-  border-right: none;
 }
 
 .table td {
@@ -98,6 +68,5 @@ footer {
 
 .table a {
   color: #fff;
-  text-decoration: none;
 }
 
