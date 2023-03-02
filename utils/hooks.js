@@ -10,13 +10,8 @@ const useTicker = () => {
     try {
 
       const response = await fetch(
-        `https://api.binance.com/api/v3/ticker/24hr`, { mode: 'no-cors' })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        });
+        `https://api.binance.com/api/v3/ticker/24hr`
+        );
 
       const data = await response.json();
       console.log(data)
