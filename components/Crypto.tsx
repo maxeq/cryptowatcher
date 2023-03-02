@@ -23,12 +23,12 @@ interface Props {
 function Crypto({ crypto }: Props) {
   const colorClassName = crypto.prevPrice
     ? crypto.price > crypto.prevPrice
-      ? "text-green-500"
-      : "text-red-500"
-    : "text-gray-500";
+      ? " text-lime-300"
+      : "text-rose-300"
+    : "text-gray-300";
 
   return (
-    <div className="max-w p-6 bg-black shadow-slate-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
+    <div className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
       <img className="w-10 h-10 mb-2 rounded-full" src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto.iconCode}.png`} />
       {/* TODO: crypto card code */}
       <h5 className="mb-1 text-2xl font-semibold tracking-tight">

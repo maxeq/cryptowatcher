@@ -11,9 +11,7 @@ const Home: NextPage = () => {
       <Layout>
         <div className="py-24 sm:py-24 lg:py-10">
           <div className="mx-auto max-w-7xl px-2 lg:px-4">
-            {/* TODO: header code */}
-
-            {/* Main content - crypto cards */}
+          <h1 className="title">Cryptocurrency Market Overview</h1>
             <Ticker />
 
             {/* TODO: footer code */}
