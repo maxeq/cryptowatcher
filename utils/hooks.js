@@ -10,7 +10,7 @@ const useTicker = () => {
     try {
 
       const response = await fetch(
-        `https://api.binance.com/api/v3/ticker/24hr?symbol=BTCBUSD`
+        `https://api.binance.com/api/v3/ticker/24hr`
         );
 
       const data = await response.json();
@@ -29,8 +29,11 @@ const useTicker = () => {
             price: lastPrice,
             prevPrice: item?.price || 0,
           };
+
         })
+
       );
+      console.log(highPrice, lowPrice, lastPrice)
     } catch (error) {
       console.log(error);
     }
