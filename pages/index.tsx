@@ -1,10 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import React from "react";
+import type { NextPage } from "next";
 
-const inter = Inter({ subsets: ['latin'] })
+import NoSSR from "../components/NoSSR";
+import Layout from "../components/Layout";
+import Ticker from "../components/Ticker";
 
-export default function Home() {
-  return (console.log('ok'))
-}
+const Home: NextPage = () => {
+  return (
+    <NoSSR>
+      <Layout>
+        <div className="py-24 sm:py-24 lg:py-10">
+          <div className="mx-auto max-w-7xl px-2 lg:px-4">
+            {/* TODO: header code */}
+
+            {/* Main content - crypto cards */}
+            <Ticker />
+
+            {/* TODO: footer code */}
+          </div>
+        </div>
+      </Layout>
+    </NoSSR>
+  );
+};
+
+export default Home;
