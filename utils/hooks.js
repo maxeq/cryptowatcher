@@ -18,9 +18,9 @@ const useTicker = () => {
 
       setCryptocurrencies(
         cryptocurrencies.map((item) => {
-          const { lastPrice, lowPrice, highPrice } =
+          const { lastPrice, lowPrice, highPrice, priceChangePercent } =
             findByValue(data, item.symbol) || {};
-          console.log(lastPrice, lowPrice, highPrice)
+          console.log(lastPrice, lowPrice, highPrice, priceChangePercent)
 
           return {
             ...item,
@@ -28,12 +28,13 @@ const useTicker = () => {
             lowPrice,
             price: lastPrice,
             prevPrice: item?.price || 0,
+            priceChangePercent,
           };
 
         })
 
       );
-      console.log(highPrice, lowPrice, lastPrice)
+      console.log(highPrice, lowPrice, lastPrice, priceChangePercent)
     } catch (error) {
       console.log(error);
     }

@@ -8,6 +8,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://blockchair.com/bitcoin",
   },
   {
@@ -19,6 +20,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://etherscan.io",
   },
   {
@@ -30,6 +32,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://bscscan.com",
   },
   {
@@ -41,6 +44,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://xrpscan.com",
   },
   {
@@ -52,6 +56,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://blockchair.com/dogecoin",
   },
   {
@@ -63,6 +68,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://polygonscan.com",
   },
   {
@@ -74,6 +80,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://explorer.solana.com",
   },
   {
@@ -85,6 +92,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer:
       "https://etherscan.io/token/0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
   },
@@ -97,6 +105,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer:
       "https://etherscan.io/token/0x4d224452801aced8b2f0aebe155379bb5d594381",
   },
@@ -109,6 +118,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://explorer.near.org",
   },
   {
@@ -120,6 +130,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://finder.terra.money/classic",
   },
   {
@@ -131,6 +142,7 @@ const CRYPTOCURRENCIES = [
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
+    priceChangePercent: 0,
     explorer: "https://finder.terra.money",
   },
 ];
