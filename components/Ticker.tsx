@@ -8,6 +8,22 @@ interface TickerProps {
   pageName: string;
 }
 
+interface CryptoProps {
+  index: number;
+  crypto: {
+      id: string;
+      name: string;
+      symbol: string;
+      iconCode: number;
+      price: number;
+      highPrice: number;
+      lowPrice: number;
+      prevPrice: number;
+      priceChangePercent: number;
+      explorer: string;
+  };
+}
+
 export default function Ticker({ pageName }: TickerProps): JSX.Element {
   const cryptocurrencies = useTicker();
 
@@ -17,7 +33,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
     <>
       {pageName === "Crypto" ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cryptocurrencies.map((crypto: any) => (
+          {cryptocurrencies.map((crypto: CryptoProps["crypto"]) => (
             <Crypto key={crypto.id} crypto={crypto} />
           ))}
         </div>
@@ -39,7 +55,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
               </tr>
             </thead>
             <tbody>
-              {cryptocurrencies.map((crypto: any, index: number) => (
+              {cryptocurrencies.map((crypto: CryptoProps["crypto"], index: number) => (
                 <Crypto_table key={crypto.id} index={index} crypto={crypto} />
               ))}
             </tbody>
