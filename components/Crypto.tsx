@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 import React, { memo } from "react";
 
 import Loader from "./Loader";
@@ -30,7 +28,6 @@ function Crypto({ crypto }: Props) {
   return (
     <div className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
       <img className="w-10 h-10 mb-2 rounded-full" src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto.iconCode}.png`} />
-      {/* TODO: crypto card code */}
       <h5 className="mb-1 text-2xl font-semibold tracking-tight">
         {crypto.name}
       </h5>

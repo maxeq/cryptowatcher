@@ -11,7 +11,7 @@ function getPriceBtc() {
       return [data];
     };
     
-    return binanceApi(); // return the result of the fetch operation
+    return binanceApi();
 };
   
 

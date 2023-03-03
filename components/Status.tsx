@@ -10,8 +10,6 @@ export default function Status({ label, value }: Props) {
     <div className="flex items-center">
       <p className="flex-1 text-sm text-cyan-50">{label}</p>
       <p className="font-semibold text-cyan-50">{value}</p>
-
-      {/* TODO: crypto status code */}
     </div>
   );
 }

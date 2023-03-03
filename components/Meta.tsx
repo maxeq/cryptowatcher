@@ -18,8 +18,7 @@ function Meta() {
       <meta
         name='msapplication-TileImage'
       />
-
-      {/* Open Graph Tags */}
+      
       <meta property='og:type' content='website' />
       <meta property='og:title' content='Crypto Price Tracker App' />
       <meta
