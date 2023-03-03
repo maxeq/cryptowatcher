@@ -63,7 +63,7 @@ export default function Header() {
               />
             </svg>
           </button>
-          <div className={`absolute right-5 w-48 bg-lime-500 rounded-md shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
+          <div className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
             <div className="py-1">
               <Link href="/" className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
