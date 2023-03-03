@@ -1,51 +1,20 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import Link from 'next/link'
-import Header from '@/components/header'
+import React from "react";
+import type { NextPage } from "next";
+
+import NoSSR from "../components/NoSSR";
+import Layout from "../components/Layout";
+import Ticker from "../components/Ticker";
 import H1Template from '@/components/h1template'
-import Layout from '@/components/Layout'
 
-const inter = Inter({ subsets: ['latin'] })
+const Cryptocurrencies: NextPage = () => {
+  return (
+    <NoSSR>
+      <Layout>
+      <H1Template text="Cryptocurrency Market Overview" />
+      <Ticker pageName="Crypto_table" />
+      </Layout>
+    </NoSSR>
+  );
+};
 
-export default function Cryptocurrencies() {
-    const names = ['Bitcoin', 'Ethereum', 'Dogecoin', 'Cardano', 'Binance Coin', 'XRP', 'Polkadot', 'Solana', 'Uniswap', 'Litecoin'];
-    return (
-        <>      <Layout>
-        <H1Template text="Cryptocurrency Market Overview" />
-        <div className="relative overflow-x-auto">
-            <table className={`table mx-auto`}>
-                <tbody>
-                    <tr className={`table-header`}>
-                        <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-gray-800">#</th>
-                        <th className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">Cryptocurrency</th>
-                        <th className="table__end">Price (USD)</th>
-                        <th className="table__end">1h %</th>
-                        <th className="table__end">24h %</th>
-                        <th className="table__end">7d %</th>
-                        <th className="table__end">Market Cap</th>
-                        <th className="table__end">Volume (24h)</th>
-                        <th className="table__end">Circulating Supply</th>
-                        <th className="table__end">Last 7 Days</th>
-                    </tr>
-                    {names.map((name, index) => (
-                        <tr key={name} className="table__row">
-                            <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{index + 1}</td>
-                            <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{name}</td>
-                            <td className="table__end">49,999.99</td>
-                            <td className="table__end">2.34%</td>
-                            <td className="table__end">0.45%</td>
-                            <td className="table__end">5.67%</td>
-                            <td className="table__end">944,123,456,789</td>
-                            <td className="table__end">23,456,789</td>
-                            <td className="table__end">18,734,452 BTC</td>
-                            <td className="table__end">Graph image</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            </div>
-        </Layout>
-        </>
-    )
-}
+export default Cryptocurrencies;
