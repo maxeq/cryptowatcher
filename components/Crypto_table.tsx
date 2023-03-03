@@ -16,6 +16,10 @@ interface Props {
         prevPrice: number;
         priceChangePercent: number;
         explorer: string;
+        circulatingSupply: number;
+        marketCap: number;
+        volume: number;
+        quoteVolume: number;
     };
 }
 
@@ -63,9 +67,9 @@ function Crypto_table({ crypto, index }: Props) {
             </td>
             <td className="table__end">0.45%</td>
             <td className="table__end">5.67%</td>
-            <td className="table__end">944,123,456,789</td>
-            <td className="table__end">23,456,789</td>
-            <td className="table__end">18,734,452</td>
+            <td className="table__end">{formatPrice(crypto.marketCap)}</td>
+            <td className="table__end">{formatPrice(crypto.quoteVolume)}</td>
+            <td className="table__end">{formatPrice(crypto.volume)}</td>
             <td className="table__end">Graph image</td>
         </tr>
     );

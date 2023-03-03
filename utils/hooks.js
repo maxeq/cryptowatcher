@@ -18,7 +18,7 @@ const useTicker = () => {
 
       setCryptocurrencies(
         cryptocurrencies.map((item) => {
-          const { lastPrice, lowPrice, highPrice, priceChangePercent } =
+          const { lastPrice, lowPrice, highPrice, priceChangePercent, volume, quoteVolume, marketCap, circulatingSupply } =
             findByValue(data, item.symbol) || {};
 
           return {
@@ -28,6 +28,10 @@ const useTicker = () => {
             price: lastPrice,
             prevPrice: item?.price || 0,
             priceChangePercent,
+            volume,
+            quoteVolume,
+            marketCap: volume * lastPrice,
+            circulatingSupply: quoteVolume,
           };
         })
       );

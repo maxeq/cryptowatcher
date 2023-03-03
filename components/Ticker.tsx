@@ -21,6 +21,10 @@ interface CryptoProps {
       prevPrice: number;
       priceChangePercent: number;
       explorer: string;
+      circulatingSupply: number;
+      marketCap: number;
+      volume: number;
+      quoteVolume: number;
   };
 }
 
