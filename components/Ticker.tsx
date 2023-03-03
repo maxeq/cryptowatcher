@@ -17,7 +17,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
     <>
       {pageName === "Crypto" ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cryptocurrencies.map((crypto) => (
+          {cryptocurrencies.map((crypto: any) => (
             <Crypto key={crypto.id} crypto={crypto} />
           ))}
         </div>
@@ -39,7 +39,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
               </tr>
             </thead>
             <tbody>
-              {cryptocurrencies.map((crypto, index) => (
+              {cryptocurrencies.map((crypto: any, index: number) => (
                 <Crypto_table key={crypto.id} index={index} crypto={crypto} />
               ))}
             </tbody>
