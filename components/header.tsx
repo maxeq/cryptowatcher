@@ -37,7 +37,7 @@ export default function Header() {
           <li>
             <input
               type="search"
-              className="px-4 py-2 max-lg:rounded-md bg-gray-800 text-white placeholder-gray-300"
+              className="px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
               placeholder="Search"
             />
           </li>
