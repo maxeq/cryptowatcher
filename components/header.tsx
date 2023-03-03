@@ -84,11 +84,11 @@ export default function Header() {
                 Whale Alerts
 
               </Link>
-              <input
+              {/* <input
                 type="search"
                 className="w-full md:px-0 px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
                 placeholder="Search"
-              />
+              /> */}
             </div>
           </div>
         </div>
