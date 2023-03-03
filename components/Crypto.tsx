@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-
+import Image from 'next/image';
 import Loader from "./Loader";
 import Status from "./Status";
 import { formatPrice } from "@/utils";
@@ -27,7 +27,13 @@ function Crypto({ crypto }: Props) {
 
   return (
     <div className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
-      <img className="w-10 h-10 mb-2 rounded-full" src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto.iconCode}.png`} />
+      <Image
+        className="w-10 h-10 mb-2 rounded-full"
+        src={`https://s2.coinmarketcap.com/static/img/coins/128x128/${crypto.iconCode}.png`}
+        alt="Crypto Icon"
+        width={128}
+        height={128}
+      />
       <h5 className="mb-1 text-2xl font-semibold tracking-tight">
         {crypto.name}
       </h5>
@@ -62,7 +68,7 @@ function Crypto({ crypto }: Props) {
         >
           <path d="M11 3a1 1 0 100 2h2.586l-5.293 5.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V3h-6z"></path>
           <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-      </svg>
+        </svg>
       </a>
     </div>
   );
