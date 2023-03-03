@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 
 import Loader from "./Loader";
-import Status from "./Status";
 import { formatPrice, formatPercent } from "@/utils";
 
 interface Props {
