@@ -66,7 +66,7 @@ function Crypto_table({ crypto, index }: Props) {
             <td className="table__end">5.67%</td>
             <td className="table__end">944,123,456,789</td>
             <td className="table__end">23,456,789</td>
-            <td className="table__end">18,734,452 BTC</td>
+            <td className="table__end">18,734,452</td>
             <td className="table__end">Graph image</td>
         </tr>
     );
