@@ -71,7 +71,7 @@
 /* For mobile */
 @media (max-width: 640px) {
   .table tr:hover td {
-    background-color: transparent;
+    background-color: #222531;
   }
 }
 
