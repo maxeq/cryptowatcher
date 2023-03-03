@@ -15,7 +15,7 @@ export default function Header() {
     <header className="bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14">
       <nav className="hidden md:flex w-1/2 justify-between items-center mx-auto">
         <div className="flex-1">
-          <ul className="flex list-none space-x-14">
+          <ul className="flex list-none space-x-14 items-center">
             <li>
               <Link href="/" className="text-lg font-bold hover:text-lime-400">
                 Home
@@ -28,12 +28,12 @@ export default function Header() {
             </li>
             <li>
               <Link href="/alerts" className="text-lg font-bold hover:text-lime-400">
-                Whale Alerts
+                Alerts
               </Link>
             </li>
           </ul>
         </div>
-        <ul className="flex list-none items-center">
+        <ul className="list-none ml-8">
           <li>
             <input
               type="search"
@@ -86,7 +86,7 @@ export default function Header() {
               </Link>
               <input
                 type="search"
-                className="w-full px-4 py-2 rounded-md bg-gray-800 text-white placeholder-gray-300"
+                className="w-full md:px-0 px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
                 placeholder="Search"
               />
             </div>
