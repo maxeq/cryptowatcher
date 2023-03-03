@@ -27,8 +27,6 @@ interface CryptoProps {
 export default function Ticker({ pageName }: TickerProps): JSX.Element {
   const cryptocurrencies = useTicker();
 
-  const CryptoComponent = pageName === "Crypto" ? Crypto : Crypto_table;
-
   return (
     <>
       {pageName === "Crypto" ? (
