@@ -13,11 +13,12 @@ export default function Cryptocurrencies() {
     return (
         <>      <Layout>
         <H1Template text="Cryptocurrency Market Overview" />
+        <div className="relative overflow-x-auto">
             <table className={`table mx-auto`}>
                 <tbody>
                     <tr className={`table-header`}>
-                        <th className="table__start">#</th>
-                        <th className="table__start">Cryptocurrency</th>
+                        <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-black">#</th>
+                        <th className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-black">Cryptocurrency</th>
                         <th className="table__end">Price (USD)</th>
                         <th className="table__end">1h %</th>
                         <th className="table__end">24h %</th>
@@ -29,8 +30,8 @@ export default function Cryptocurrencies() {
                     </tr>
                     {names.map((name, index) => (
                         <tr key={name} className="table__row">
-                            <td className="table__start">{index + 1}</td>
-                            <td className="table__start">{name}</td>
+                            <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-black">{index + 1}</td>
+                            <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-black">{name}</td>
                             <td className="table__end">49,999.99</td>
                             <td className="table__end">2.34%</td>
                             <td className="table__end">0.45%</td>
@@ -43,6 +44,7 @@ export default function Cryptocurrencies() {
                     ))}
                 </tbody>
             </table>
+            </div>
         </Layout>
         </>
     )

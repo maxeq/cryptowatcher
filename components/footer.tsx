@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className="bg-gray-900 text-white flex shadow py-8">
             <div className="flex justify-between items-center mx-auto">
                 <div className="flex justify-center">
-                    <div className="w-1/8 hidden md:flex">
+                    <div className="w-full lg:w-1/4 px-4 hidden md:block">
                         <h3 className="text-xl font-bold mb-4">About</h3>
                         <ul className="list-none mb-4">
                             <li className="mb-4">
@@ -34,7 +34,7 @@ export default function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="w-full lg:w-1/4 px-4 hidden md:flex">
+                    <div className="w-full lg:w-1/4 px-4 hidden md:block">
                         <h3 className="text-xl font-bold mb-4">Resources</h3>
                         <ul className="list-none mb-4">
                             <li className="mb-2">
