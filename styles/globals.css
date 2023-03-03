@@ -63,8 +63,16 @@
   color: #fff;
 }
 
+/* For desktop */
 .table tr:hover td {
   background-color: #5553532a;
+}
+
+/* For mobile */
+@media (max-width: 640px) {
+  .table tr:hover td {
+    background-color: transparent;
+  }
 }
 
 .table a {
