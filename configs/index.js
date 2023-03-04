@@ -137,13 +137,13 @@ const CRYPTOCURRENCIES = [
     id: "cardano",
     name: "Cardano",
     symbol: "ADABUSD",
-    iconCode: 20314,
+    iconCode: 2010,
     price: 0,
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
     priceChangePercent: 0,
-    explorer: "https://explorer.cardano.org/en",
+    explorer: "https://explorer.cardano.org",
   },
 ];
 export { CRYPTOCURRENCIES };
