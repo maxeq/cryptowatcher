@@ -29,9 +29,9 @@ function Crypto_table({ crypto, index }: Props) {
 
 
 
-    const classPriceChangePercent = (value: number) =>
+    const classPriceChangePercent = (value: any) =>
         value
-            ? value === 0
+            ? value === "0%"
                 ? "text-white-300"
                 : value < 0
                     ? "text-rose-300"
