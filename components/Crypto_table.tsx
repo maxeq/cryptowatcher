@@ -14,7 +14,9 @@ interface Props {
         highPrice: number;
         lowPrice: number;
         prevPrice: number;
-        priceChangePercent: number;
+        price_change_percentage_24h: number;
+        price_change_percentage_1h: number;
+        price_change_percentage_7d: number;
         explorer: string;
         circulatingSupply: number;
         marketCap: number;
@@ -25,17 +27,16 @@ interface Props {
 
 function Crypto_table({ crypto, index }: Props) {
 
-    const colorClassName = crypto.prevPrice
-        ? crypto.price > crypto.prevPrice
-            ? " text-lime-300"
-            : "text-rose-300"
-        : "text-white-300";
 
-    const classPriceChangePercent = crypto.priceChangePercent
-        ? crypto.priceChangePercent.toString().includes("-")
-            ? "text-rose-300"
-            : "text-lime-300"
-        : "text-white-300";
+
+    const classPriceChangePercent = (value: number) =>
+        value
+            ? value === 0
+                ? "text-white-300"
+                : value < 0
+                    ? "text-rose-300"
+                    : "text-lime-300"
+            : "text-white-300";
 
     return (
         <tr className="table__row">
@@ -48,7 +49,7 @@ function Crypto_table({ crypto, index }: Props) {
             <td className="table__end">
                 {crypto.price ? (
                     <>
-                        <span className={colorClassName} title={`${crypto.price}`}>
+                        <span title={`${crypto.price}`}>
                             {formatPrice(crypto.price)}
                         </span>
                     </>
@@ -57,19 +58,50 @@ function Crypto_table({ crypto, index }: Props) {
                 )}
             </td>
             <td className="table__end">
-                {crypto.priceChangePercent ? (
-                    <span className={classPriceChangePercent} title={`${crypto.priceChangePercent}`}>
-                        {formatPercent(crypto.priceChangePercent)}
+                {crypto.price_change_percentage_1h ? (
+                    <span className=
+                        {classPriceChangePercent(crypto.price_change_percentage_1h)}
+                        title=
+                        {`${crypto.price_change_percentage_1h}`}>
+                        {formatPercent(crypto.price_change_percentage_1h)}
                     </span>
                 ) : (
                     <Loader />
                 )}
             </td>
-            <td className="table__end">0.45%</td>
-            <td className="table__end">5.67%</td>
-            <td className="table__end">{formatPrice(crypto.marketCap)}</td>
-            <td className="table__end">{formatPrice(crypto.quoteVolume)}</td>
-            <td className="table__end">{formatPrice(crypto.volume)}</td>
+            <td className="table__end">
+                {crypto.price_change_percentage_24h ? (
+                    <span className=
+                        {classPriceChangePercent(crypto.price_change_percentage_24h)}
+                        title=
+                        {`${crypto.price_change_percentage_24h}`}>
+                        {formatPercent(crypto.price_change_percentage_24h)}
+                    </span>
+                ) : (
+                    <Loader />
+                )}
+            </td>
+            <td className="table__end">
+                {crypto.price_change_percentage_7d ? (
+                    <span className=
+                        {classPriceChangePercent(crypto.price_change_percentage_7d)}
+                        title=
+                        {`${crypto.price_change_percentage_7d}`}>
+                        {formatPercent(crypto.price_change_percentage_7d)}
+                    </span>
+                ) : (
+                    <Loader />
+                )}
+            </td>
+            <td className="table__end">
+                {formatPrice(crypto.marketCap) ? (formatPrice(crypto.marketCap)) : (<Loader />)}
+            </td>
+            <td className="table__end">
+                {formatPrice(crypto.volume) ? (formatPrice(crypto.volume)) : (<Loader />)}
+            </td>
+            <td className="table__end">
+                {formatPrice(crypto.circulatingSupply) ? (formatPrice(crypto.circulatingSupply)) : (<Loader />)}
+            </td>
             <td className="table__end">Graph image</td>
         </tr>
     );

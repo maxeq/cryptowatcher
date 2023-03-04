@@ -19,7 +19,9 @@ interface CryptoProps {
       highPrice: number;
       lowPrice: number;
       prevPrice: number;
-      priceChangePercent: number;
+      price_change_percentage_24h: number;
+      price_change_percentage_1h: number;
+      price_change_percentage_7d: number;
       explorer: string;
       circulatingSupply: number;
       marketCap: number;

@@ -13,7 +13,7 @@ const CRYPTOCURRENCIES = [
   },
   {
     id: "ETH",
-    name: "Etherium",
+    name: "Ethereum",
     symbol: "ETHBUSD",
     iconCode: 1027,
     price: 0,
@@ -123,7 +123,7 @@ const CRYPTOCURRENCIES = [
   },
   {
     id: "LUNC",
-    name: "Terra Classic",
+    name: "Terra Luna Classic",
     symbol: "LUNCBUSD",
     iconCode: 4172,
     price: 0,
@@ -134,16 +134,16 @@ const CRYPTOCURRENCIES = [
     explorer: "https://finder.terra.money/classic",
   },
   {
-    id: "LUNA",
-    name: "Terra",
-    symbol: "LUNABUSD",
+    id: "cardano",
+    name: "Cardano",
+    symbol: "ADABUSD",
     iconCode: 20314,
     price: 0,
     prevPrice: 0,
     highPrice: 0,
     lowPrice: 0,
     priceChangePercent: 0,
-    explorer: "https://finder.terra.money",
+    explorer: "https://explorer.cardano.org/en",
   },
 ];
 export { CRYPTOCURRENCIES };

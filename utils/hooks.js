@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { getSymbols, findByValue } from "../utils/index.js";
 import { CRYPTOCURRENCIES } from "../configs/index.js";
 
 const TICKER_STORAGE_KEY = "ticker";
@@ -12,26 +11,29 @@ const useTicker = () => {
 
   const fetchCrypto = useCallback(async () => {
     try {
-      const response = await fetch(`https://api.binance.com/api/v3/ticker/24hr`);
-
+      const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=1h,7d`);
       const data = await response.json();
-
+      console.log(data);
+  
       setCryptocurrencies(
         cryptocurrencies.map((item) => {
-          const { lastPrice, lowPrice, highPrice, priceChangePercent, volume, quoteVolume, marketCap, circulatingSupply } =
-            findByValue(data, item.symbol) || {};
-
+          const cryptoData = data.find((crypto) => crypto.name === item.name);
+  
           return {
             ...item,
-            highPrice,
-            lowPrice,
-            price: lastPrice,
+            highPrice: cryptoData?.high_24h || 0,
+            lowPrice: cryptoData?.low_24h || 0,
+            price: cryptoData?.current_price || 0,
             prevPrice: item?.price || 0,
-            priceChangePercent,
-            volume,
-            quoteVolume,
-            marketCap: volume * lastPrice,
-            circulatingSupply: quoteVolume,
+            price_change_percentage_24h: cryptoData?.price_change_percentage_24h || 0,
+            price_change_percentage_1h:
+            cryptoData?.price_change_percentage_1h_in_currency || 0,
+          price_change_percentage_7d:
+            cryptoData?.price_change_percentage_7d_in_currency || 0,
+            volume: cryptoData?.total_volume || 0,
+            total_supply: cryptoData?.total_supply || 0,
+            marketCap: cryptoData?.market_cap || 0,
+            circulatingSupply: cryptoData?.circulating_supply || 0,
           };
         })
       );
@@ -39,6 +41,7 @@ const useTicker = () => {
       console.log(error);
     }
   }, [cryptocurrencies]);
+  
 
   useEffect(() => {
     const interval = setInterval(fetchCrypto, 10000);
@@ -52,5 +55,6 @@ const useTicker = () => {
 
   return cryptocurrencies;
 };
+
 
 export { useTicker };
