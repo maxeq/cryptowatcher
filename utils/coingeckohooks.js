@@ -33,6 +33,11 @@ const useCoingeckoTicker = () => {
             total_supply: cryptoData?.total_supply || 0,
             marketCap: cryptoData?.market_cap || 0,
             circulatingSupply: cryptoData?.circulating_supply || 0,
+            Symbol: cryptoData?.symbol || 0,
+            priceHistoryCoinGecko: [
+              ...(item.priceHistoryCoinGecko || []).slice(0, 240),
+              cryptoData?.price || 0
+            ]
           };
         })
       );
