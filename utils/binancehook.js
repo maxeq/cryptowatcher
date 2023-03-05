@@ -23,7 +23,7 @@ const useBinanceTicker = () => {
             symbol: cryptoBinanceData?.symbol || 0,
             prevPriceBinance: item?.priceBinance || 0,
             priceHistoryBinance: [
-              ...(item.priceHistoryBinance || []).slice(0, 9),
+              ...(item.priceHistoryBinance || []).slice(0, 100),
               cryptoBinanceData?.lastPrice || 0
             ]
           };

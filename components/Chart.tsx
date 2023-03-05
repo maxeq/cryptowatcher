@@ -7,7 +7,6 @@ import {
     LinearScale,
     PointElement,
     LineElement,
-    Title,
     Tooltip,
     Legend,
 } from 'chart.js';
@@ -17,8 +16,6 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
-    Title,
-    Tooltip,
     Legend
 );
 
@@ -34,11 +31,15 @@ const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top' as const,
+            position: 'left' as const,
         },
-        title: {
-            display: true,
-            text: 'Chart.js Line Chart',
+    },
+    scales: {
+        x: {
+            display: false,
+        },
+        y: {
+            display: false,
         },
     },
 };
@@ -46,8 +47,8 @@ const options = {
 export default function Charts() {
     const cryptocurrenciesBinance = useBinanceTicker();
 
-    const labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    
+    const labels = Array.from({ length: 100 }, (_, i) => i.toString());
+
     const data = {
         labels,
         datasets: [
@@ -59,14 +60,11 @@ export default function Charts() {
             },
         ],
     };
-    
+
     return (
         <>
             {cryptocurrenciesBinance.map((crypto: BinanceHookProp["crypto"], index: number) => (
                 <div key={index}>
-                    <p>Symbol: {crypto.symbol}</p>
-                    <p>Price: {crypto.priceBinance}</p>
-                    <p>Price History: {crypto.priceHistoryBinance}</p>
                     <Line
                         options={options}
                         data={{
