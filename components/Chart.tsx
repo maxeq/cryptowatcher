@@ -1,7 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useBinanceTicker } from '../utils/binancehook';
-import { useCoingeckoTicker } from '@/utils/coingeckohooks';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,19 +18,21 @@ ChartJS.register(
   Legend
 );
 
-// interface BinanceHookProp {
+interface BinanceHookProp {
+  crypto: {
+    priceBinance: number;
+    priceHistoryBinance: number[];
+    symbol: string;
+  };
+}
+
+// interface CoinGeckoHookProp {
 //   crypto: {
-//     priceBinance: number;
-//     priceHistoryBinance: number[];
+//     priceHistoryCoinGecko: number[];
 //     symbol: string;
 //   };
 // }
-interface CoinGeckoHookProp {
-    crypto: {
-      priceHistoryCoinGecko: number[];
-      symbol: string;
-    };
-  }
+
 
 const options = {
   responsive: true,
@@ -56,14 +57,14 @@ export default function Charts({ symbol }: { symbol: string }): JSX.Element {
 
   // Find the cryptocurrency object that matches the symbol prop
   const crypto = cryptocurrenciesBinance.find(
-    (c: CoinGeckoHookProp["crypto"]) => c.symbol === symbol
+    (c: BinanceHookProp["crypto"]) => c.symbol === symbol
   );
 
   if (!crypto) {
     return <div>No data available for symbol {symbol}</div>;
   }
 
-  const labels = Array.from({ length: crypto.priceHistoryCoinGecko?.length ?? 0 }, (_, i) => i.toString());
+  const labels = Array.from({ length: crypto.priceHistoryBinance?.length ?? 0 }, (_, i) => i.toString());
 
 
   const data = {
@@ -90,7 +91,7 @@ export default function Charts({ symbol }: { symbol: string }): JSX.Element {
           datasets: [
             {
               ...data.datasets[0],
-              data: crypto.priceHistoryCoinGecko,
+              data: crypto.priceHistoryBinance,
               label: crypto.symbol,
             },
           ],
