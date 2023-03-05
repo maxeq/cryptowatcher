@@ -23,7 +23,7 @@ const useBinanceTicker = () => {
             symbol: cryptoBinanceData?.symbol || 0,
             prevPriceBinance: item?.priceBinance || 0,
             priceHistoryBinance: [
-              ...(item.priceHistoryBinance || []).slice(0, 300),
+              ...(item.priceHistoryBinance || []).slice(0, 240),
               cryptoBinanceData?.lastPrice || 0
             ]
           };
@@ -36,7 +36,7 @@ const useBinanceTicker = () => {
 
 
 useEffect(() => {
-  const interval = setInterval(fetchCrypto, 10000);
+  const interval = setInterval(fetchCrypto, 15000);
 
   return () => clearInterval(interval);
 }, [fetchCrypto]);
