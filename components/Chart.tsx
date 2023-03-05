@@ -25,7 +25,8 @@ ChartJS.register(
 interface BinanceHookProp {
     crypto: {
         priceBinance: number;
-        priceHistoryBinance: { price: number; index: number }[];
+        priceHistoryBinance: number[];
+        symbol: string;
     };
 }
 
@@ -44,39 +45,43 @@ const options = {
 
 export default function Charts() {
     const cryptocurrenciesBinance = useBinanceTicker();
- console.log(cryptocurrenciesBinance)
+
     const labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     
-    const price = cryptocurrenciesBinance[0].priceBinance;
-    console.log(price);
-
     const data = {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
-                data: labels.map(() => price),
+                label: 'Price History',
+                data: [],
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
         ],
     };
+    
     return (
         <>
-            <div>
-                {cryptocurrenciesBinance.map((crypto: BinanceHookProp["crypto"], index: number) => (
-                    <div key={index}>
-                        <p>Price: {crypto.priceBinance}</p>
-                        <p>Price History:</p>
-                        <ul>
-                            {crypto.priceHistoryBinance?.map((price: any, index: number) => (
-                                <li key={index}>{`${index}: ${price.price.toFixed(2)}`}</li>
-                            ))}
-                        </ul>
-                        <Line options={options} data={data} />
-                    </div>
-                ))}
-            </div>
+            {cryptocurrenciesBinance.map((crypto: BinanceHookProp["crypto"], index: number) => (
+                <div key={index}>
+                    <p>Symbol: {crypto.symbol}</p>
+                    <p>Price: {crypto.priceBinance}</p>
+                    <p>Price History: {crypto.priceHistoryBinance}</p>
+                    <Line
+                        options={options}
+                        data={{
+                            ...data,
+                            datasets: [
+                                {
+                                    ...data.datasets[0],
+                                    data: crypto.priceHistoryBinance,
+                                    label: crypto.symbol,
+                                },
+                            ],
+                        }}
+                    />
+                </div>
+            ))}
         </>
     );
 }
