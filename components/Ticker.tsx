@@ -55,7 +55,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
                 <th className="table__end">Market Cap</th>
                 <th className="table__end">Volume (24h)</th>
                 <th className="table__end">Circulating Supply</th>
-                <th className="table__end">Last 7 Days</th>
+                <th className="table__end">Last 5 Minutes</th>
               </tr>
             </thead>
             <tbody>
