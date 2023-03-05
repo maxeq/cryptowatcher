@@ -2,6 +2,7 @@ import React, { memo } from "react";
 
 import Loader from "./Loader";
 import { formatPrice, formatPercent } from "@/utils";
+import Charts from "./Chart";
 
 interface Props {
     index: number;
@@ -102,7 +103,7 @@ function Crypto_table({ crypto, index }: Props) {
             <td className="table__end">
                 {formatPrice(crypto.circulatingSupply) ? (formatPrice(crypto.circulatingSupply)) : (<Loader />)}
             </td>
-            <td className="table__end">Graph image</td>
+            <td className="table__end"><Charts symbol={crypto.symbol} /></td>
         </tr>
     );
 }

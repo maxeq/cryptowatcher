@@ -7,7 +7,6 @@ import {
     LinearScale,
     PointElement,
     LineElement,
-    Tooltip,
     Legend,
 } from 'chart.js';
 
@@ -32,6 +31,7 @@ const options = {
     plugins: {
         legend: {
             position: 'left' as const,
+            display: false,
         },
     },
     scales: {
@@ -44,42 +44,47 @@ const options = {
     },
 };
 
-export default function Charts() {
+export default function Charts({ symbol }: { symbol: string }): JSX.Element {
     const cryptocurrenciesBinance = useBinanceTicker();
-
-    const labels = Array.from({ length: 100 }, (_, i) => i.toString());
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Price History',
-                data: [],
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-        ],
-    };
-
-    return (
-        <>
-            {cryptocurrenciesBinance.map((crypto: BinanceHookProp["crypto"], index: number) => (
-                <div key={index}>
-                    <Line
-                        options={options}
-                        data={{
-                            ...data,
-                            datasets: [
-                                {
-                                    ...data.datasets[0],
-                                    data: crypto.priceHistoryBinance,
-                                    label: crypto.symbol,
-                                },
-                            ],
-                        }}
-                    />
-                </div>
-            ))}
-        </>
+  
+    // Find the cryptocurrency object that matches the symbol prop
+    const crypto = cryptocurrenciesBinance.find(
+      (c: BinanceHookProp["crypto"]) => c.symbol === symbol
     );
-}
+  
+    if (!crypto) {
+      return <div>No data available for symbol {symbol}</div>;
+    }
+  
+    const labels = Array.from({ length: 100 }, (_, i) => i.toString());
+  
+    const data = {
+      labels,
+      datasets: [
+        {
+          label: 'Price History',
+          data: [],
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+      ],
+    };
+  
+    return (
+      <div>
+        <Line
+          options={options}
+          data={{
+            ...data,
+            datasets: [
+              {
+                ...data.datasets[0],
+                data: crypto.priceHistoryBinance,
+                label: crypto.symbol,
+              },
+            ],
+          }}
+        />
+      </div>
+    );
+  }

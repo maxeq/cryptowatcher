@@ -15,7 +15,7 @@ export default function Alerts() {
 <Layout>
 <NoSSR>
 <H1Template text="Hunt the crypto whale. Get 'em." />
-<Charts />
+<Charts symbol="BTCBUSD" />
 </NoSSR>
 </Layout>
     )
