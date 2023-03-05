@@ -3,7 +3,7 @@ import { useBinanceTicker } from "../utils/binancehook";
 interface binanceHookProp {
     crypto: {
         priceBinance: number;
-        priceHistoryBinance: { price: number; time: string }[];
+        priceHistoryBinance: { price: number; index: number }[];
     };
 }
 
@@ -19,7 +19,7 @@ export default function Charts() {
                         <p>Price History:</p>
                         <ul>
                             {crypto.priceHistoryBinance?.map((price: any, index: number) => (
-                                <li key={index}>{`${price.time}: ${price.price.toFixed(2)}`}</li>
+                                <li key={index}>{`${index}: ${price.price.toFixed(2)}`}</li>
                             ))}
 
                         </ul>

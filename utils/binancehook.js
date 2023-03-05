@@ -21,8 +21,7 @@ const useBinanceTicker = () => {
           const lastPrice = parseFloat(cryptoBinanceData?.lastPrice || 0); // convert lastPrice to a number
           const timestamp = new Date().toISOString(); // get current date and time in ISO format
           const priceHistoryWithLast = [...priceHistory.slice(-8), { price: lastPrice, time: timestamp }]; // take last 8 elements of priceHistory and add lastPrice with timestamp to create new array
-          const priceList = priceHistoryWithLast.map(price => ({ price: parseFloat(price.price), time: price.time })); // create new array with prices as numbers
-
+          const priceList = priceHistoryWithLast.map((price, index) => ({ price: parseFloat(price.price), index }));
           return {
             ...item,
             priceBinance: cryptoBinanceData?.lastPrice || 0,
