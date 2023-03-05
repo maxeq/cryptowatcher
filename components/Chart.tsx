@@ -56,7 +56,7 @@ export default function Charts({ symbol }: { symbol: string }): JSX.Element {
       return <div>No data available for symbol {symbol}</div>;
     }
   
-    const labels = Array.from({ length: 100 }, (_, i) => i.toString());
+    const labels = Array.from({ length: 9 }, (_, i) => i.toString());
   
     const data = {
       labels,
