@@ -64,8 +64,11 @@ export default function Charts({ symbol }: { symbol: string }): JSX.Element {
         {
           label: 'Price History',
           data: [],
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderColor: 'rgb(163 230 53)',
+          backgroundColor: 'rgb(163 230 53, 0.5)',
+            pointRadius: 0,
+            borderWidth: 2,
+            
         },
       ],
     };
