@@ -56,8 +56,8 @@ export default function Charts({ symbol }: { symbol: string }): JSX.Element {
       return <div>No data available for symbol {symbol}</div>;
     }
   
-    const labels = Array.from({ length: crypto.priceHistoryBinance.length }, (_, i) => i.toString());
-
+    const labels = Array.from({ length: 300 }, (_, i) => i.toString());
+  
     const data = {
       labels,
       datasets: [
