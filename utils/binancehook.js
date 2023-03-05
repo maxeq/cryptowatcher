@@ -17,14 +17,15 @@ const useBinanceTicker = () => {
       setCryptocurrencies(
         cryptocurrenciesBinance.map((item) => {
           const cryptoBinanceData = data.find((cryptoBinance) => cryptoBinance.symbol === item.symbol);
+          const priceHistory = item.priceHistoryBinance || []; // initialize to an empty array if undefined or null
+          const lastPrice = parseFloat(cryptoBinanceData?.lastPrice || 0); // convert lastPrice to a number
+          const priceHistoryWithLast = [...priceHistory.slice(-8), lastPrice]; // take last 8 elements of priceHistory and add lastPrice to create new array
+          const priceList = priceHistoryWithLast.map(price => parseFloat(price)); // create new array with prices as numbers
+
           return {
             ...item,
             priceBinance: cryptoBinanceData?.lastPrice || 0,
-            prevPriceBinance: item?.priceBinance || 0,
-            priceHistoryBinance: [
-              ...(item.priceHistoryBinance || []).slice(0, 9),
-              cryptoBinanceData?.lastPrice || 0
-            ]
+            priceHistoryBinance: priceList.slice(-9)
           };
         })
       );
