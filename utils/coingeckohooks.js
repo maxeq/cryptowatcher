@@ -36,7 +36,7 @@ const useCoingeckoTicker = () => {
             Symbol: cryptoData?.symbol || 0,
             priceHistoryCoinGecko: [
               ...(item.priceHistoryCoinGecko || []).slice(0, 240),
-              cryptoData?.price || 0
+              cryptoData?.current_price || 0
             ]
           };
         })
