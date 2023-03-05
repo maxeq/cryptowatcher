@@ -2,7 +2,7 @@ import React from "react";
 
 import Crypto from "./Crypto";
 import Crypto_table from "./Crypto_table";
-import { useTicker } from "../utils/hooks";
+import { useCoingeckoTicker } from "../utils/coingeckohooks";
 
 interface TickerProps {
   pageName: string;
@@ -11,27 +11,27 @@ interface TickerProps {
 interface CryptoProps {
   index: number;
   crypto: {
-      id: string;
-      name: string;
-      symbol: string;
-      iconCode: number;
-      price: number;
-      highPrice: number;
-      lowPrice: number;
-      prevPrice: number;
-      price_change_percentage_24h: number;
-      price_change_percentage_1h: number;
-      price_change_percentage_7d: number;
-      explorer: string;
-      circulatingSupply: number;
-      marketCap: number;
-      volume: number;
-      quoteVolume: number;
+    id: string;
+    name: string;
+    symbol: string;
+    iconCode: number;
+    price: number;
+    highPrice: number;
+    lowPrice: number;
+    prevPrice: number;
+    price_change_percentage_24h: number;
+    price_change_percentage_1h: number;
+    price_change_percentage_7d: number;
+    explorer: string;
+    circulatingSupply: number;
+    marketCap: number;
+    volume: number;
+    quoteVolume: number;
   };
 }
 
 export default function Ticker({ pageName }: TickerProps): JSX.Element {
-  const cryptocurrencies = useTicker();
+  const cryptocurrencies = useCoingeckoTicker();
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
             <Crypto key={crypto.id} crypto={crypto} />
           ))}
         </div>
-      ) : (
+      ) : pageName === "Crypto_table" ? (
         <div className="relative overflow-x-auto">
           <table className={`table mx-auto`}>
             <thead>
@@ -65,7 +65,7 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
             </tbody>
           </table>
         </div>
-      )}
+      ) : null}
     </>
   );
 }

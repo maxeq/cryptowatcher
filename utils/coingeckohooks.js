@@ -4,7 +4,7 @@ import { CRYPTOCURRENCIES } from "../configs/index.js";
 
 const TICKER_STORAGE_KEY = "ticker";
 
-const useTicker = () => {
+const useCoingeckoTicker = () => {
   const [cryptocurrencies, setCryptocurrencies] = useState(
     JSON.parse(localStorage.getItem(TICKER_STORAGE_KEY)) || CRYPTOCURRENCIES
   );
@@ -13,12 +13,11 @@ const useTicker = () => {
     try {
       const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=1h,7d`);
       const data = await response.json();
-      console.log(data);
-  
+
       setCryptocurrencies(
         cryptocurrencies.map((item) => {
           const cryptoData = data.find((crypto) => crypto.name === item.name);
-  
+          console.log(cryptoData);
           return {
             ...item,
             highPrice: cryptoData?.high_24h || 0,
@@ -27,9 +26,9 @@ const useTicker = () => {
             prevPrice: item?.price || 0,
             price_change_percentage_24h: cryptoData?.price_change_percentage_24h || 0,
             price_change_percentage_1h:
-            cryptoData?.price_change_percentage_1h_in_currency || 0,
-          price_change_percentage_7d:
-            cryptoData?.price_change_percentage_7d_in_currency || 0,
+              cryptoData?.price_change_percentage_1h_in_currency || 0,
+            price_change_percentage_7d:
+              cryptoData?.price_change_percentage_7d_in_currency || 0,
             volume: cryptoData?.total_volume || 0,
             total_supply: cryptoData?.total_supply || 0,
             marketCap: cryptoData?.market_cap || 0,
@@ -41,7 +40,7 @@ const useTicker = () => {
       console.log(error);
     }
   }, [cryptocurrencies]);
-  
+
 
   useEffect(() => {
     const interval = setInterval(fetchCrypto, 10000);
@@ -57,4 +56,4 @@ const useTicker = () => {
 };
 
 
-export { useTicker };
+export { useCoingeckoTicker };
