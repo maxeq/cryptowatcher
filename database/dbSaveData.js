@@ -74,15 +74,15 @@ axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=
     }));
 
     // Connect to MongoDB using the connect() method
-    mongoose.connect('mongodb+srv://max:maxmaxmax@cluster0.5tkzmg9.mongodb.net/test', {
+    mongoose.connect('mongodb+srv://max:maxmaxmax@cluster0.5tkzmg9.mongodb.net/data', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
       .then(() => {
         console.log('Connected to MongoDB');
 
-        // Save the coins to the database
-        Coin.insertMany(coins)
+        // Save the coinGeckoData to the database
+        Coin.insertMany(coinGeckoData)
           .then(() => {
             console.log(`Successfully inserted ${coins.length} coins into the database`);
             // Disconnect from MongoDB
