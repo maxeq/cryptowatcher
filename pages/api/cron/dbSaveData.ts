@@ -1,4 +1,4 @@
-import * as https from "https"
+import axios from 'axios';
 import mongoose, { Schema } from 'mongoose';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -73,63 +73,57 @@ const coinSchema: Schema = new Schema({
 const Coin = mongoose.models.Coin || mongoose.model<CoinType>('Coin', coinSchema);
 
 const handler: (req: NextApiRequest, res: NextApiResponse) => void = async (req, res) => {
-  // Use the CoinGecko API to get the top 100 coins by market cap
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-
-  // Use the https module to make a GET request to the API
-  https.get(url, async (response) => {
-    let data = '';
-    response.on('data', (chunk) => {
-      data += chunk;
+  try {
+    // Use the CoinGecko API to get the top 100 coins by market cap
+    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+      params: {
+        vs_currency: 'usd',
+        order: 'market_cap_desc',
+        per_page: 100,
+        page: 1,
+        sparkline: false,
+      },
     });
-    response.on('end', async () => {
-      const coins = JSON.parse(data);
-      // Loop through the coins returned by the API and add them to the database
-      for (const coin of coins) {
-        try {
-          const newCoin = new Coin({
-            id: coin.id,
-            dbDateAdded: new Date(),
-            symbol: coin.symbol,
-            name: coin.name,
-            image: coin.image,
-            current_price: coin.current_price,
-            market_cap: coin.market_cap,
-            market_cap_rank: coin.market_cap_rank,
-            fully_diluted_valuation: coin.fully_diluted_valuation,
-            total_volume: coin.total_volume,
-            high_24h: coin.high_24h,
-            low_24h: coin.low_24h,
-            price_change_24h: coin.price_change_24h,
-            price_change_percentage_24h: coin.price_change_percentage_24h,
-            market_cap_change_24h: coin.market_cap_change_24h,
-            market_cap_change_percentage_24h: coin.market_cap_change_percentage_24h,
-            circulating_supply: coin.circulating_supply,
-            total_supply: coin.total_supply,
-            max_supply: coin.max_supply,
-            ath: coin.ath,
-            ath_change_percentage: coin.ath_change_percentage,
-            ath_date: new Date(coin.ath_date),
-            atl: coin.atl,
-            atl_change_percentage: coin.atl_change_percentage,
-            atl_date: new Date(coin.atl_date),
-            roi: coin.roi,
-            last_updated: new Date(coin.last_updated),
-            price_change_percentage_1h_in_currency: coin.price_change_percentage_1h_in_currency,
-            price_change_percentage_30d_in_currency: coin.price_change_percentage_30d_in_currency,
-            price_change_percentage_7d_in_currency: coin.price_change_percentage_7d_in_currency,
-          });
-          await newCoin.save();
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      res.status(200).json({ success: true });
-    });
-  }).on('error', (error) => {
+    const coins = response.data;
+    // Loop through the coins returned by the API and add them to the database
+    const coinDocs = coins.map((coin: any) => ({
+      id: coin.id,
+      dbDateAdded: new Date(),
+      symbol: coin.symbol,
+      name: coin.name,
+      image: coin.image,
+      current_price: coin.current_price,
+      market_cap: coin.market_cap,
+      market_cap_rank: coin.market_cap_rank,
+      fully_diluted_valuation: coin.fully_diluted_valuation,
+      total_volume: coin.total_volume,
+      high_24h: coin.high_24h,
+      low_24h: coin.low_24h,
+      price_change_24h: coin.price_change_24h,
+      price_change_percentage_24h: coin.price_change_percentage_24h,
+      market_cap_change_24h: coin.market_cap_change_24h,
+      market_cap_change_percentage_24h: coin.market_cap_change_percentage_24h,
+      circulating_supply: coin.circulating_supply,
+      total_supply: coin.total_supply,
+      max_supply: coin.max_supply,
+      ath: coin.ath,
+      ath_change_percentage: coin.ath_change_percentage,
+      ath_date: new Date(coin.ath_date),
+      atl: coin.atl,
+      atl_change_percentage: coin.atl_change_percentage,
+      atl_date: new Date(coin.atl_date),
+      roi: coin.roi,
+      last_updated: new Date(coin.last_updated),
+      price_change_percentage_1h_in_currency: coin.price_change_percentage_1h_in_currency,
+      price_change_percentage_30d_in_currency: coin.price_change_percentage_30d_in_currency,
+      price_change_percentage_7d_in_currency: coin.price_change_percentage_7d_in_currency,
+    }));
+    await Coin.create(coinDocs);
+    res.status(200).json({ success: true });
+  } catch (error) {
     console.log(error);
     res.status(500).json({ success: false });
-  });
+  }
 };
 
 export default handler;
