@@ -1,7 +1,7 @@
 {
     "crons": [
         {
-            "path": "/api/cron",
+            "path": "/api/cron/dbSaveData",
             "schedule": "0 0 * * *"
         }
     ]
