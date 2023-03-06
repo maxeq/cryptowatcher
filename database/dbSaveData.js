@@ -2,6 +2,10 @@ const axios = require('axios');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
+  // API call exports
+module.exports = async (req, res) => {
+
 // Define the interface for a coin
 const coinSchema = new Schema({
   id: { type: String, required: true },
@@ -98,3 +102,6 @@ axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=
         console.log(`MongoDB connection error occurred:`, err);
       });
   }) 
+
+  res.status(200).send("File function complete");
+}
