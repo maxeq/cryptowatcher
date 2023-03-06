@@ -36,7 +36,7 @@ const useBinanceTicker = () => {
 
 
 useEffect(() => {
-  const interval = setInterval(fetchCrypto, 30000);
+  const interval = setInterval(fetchCrypto, 300000);
 
   return () => clearInterval(interval);
 }, [fetchCrypto]);

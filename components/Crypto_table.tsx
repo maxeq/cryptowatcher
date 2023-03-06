@@ -103,9 +103,9 @@ function Crypto_table({ crypto, index }: Props) {
             <td className="table__end">
                 {formatPrice(crypto.circulatingSupply) ? (formatPrice(crypto.circulatingSupply)) : (<Loader />)}
             </td>
-            {/* <td className="table__end">
+            <td className="table__end">
                 {<Charts symbol={crypto.symbol} /> ? <Charts symbol={crypto.symbol} /> : <Loader />}
-            </td> */}
+            </td>
         </tr>
     );
 }
