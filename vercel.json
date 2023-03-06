@@ -1,8 +1,6 @@
 {
-    "crons":[
-        {
-            "path":"/api/hello",
-            "time":"* * * * *"
-        }
-    ]
-}
+    "name": "My Cron Job",
+    "schedule": "0 0 * * *",
+    "command": "node database/dbSaveData.js"
+  }
+  
