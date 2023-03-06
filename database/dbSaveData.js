@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 
+const uri = 'mongodb+srv://max:maxmaxmax@cluster0.5tkzmg9.mongodb.net/data';
+
   // API call exports
 module.exports = async (req, res) => {
 
@@ -78,7 +80,7 @@ axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=
     }));
 
     // Connect to MongoDB using the connect() method
-    mongoose.connect('mongodb+srv://max:maxmaxmax@cluster0.5tkzmg9.mongodb.net/data', {
+    mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
