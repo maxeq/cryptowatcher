@@ -1,6 +1,6 @@
 {
     "name": "My Cron Job",
-    "schedule": "0 0 * * *",
+    "schedule": "* * * * * ",
     "command": "node database/dbSaveData.js"
   }
   
