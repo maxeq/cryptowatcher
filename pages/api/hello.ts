@@ -1,18 +1,19 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import dbSaveData from '@/database/dbSaveData'
 
-type Data = {
-  name: string
-}
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name: 'John Doe' })
-}
+  try {
+    // Call dbSaveData to save data to the database
+    await dbSaveData(req, res);
 
-module.exports = async (req:any , res: any) => {
-  await dbSaveData(req, res);
+    // Return a success response
+    res.status(200).json({ success: true });
+  } catch (error) {
+    // Handle any errors that occur
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while saving data to the database' });
+  }
 }
