@@ -7,7 +7,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const data = await mongoClient
     .db()
-    .collection('coin')
+    .collection('coins')
     .find()
     .toArray();
 
