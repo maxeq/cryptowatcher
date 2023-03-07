@@ -110,10 +110,12 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     }));
 
     // Connect to MongoDB using the connect() method
-    await mongoose.connect('mongodb+srv://max:maxmaxmax@cluster0.5tkzmg9.mongodb.net/data', {
-    });
-
-
+    if (process.env.MONGODB_URI) {
+      await mongoose.connect(process.env.MONGODB_URI);
+    } else {
+      console.error('MONGODB_URI environment variable is not defined');
+    }
+    
     // Save the coins to the database
     await Coin.insertMany(coins);
 
