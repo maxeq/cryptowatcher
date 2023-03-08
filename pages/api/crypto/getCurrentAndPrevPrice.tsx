@@ -9,7 +9,7 @@ export type Customer = {
     dbDateAdded: Date;
 };
 
-export const getCustomers = async () => {
+export const getCurrentAndPrevPrice = async () => {
     const mongoClient = await clientPromise;
 
     const data = await mongoClient
@@ -40,7 +40,7 @@ console.log(data)
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<{ customers: Customer[] }>) => {
-    const data = await getCustomers();
+    const data = await getCurrentAndPrevPrice();
     res.status(200).json({ customers: data });
 };
 
