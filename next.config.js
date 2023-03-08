@@ -1,19 +1,10 @@
 // next.config.js
 
-const images = {
-  remotePatterns: [
-    {
-      protocol: 'https',
-      hostname: 's2.coinmarketcap.com',
-      port: '',
-      pathname: '/static/img/coins/128x128/*',
-    },
-  ],
-};
-
 const nextConfig = {
   reactStrictMode: true,
-  images,
+  images: {
+    domains: ['s2.coinmarketcap.com', 'assets.coingecko.com'],
+  },
 };
 
 module.exports = nextConfig;
