@@ -4,6 +4,8 @@ import Crypto from "./Crypto";
 import Crypto_table from "./Crypto_table";
 import { useCoingeckoTicker } from "../utils/coingeckohooks";
 
+
+
 interface TickerProps {
   pageName: string;
 }

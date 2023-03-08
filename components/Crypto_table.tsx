@@ -3,6 +3,8 @@ import React, { memo } from "react";
 import Loader from "./Loader";
 import { formatPrice, formatPercent } from "@/utils";
 import Charts from "./Chart";
+import { ObjectId } from 'mongodb';
+import { getCustomers } from '../pages/api/customers/index';
 
 interface Props {
     index: number;
@@ -27,8 +29,6 @@ interface Props {
 }
 
 function Crypto_table({ crypto, index }: Props) {
-
-
 
     const classPriceChangePercent = (value: any) =>
         value
@@ -103,9 +103,9 @@ function Crypto_table({ crypto, index }: Props) {
             <td className="table__end">
                 {formatPrice(crypto.circulatingSupply) ? (formatPrice(crypto.circulatingSupply)) : (<Loader />)}
             </td>
-            <td className="table__end">
+            {/* <td className="table__end">
                 {<Charts symbol={crypto.symbol} /> ? <Charts symbol={crypto.symbol} /> : <Loader />}
-            </td>
+            </td> */}
         </tr>
     );
 }

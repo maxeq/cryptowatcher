@@ -31,6 +31,11 @@ export default function Header() {
                 Alerts
               </Link>
             </li>
+            <li>
+              <Link href="/customers" className="text-lg font-bold hover:text-lime-400">
+                Customers
+              </Link>
+            </li>
           </ul>
         </div>
         <ul className="list-none ml-8">
@@ -82,6 +87,14 @@ export default function Header() {
                 className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Whale Alerts
+
+              </Link>
+
+              <Link
+                href="/customers"
+                className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
+
+                Customers
 
               </Link>
               {/* <input
