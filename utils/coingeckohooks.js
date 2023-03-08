@@ -6,7 +6,7 @@ const TICKER_STORAGE_KEY = "ticker";
 
 const useCoingeckoTicker = () => {
   const [cryptocurrencies, setCryptocurrencies] = useState(
-    JSON.parse(localStorage.getItem(TICKER_STORAGE_KEY)) || CRYPTOCURRENCIES
+    () => JSON.parse(typeof window !== 'undefined' ? localStorage.getItem(TICKER_STORAGE_KEY) : null) || CRYPTOCURRENCIES
   );
 
   const fetchCrypto = useCallback(async () => {
@@ -17,7 +17,7 @@ const useCoingeckoTicker = () => {
       setCryptocurrencies(
         cryptocurrencies.map((item) => {
           const cryptoData = data.find((crypto) => crypto.name === item.name);
-          console.log(cryptoData);
+
           return {
             ...item,
             highPrice: cryptoData?.high_24h || 0,
@@ -54,7 +54,9 @@ const useCoingeckoTicker = () => {
   }, [fetchCrypto]);
 
   useEffect(() => {
-    localStorage.setItem(TICKER_STORAGE_KEY, JSON.stringify(cryptocurrencies));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(TICKER_STORAGE_KEY, JSON.stringify(cryptocurrencies));
+    }
   }, [cryptocurrencies]);
 
   return cryptocurrencies;

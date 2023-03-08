@@ -3,30 +3,44 @@ import React, { memo } from "react";
 import Loader from "./Loader";
 import { formatPrice, formatPercent } from "@/utils";
 import Charts from "./Chart";
+import { ObjectId } from 'mongodb';
+import { getCustomers } from '../pages/api/customers/index';
 
-interface Props {
-    index: number;
-    crypto: {
-        id: string;
-        name: string;
-        symbol: string;
-        iconCode: number;
-        price: number;
-        highPrice: number;
-        lowPrice: number;
-        prevPrice: number;
-        price_change_percentage_24h: number;
-        price_change_percentage_1h: number;
-        price_change_percentage_7d: number;
-        explorer: string;
-        circulatingSupply: number;
-        marketCap: number;
-        volume: number;
-        quoteVolume: number;
-    };
-}
 
-function Crypto_table({ crypto, index }: Props) {
+export type getStaticProps = {
+    id: string;
+    dbDateAdded: Date;
+    symbol: string;
+    name: string;
+    image: string;
+    current_price: number;
+    market_cap: number;
+    market_cap_rank: number;
+    fully_diluted_valuation?: number | null;
+    total_volume: number;
+    high_24h: number;
+    low_24h: number;
+    price_change_24h: number;
+    price_change_percentage_24h: number;
+    market_cap_change_24h: number;
+    market_cap_change_percentage_24h: number;
+    circulating_supply: number;
+    total_supply?: number | null;
+    max_supply?: number | null;
+    ath: number;
+    ath_change_percentage: number;
+    ath_date: Date;
+    atl: number;
+    atl_change_percentage: number;
+    atl_date: Date;
+    roi?: object | null;
+    last_updated: Date;
+    price_change_percentage_1h_in_currency?: number | null;
+    price_change_percentage_30d_in_currency?: number | null;
+    price_change_percentage_7d_in_currency?: number | null;
+  }
+
+function Crypto_table2(crypto: any , index: number) {
 
     const classPriceChangePercent = (value: any) =>
         value
@@ -46,10 +60,10 @@ function Crypto_table({ crypto, index }: Props) {
                 {crypto.name}
             </td>
             <td className="table__end">
-                {crypto.price ? (
+                {crypto.current_price ? (
                     <>
-                        <span title={`${crypto.price}`}>
-                            {formatPrice(crypto.price)}
+                        <span title={`${crypto.current_price}`}>
+                            {formatPrice(crypto.current_price)}
                         </span>
                     </>
                 ) : (
@@ -57,12 +71,12 @@ function Crypto_table({ crypto, index }: Props) {
                 )}
             </td>
             <td className="table__end">
-                {crypto.price_change_percentage_1h ? (
+                {crypto.price_change_percentage_1h_in_currency ? (
                     <span className=
-                        {classPriceChangePercent(crypto.price_change_percentage_1h)}
+                        {classPriceChangePercent(crypto.price_change_percentage_1h_in_currency)}
                         title=
-                        {`${crypto.price_change_percentage_1h}`}>
-                        {formatPercent(crypto.price_change_percentage_1h)}
+                        {`${crypto.price_change_percentage_1h_in_currency}`}>
+                        {formatPercent(crypto.price_change_percentage_1h_in_currency)}
                     </span>
                 ) : (
                     <Loader />
@@ -108,4 +122,4 @@ function Crypto_table({ crypto, index }: Props) {
     );
 }
 
-export default memo(Crypto_table);
+export default Crypto_table2

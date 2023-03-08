@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
+import { NextApiRequest, NextApiResponse } from 'next/types';
 
-export type coinData = {
+export type CoinData = {
   id: string;
   dbDateAdded: Date;
   symbol: string;
@@ -35,7 +35,7 @@ export type coinData = {
   price_change_percentage_7d_in_currency?: number | null;
 }
 
-export const getData = async () => {
+export const getData = async (): Promise<CoinData[]> => {
   const mongoClient = await clientPromise;
 
   const data = await mongoClient
@@ -43,11 +43,11 @@ export const getData = async () => {
     .collection('coins')
     .find()
     .toArray();
-  console.log(data)
+
   return JSON.parse(JSON.stringify(data));
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<{ getdata: coinData[] }>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<{ getdata: CoinData[] }>) => {
   const data = await getData();
   res.status(200).json({ getdata: data });
 };
