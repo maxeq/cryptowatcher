@@ -51,6 +51,9 @@ export const getData = async (): Promise<CoinData[]> => {
       {
         $replaceRoot: { newRoot: '$latestData' },
       },
+      {
+        $limit: 10
+      }
     ])
     .toArray();
 
