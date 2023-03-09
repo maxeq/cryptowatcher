@@ -82,8 +82,8 @@ export default function Crypto_table3({ }: CryptoProps): JSX.Element {
           {!error && cryptocurrencies ? (
             cryptocurrencies.getdata.map((crypto: any, index: number) => (
               <tr key={crypto.id}>
-                <td className="table__start">{index + 1}</td>
-                <td className="table__start flex items-center">
+                <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{index + 1}</td>
+                <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
                   <Image
                     src={crypto.image}
                     alt={crypto.name}
