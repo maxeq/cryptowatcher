@@ -2,6 +2,8 @@ import React from "react";
 import { formatPrice, formatPercent } from "@/utils";
 import Loader from "./Loader";
 import useSWR from 'swr';
+import Image from 'next/image';
+import ChartFetcher from "./charts/ChartFetcher";
 
 interface CryptoProps {
   index: number;
@@ -31,7 +33,7 @@ const fetcher = async (url: string) => {
   return data;
 }
 
-export default function Crypto_table2({}: CryptoProps): JSX.Element {
+export default function Crypto_table3({ }: CryptoProps): JSX.Element {
   const { data: cryptocurrencies, error } = useSWR(
     "/api/crypto/getData",
     fetcher,
@@ -44,8 +46,11 @@ export default function Crypto_table2({}: CryptoProps): JSX.Element {
       onError: (error) => {
         console.error(error);
       },
+      revalidateOnMount: true,
+      dedupingInterval: 300000 // Cache for 5 minutes
     }
   );
+
 
   const classPriceChangePercent = (value: any) =>
     value
@@ -74,42 +79,45 @@ export default function Crypto_table2({}: CryptoProps): JSX.Element {
           </tr>
         </thead>
         <tbody>
-        {!error && cryptocurrencies ? (
-  cryptocurrencies.getdata.map((crypto: any, index: number) => (
-    <tr key={crypto.id}>
-      <td className="table__start">{index + 1}</td>
-      <td className="table__start flex items-center">
-        <img
-          src={crypto.image}
-          alt={crypto.name}
-          width="24"
-          height="24"
-          className="mr-2"
-        />
-        <span className="font-medium">{crypto.name}</span>
-      </td>
-      <td className="table__end">{formatPrice(crypto.current_price)}</td>
-      <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_1h_in_currency))}`}>
-        {formatPercent(crypto.price_change_percentage_1h_in_currency)}
-      </td>
-      <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_24h))}`}>
-        {formatPercent(crypto.price_change_percentage_24h)}
-      </td>
-      <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_7d_in_currency))}`}>
-        {formatPercent(crypto.price_change_percentage_7d_in_currency)}
-      </td>
-      <td className="table__end">{formatPrice(crypto.market_cap)}</td>
-      <td className="table__end">{formatPrice(crypto.total_volume)}</td>
-      <td className="table__end">{formatPrice(crypto.circulating_supply)}</td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan={9}>
-      <Loader />
-    </td>
-  </tr>
-)}
+          {!error && cryptocurrencies ? (
+            cryptocurrencies.getdata.map((crypto: any, index: number) => (
+              <tr key={crypto.id}>
+                <td className="table__start">{index + 1}</td>
+                <td className="table__start flex items-center">
+                  <Image
+                    src={crypto.image}
+                    alt={crypto.name}
+                    width="32"
+                    height="32"
+                    className="mr-2"
+                  />
+                  <span className="font-medium">{crypto.name}</span>
+                </td>
+                <td className="table__end">{formatPrice(crypto.current_price)}</td>
+                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_1h_in_currency))}`}>
+                  {formatPercent(crypto.price_change_percentage_1h_in_currency)}
+                </td>
+                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_24h))}`}>
+                  {formatPercent(crypto.price_change_percentage_24h)}
+                </td>
+                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_7d_in_currency))}`}>
+                  {formatPercent(crypto.price_change_percentage_7d_in_currency)}
+                </td>
+                <td className="table__end">{formatPrice(crypto.market_cap)}</td>
+                <td className="table__end">{formatPrice(crypto.total_volume)}</td>
+                <td className="table__end">{formatPrice(crypto.circulating_supply)}</td>
+                <td className="table__end">
+                  <ChartFetcher _id={crypto.name} />
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={9}>
+                <Loader />
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

@@ -41,7 +41,17 @@ export const getData = async (): Promise<CoinData[]> => {
   const data = await mongoClient
     .db()
     .collection('coins')
-    .find()
+    .aggregate([
+      {
+        $group: {
+          _id: '$name',
+          latestData: { $last: '$$ROOT' },
+        },
+      },
+      {
+        $replaceRoot: { newRoot: '$latestData' },
+      },
+    ])
     .toArray();
 
   return JSON.parse(JSON.stringify(data));

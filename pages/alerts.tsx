@@ -8,8 +8,10 @@ import NoSSR from '@/components/NoSSR'
 export default function Alerts() {
     return (
 <Layout>
+    <NoSSR>
 <H1Template text="Hunt the crypto whale. Get 'em." />
 <Crypto_table3 />
+</NoSSR>
 </Layout>
     )
 }

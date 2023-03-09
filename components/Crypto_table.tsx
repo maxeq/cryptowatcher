@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 import Loader from "./Loader";
 import { formatPrice, formatPercent } from "@/utils";
-import Charts from "./Chart";
+import Charts from "../components/charts/Chart";
 import { ObjectId } from 'mongodb';
 import { getCustomers } from '../pages/api/customers/index';
 
