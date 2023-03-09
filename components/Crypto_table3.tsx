@@ -47,7 +47,7 @@ export default function Crypto_table3() {
         console.error(error);
       },
       revalidateOnMount: true,
-      dedupingInterval: 300000 // Cache for 5 minutes
+      dedupingInterval: 5000 // Cache for 5 minutes
     }
   );
 
