@@ -22,25 +22,25 @@ interface ChartsProps {
   cryptoArray: number[];
 }
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'left' as const,
-      display: false,
-    },
-  },
-  scales: {
-    x: {
-      display: false,
-    },
-    y: {
-      display: false,
-    },
-  },
-};
 
 export default function Charts({ cryptoName, cryptoArray }: ChartsProps): JSX.Element {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'left' as const,
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        display: false,
+      },
+      y: {
+        display: false,
+      },
+    },
+  };
 
   const labels = Array.from({ length: cryptoArray?.length ?? 0 }, (_, i) => i.toString());
 
@@ -60,7 +60,6 @@ export default function Charts({ cryptoName, cryptoArray }: ChartsProps): JSX.El
   };
 
   return (
-    <div>
       <Line
         options={options}
         data={{
@@ -74,6 +73,5 @@ export default function Charts({ cryptoName, cryptoArray }: ChartsProps): JSX.El
           ],
         }}
       />
-    </div>
   );
 }

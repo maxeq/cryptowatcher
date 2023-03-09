@@ -43,9 +43,7 @@ const ChartFetcher: React.FC<Props> = ({ _id }: Props) => {
   if (!item) return <div>No data found for the given id</div>;
 
   return (
-    <div>
       <Charts cryptoName={item._id} cryptoArray={item.array_current_price} />
-    </div>
   );
 };
 
