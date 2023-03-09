@@ -10,7 +10,7 @@ export default function Alerts() {
 <Layout>
     <NoSSR>
 <H1Template text="Hunt the crypto whale. Get 'em." />
-<Crypto_table3 />
+<Crypto_table3  />
 </NoSSR>
 </Layout>
     )

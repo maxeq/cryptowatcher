@@ -6,7 +6,6 @@ import Charts from '@/components/charts/Chart'
 
 import NoSSR from "../components/NoSSR";
 import Layout from "../components/Layout";
-import Ticker from "../components/Ticker";
 import H1Template from '@/components/h1template'
 
 

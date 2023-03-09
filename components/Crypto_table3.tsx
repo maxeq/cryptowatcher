@@ -33,7 +33,7 @@ const fetcher = async (url: string) => {
   return data;
 }
 
-export default function Crypto_table3({ }: CryptoProps): JSX.Element {
+export default function Crypto_table3() {
   const { data: cryptocurrencies, error } = useSWR(
     "/api/crypto/getData",
     fetcher,
