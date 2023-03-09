@@ -11,8 +11,8 @@
   border-color: #000; /* Set border color */
   background-color: #222531;
   color: #f2f2f2;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.5;
   text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px;
 }
@@ -36,7 +36,6 @@
   font-weight: 600;
   width: 100%;
   background-color: var(--table-background-color);
-  border-collapse: collapse;
 }
 
 .table-header {
@@ -50,16 +49,16 @@
 
 .table__end {
   text-align: end;
+  padding: 10px;
 }
 
 .table th,
 .table td {
-  border: 1px solid #333;
-  padding: 10px 0px 10px 20px;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
 .table td {
-  padding: 25px 0px 25px 20px;
   color: #fff;
 }
 
@@ -75,21 +74,9 @@
   }
 }
 
-.table a {
-  color: #fff;
-}
-
-.table {
-  border-collapse: collapse;
-}
-
 .table-row {
   border-top-width: 1px;
   border-top-color: #ddd;
-}
-
-.table-cell {
-  padding: 0.5rem 1rem;
 }
 
 /* First column */

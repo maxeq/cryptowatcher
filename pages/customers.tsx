@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ObjectId } from 'mongodb';
 import { getCustomers } from '../pages/api/customers/index';
 import React from 'react';
-import Charts from '@/components/Chart'
+import Charts from '@/components/charts/Chart'
 
 import NoSSR from "../components/NoSSR";
 import Layout from "../components/Layout";

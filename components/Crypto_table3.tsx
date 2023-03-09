@@ -62,8 +62,8 @@ export default function Crypto_table3({ }: CryptoProps): JSX.Element {
       : "text-white-300";
 
   return (
-    <div className="relative overflow-x-auto">
-      <table className={`table mx-auto`}>
+    <div className="overflow-x-auto ">
+      <table className={`table`}>
         <thead>
           <tr className={`table-header`}>
             <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-gray-800">#</th>
@@ -75,7 +75,7 @@ export default function Crypto_table3({ }: CryptoProps): JSX.Element {
             <th className="table__end">Market Cap</th>
             <th className="table__end">Volume (24h)</th>
             <th className="table__end">Circulating Supply</th>
-            <th className="table__end">Live data</th>
+            <th className="table__end">Last 7 days</th>
           </tr>
         </thead>
         <tbody>
@@ -83,15 +83,11 @@ export default function Crypto_table3({ }: CryptoProps): JSX.Element {
             cryptocurrencies.getdata.map((crypto: any, index: number) => (
               <tr key={crypto.id}>
                 <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{index + 1}</td>
-                <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
-                  <Image
-                    src={crypto.image}
-                    alt={crypto.name}
-                    width="32"
-                    height="32"
-                    className="mr-2"
-                  />
-                  <span className="font-medium">{crypto.name}</span>
+                <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
+                  <div className={`flex items-center max-w-xs`}>
+                    <Image src={crypto.image} alt={crypto.name} width="32" height="32" className="mr-3" />
+                    <span>{crypto.name}</span>
+                  </div>
                 </td>
                 <td className="table__end">{formatPrice(crypto.current_price)}</td>
                 <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_1h_in_currency))}`}>
@@ -106,7 +102,7 @@ export default function Crypto_table3({ }: CryptoProps): JSX.Element {
                 <td className="table__end">{formatPrice(crypto.market_cap)}</td>
                 <td className="table__end">{formatPrice(crypto.total_volume)}</td>
                 <td className="table__end">{formatPrice(crypto.circulating_supply)}</td>
-                <td className="table__end">
+                <td className={`table__end max-w-[200px]`}>
                   <ChartFetcher _id={crypto.name} />
                 </td>
               </tr>
