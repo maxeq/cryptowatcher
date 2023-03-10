@@ -5,28 +5,6 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import ChartFetcher from "./charts/ChartFetcher";
 
-interface CryptoProps {
-  index: number;
-  crypto: {
-    id: string;
-    name: string;
-    symbol: string;
-    iconCode: number;
-    price: number;
-    highPrice: number;
-    lowPrice: number;
-    prevPrice: number;
-    price_change_percentage_24h: number;
-    price_change_percentage_1h: number;
-    price_change_percentage_7d: number;
-    explorer: string;
-    circulatingSupply: number;
-    marketCap: number;
-    volume: number;
-    quoteVolume: number;
-  };
-}
-//http://localhost:3000/api/crypto/getData?page=4&pageSize=10
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();
