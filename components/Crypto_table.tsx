@@ -42,7 +42,7 @@ export default function Crypto_table() {
     </thead>
     <tbody>
       {data?.flatMap((page) => page.getdata).map((crypto: any, index: number) => (
-        <tr key={crypto.id}>
+        <tr key={crypto.id} className="min-h-113">
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{index + 1}</td>
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
             <div className={`flex items-center max-w-xs`}>
@@ -70,15 +70,6 @@ export default function Crypto_table() {
       ))}
     </tbody>
   </table>
-
-            {/*
-{loadingMore && <Loader />}
-{!isReachedEnd && <button
-className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-onClick={() => setSize(size + 1)}
-
-Load more
-</button>} */}
         </div>
         </InfiniteScroll>
     );
