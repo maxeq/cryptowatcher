@@ -43,7 +43,7 @@ export default function Crypto_table() {
     <tbody>
       {data?.flatMap((page) => page.getdata).map((crypto: any, index: number) => (
         <tr key={crypto.id} className="">
-          <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 py-11">{index + 1}</td>
+          <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 py-12    ">{index + 1}</td>
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
             <div className={`flex items-center max-w-xs`}>
               <Image src={crypto.image} alt={crypto.name} width="32" height="32" className="mr-3 ml-3" />
