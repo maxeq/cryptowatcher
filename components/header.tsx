@@ -47,6 +47,11 @@ export default function Header() {
             />
           </li>
         </ul>
+        <ul className="list-none ml-8">
+          <li>
+            <button className="px-4 py-2 bg-lime-600 hover:bg-lime-500 text-white font-bold rounded">Connect Wallet</button>
+          </li>
+        </ul>
       </nav>
       <div className="md:hidden flex items-center ml-auto">
         <div className="relative">
