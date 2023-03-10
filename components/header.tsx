@@ -27,13 +27,13 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/alerts" className="text-lg font-bold hover:text-lime-400">
-                Alerts
+              <Link href="/trade" className="text-lg font-bold hover:text-lime-400">
+                Trade
               </Link>
             </li>
             <li>
-              <Link href="/customers" className="text-lg font-bold hover:text-lime-400">
-                Customers
+              <Link href="/earn" className="text-lg font-bold hover:text-lime-400">
+                Earn
               </Link>
             </li>
           </ul>

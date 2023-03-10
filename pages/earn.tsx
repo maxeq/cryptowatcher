@@ -9,7 +9,7 @@ import Loader from '@/components/Loader'
 
 
 
-export default function Alerts() {
+export default function Earn() {
     return (
 <Layout>
     <NoSSR>
