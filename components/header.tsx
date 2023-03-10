@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <header className="bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14">
-            
+
       <nav className="hidden md:flex w-1/2 justify-between items-center mx-auto">
 
         <div className="flex-1">
@@ -75,29 +75,32 @@ export default function Header() {
           </button>
           <div className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
             <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
-              <Link href="/" className="block px-4 py-2 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
+              <Link href="/" className="block px-4 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Home
 
               </Link>
               <Link
                 href="/cryptocurrencies"
-                className="block px-4 py-2  shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Cryptocurrencies
 
               </Link>
               <Link
                 href="/trade"
-                className="block px-4 py-2  shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Trade
 
               </Link>
+              <Link href="/trade"
+                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
-              <button className="block px-4 py-2 shadow lg:px-4 py-4 h-14" onClick={toggle}>
                 Connect Wallet
-              </button>
+                
+              </Link>
+
 
               {/* <input
                 type="search"

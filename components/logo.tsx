@@ -1,7 +1,10 @@
 import Image from 'next/image'
 
 function Logo() {
-  return <Image src="/logo.png" alt="logo" width="128" height="128" className="hover:animate-spin" />
+  const handleTelegram = () => {
+    window.open('https://t.me/more_media');
+  };
+  return <Image src="/logo.png" alt="logo" width="128" height="128" onClick={handleTelegram} className="hover:animate-spin"/>
 }
 
 export default Logo
