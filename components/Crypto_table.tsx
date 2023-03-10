@@ -12,7 +12,7 @@ const { data, size, setSize, isReachedEnd, loadingMore } = usePagination('/api/c
         <div>
             <InfiniteScroll next={() => setSize(size + 1)}
                 hasMore={!isReachedEnd}
-                loader='loading'
+                loader={<Loader />}
                 endMessage={<p>Reached end</p>}
                 dataLength={data?.length ?? 0}>
 
