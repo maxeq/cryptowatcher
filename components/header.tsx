@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import Logo from "../components/logo";
 
 export default function Header() {
-  
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -13,9 +14,13 @@ export default function Header() {
 
   return (
     <header className="bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14">
+            
       <nav className="hidden md:flex w-1/2 justify-between items-center mx-auto">
+
         <div className="flex-1">
+
           <ul className="flex list-none space-x-14 items-center">
+
             <li>
               <Link href="/" className="text-lg font-bold hover:text-lime-400">
                 Home
@@ -31,11 +36,6 @@ export default function Header() {
                 Trade
               </Link>
             </li>
-            <li>
-              <Link href="/earn" className="text-lg font-bold hover:text-lime-400">
-                Earn
-              </Link>
-            </li>
           </ul>
         </div>
         <ul className="list-none ml-8">
@@ -49,7 +49,7 @@ export default function Header() {
         </ul>
         <ul className="list-none ml-8">
           <li>
-            <button className="px-4 py-2 bg-lime-600 hover:bg-lime-500 text-white font-bold rounded">Connect Wallet</button>
+            <button className="px-4 bg-lime-600 hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap">Connect Wallet</button>
           </li>
         </ul>
       </nav>
@@ -74,34 +74,31 @@ export default function Header() {
             </svg>
           </button>
           <div className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
-            <div className="py-1">
-              <Link href="/" className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
+            <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
+              <Link href="/" className="block px-4 py-2 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Home
 
               </Link>
               <Link
                 href="/cryptocurrencies"
-                className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                className="block px-4 py-2  shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Cryptocurrencies
 
               </Link>
               <Link
                 href="/trade"
-                className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                className="block px-4 py-2  shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
                 Trade
 
               </Link>
 
-              <Link
-                href="/earn"
-                className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
+              <button className="block px-4 py-2 shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                Connect Wallet
+              </button>
 
-                Earn
-
-              </Link>
               {/* <input
                 type="search"
                 className="w-full md:px-0 px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
