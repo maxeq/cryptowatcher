@@ -55,13 +55,13 @@ export default function Crypto_table() {
                                     </div>
                                 </td>
                                 <td className="table__end">{formatPrice(crypto.current_price)}</td>
-                                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_1h_in_currency))}`}>
+                                <td className={`table__end ${classPriceChangePercent(crypto.price_change_percentage_1h_in_currency)}`}>
                                     {formatPercent(crypto.price_change_percentage_1h_in_currency)}
                                 </td>
-                                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_24h))}`}>
+                                <td className={`table__end ${classPriceChangePercent(crypto.price_change_percentage_24h)}`}>
                                     {formatPercent(crypto.price_change_percentage_24h)}
                                 </td>
-                                <td className={`table__end ${classPriceChangePercent(formatPercent(crypto.price_change_percentage_7d_in_currency))}`}>
+                                <td className={`table__end ${classPriceChangePercent(crypto.price_change_percentage_7d_in_currency)}`}>
                                     {formatPercent(crypto.price_change_percentage_7d_in_currency)}
                                 </td>
                                 <td className="table__end">{formatPrice(crypto.market_cap)}</td>

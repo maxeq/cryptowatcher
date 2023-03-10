@@ -57,10 +57,6 @@
   border-bottom: 1px solid #333;
 }
 
-.table td {
-  color: #fff;
-}
-
 /* For desktop */
 .table tr:hover td {
   background-color: #5553532a;
