@@ -28,7 +28,7 @@ export default function Crypto_table() {
   <table className={`table`}>
     <thead>
       <tr className={`table-header`}>
-        <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-gray-800">#</th>
+        <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-gray-800 py-2">#</th>
         <th className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">Cryptocurrency</th>
         <th className="table__end">Price (USD)</th>
         <th className="table__end">1h %</th>
