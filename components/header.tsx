@@ -83,18 +83,18 @@ export default function Header() {
 
               </Link>
               <Link
-                href="/alerts"
+                href="/trade"
                 className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
-                Whale Alerts
+                Trade
 
               </Link>
 
               <Link
-                href="/customers"
+                href="/earn"
                 className="block px-4 py-2 bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14" onClick={toggle}>
 
-                Customers
+                Earn
 
               </Link>
               {/* <input
