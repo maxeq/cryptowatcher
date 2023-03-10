@@ -5,6 +5,9 @@ const inter = Inter({ subsets: ['latin'] })
 import Crypto_table3 from '@/components/Crypto_table3'
 import NoSSR from '@/components/NoSSR'
 
+
+
+
 export default function Alerts() {
     return (
 <Layout>

@@ -26,7 +26,7 @@ interface CryptoProps {
     quoteVolume: number;
   };
 }
-
+//http://localhost:3000/api/crypto/getData?page=4&pageSize=10
 const fetcher = async (url: string) => {
   const res = await fetch(url);
   const data = await res.json();

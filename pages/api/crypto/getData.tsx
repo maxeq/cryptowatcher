@@ -2,6 +2,8 @@ import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next/types';
 
+// http://localhost:3000/api/crypto/getData?page=4&pageSize=10
+
 export type CoinData = {
   id: string;
   dbDateAdded: Date;
@@ -35,9 +37,10 @@ export type CoinData = {
   price_change_percentage_7d_in_currency?: number | null;
 }
 
-export const getData = async (): Promise<CoinData[]> => {
+const getData = async (page: number, pageSize: number): Promise<CoinData[]> => {
   const mongoClient = await clientPromise;
 
+  const skip = (page - 1) * pageSize;
   const data = await mongoClient
     .db()
     .collection('coins')
@@ -52,8 +55,14 @@ export const getData = async (): Promise<CoinData[]> => {
         $replaceRoot: { newRoot: '$latestData' },
       },
       {
-        $limit: 10
-      }
+        $sort: { market_cap_rank: 1 },
+      },
+      {
+        $skip: skip,
+      },
+      {
+        $limit: pageSize,
+      },
     ])
     .toArray();
 
@@ -61,7 +70,8 @@ export const getData = async (): Promise<CoinData[]> => {
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<{ getdata: CoinData[] }>) => {
-  const data = await getData();
+  const { page = 1, pageSize = 10 } = req.query;
+  const data = await getData(parseInt(page as string), parseInt(pageSize as string));
   res.status(200).json({ getdata: data });
 };
 
