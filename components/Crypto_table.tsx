@@ -6,9 +6,7 @@ import Loader from "./Loader";
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 const PAGE_SIZE = 8;
 
-export default function CoinList() {
-    const [currentPage, setCurrentPage] = useState(1);
-
+export default function Crypto_table() {
     const getKey = (pageIndex: number, previousPageData: any) => {
         pageIndex = pageIndex + 1;
         if (previousPageData && !previousPageData.getdata.length) return null;
