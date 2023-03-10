@@ -48,7 +48,7 @@ export default function Crypto_table() {
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
             <div className={`flex items-center max-w-xs`}>
               <Image src={crypto.image} alt={crypto.name} width="32" height="32" className="mr-3 ml-3" />
-              <span>{crypto.name}</span>
+              <span className="max-sm:mr-12">{crypto.name}</span>
             </div>
           </td>
           <td className="table__end">{formatPrice(crypto.current_price)}</td>
