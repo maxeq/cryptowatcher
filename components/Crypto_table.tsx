@@ -23,7 +23,6 @@ export default function Crypto_table() {
             <InfiniteScroll next={() => setSize(size + 1)}
                 hasMore={!isReachedEnd}
                 loader={<Loader />}
-                endMessage={<p>Reached end</p>}
                 dataLength={data?.length ?? 0}>
 <div className="overflow-x-auto ">
   <table className={`table`}>
@@ -42,7 +41,7 @@ export default function Crypto_table() {
       </tr>
     </thead>
     <tbody>
-      {!isReachedEnd && data && data.flatMap((page) => page.getdata).map((crypto: any, index: number) => (
+      {data?.flatMap((page) => page.getdata).map((crypto: any, index: number) => (
         <tr key={crypto.id}>
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">{index + 1}</td>
           <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
@@ -69,13 +68,6 @@ export default function Crypto_table() {
           </td>
         </tr>
       ))}
-      {isReachedEnd && (
-        <tr>
-          <td colSpan={9}>
-            <p>Reached end</p>
-          </td>
-        </tr>
-      )}
     </tbody>
   </table>
 
