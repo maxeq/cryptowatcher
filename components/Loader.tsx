@@ -1,8 +1,6 @@
 const Loader = () => {
   return (
-    <div className="text-center">
-      <div className="my-1 spinner-border text-light" role="status"></div>
-    </div>
+<div className="lds-dual-ring"></div>
   );
 };
 

@@ -63,7 +63,7 @@ export default function Crypto_table() {
           <td className="table__end">{formatPrice(crypto.market_cap)}</td>
           <td className="table__end">{formatPrice(crypto.total_volume)}</td>
           <td className="table__end">{formatPrice(crypto.circulating_supply)}</td>
-          <td className={`table__end max-w-[200px]`}>
+          <td className={`table__end max-w-[200px] min-w-[200px]`}>
             <ChartFetcher _id={crypto.name} />
           </td>
         </tr>

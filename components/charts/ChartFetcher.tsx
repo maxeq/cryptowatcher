@@ -1,6 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import Charts from '@/components/charts/Chart'
+import Loader from "../Loader";
 
 interface CryptoArrayData {
   _id: string;
@@ -36,7 +37,7 @@ const ChartFetcher: React.FC<Props> = ({ _id }: Props) => {
   );
 
   if (arrayError) return <div>Error loading data</div>;
-  if (!cryptoArrayData) return <div>Loading...</div>;
+  if (!cryptoArrayData) return <div><Loader /></div>;
 
   const item = cryptoArrayData.getarray.find((item) => item._id === _id);
 
