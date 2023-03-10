@@ -3,7 +3,7 @@ import useSWRInfinite from "swr/infinite";
 
 export const usePagination = (url:string) => {
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 20;
 const getKey = (pageIndex: number, previousPageData: any) => {
     pageIndex = pageIndex + 1;
     if (previousPageData && !previousPageData.getdata.length) return null;
