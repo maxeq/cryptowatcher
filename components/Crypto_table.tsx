@@ -26,7 +26,6 @@ export default function CoinList() {
 
     return (
         <div>
-            {Error() && <div>Failed to load</div>}
             <InfiniteScroll next={() => setSize(size + 1)} 
             hasMore={!isReachedEnd} 
             loader='loading'
