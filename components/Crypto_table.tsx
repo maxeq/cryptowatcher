@@ -1,7 +1,5 @@
 import usePagination from "@/lib/usePagination";
-import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import useSWRInfinite from "swr/infinite";
 import Loader from "./Loader";
 import Image from 'next/image';
 import ChartFetcher from "./charts/ChartFetcher";
