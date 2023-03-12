@@ -14,7 +14,7 @@ const Error = () => {
     return (
         <div>
             <H1Template text="Error 404. Page not found" />
-            <p>Page not found. Redirecting to main page.</p>
+            <p>Something went wrong. Redirecting to main page.</p>
         </div>
     );
 };
