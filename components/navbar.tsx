@@ -2,7 +2,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Navbar = () => {
-    
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -10,7 +9,14 @@ const Navbar = () => {
   };
   const [buttonColor, setButtonColor] = useState('');
 
+  const navigation = [
+    { name: "Home", href: "/", current: true, title: "Home" },
+    { name: "Cryptocurrencies", href: "/cryptocurrencies", current: false, title: "Cryptocurrencies" },
+    { name: "Trade", href: "/trade", current: false, title: "Trade" },
+  ];
+
   return (
+
     <nav className="bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14">
 
       <nav className="hidden md:flex w-1/2 justify-between items-center mx-auto">
@@ -71,6 +77,7 @@ const Navbar = () => {
               />
             </svg>
           </button>
+          
           <div className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
             <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
               <Link href="/" className="block px-4 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
