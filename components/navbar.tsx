@@ -26,7 +26,7 @@ return (
         <ul className="flex list-none space-x-14 items-center">
           {navigation.map(({ name, href }) => (
             <Link key={name} href={href} className="text-lg font-bold hover:text-lime-400">
-              <p className={pathname === href ? `text-lime-500 shadow-lg font-bold` : ''}>{name}</p>
+              <p className={pathname === href ? `text-lime-500 shadow-lg text-lg` : ''}>{name}</p>
             </Link>
           ))}
           <ul className="list-none ml-8">
