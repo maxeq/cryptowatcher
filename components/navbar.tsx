@@ -10,53 +10,38 @@ const Navbar = () => {
   const [buttonColor, setButtonColor] = useState('');
 
   const navigation = [
-    { name: "Home", href: "/", current: true, title: "Home" },
-    { name: "Cryptocurrencies", href: "/cryptocurrencies", current: false, title: "Cryptocurrencies" },
-    { name: "Trade", href: "/trade", current: false, title: "Trade" },
+    { name: "Home", href: "/" },
+    { name: "Cryptocurrencies", href: "/cryptocurrencies" },
+    { name: "Trade", href: "/trade" },
   ];
-
   return (
-
     <nav className="bg-gray-900 text-cyan-50 flex shadow lg:px-4 py-4 h-14">
-
       <nav className="hidden md:flex w-1/2 justify-between items-center mx-auto">
-
         <div className="flex-1">
-
           <ul className="flex list-none space-x-14 items-center">
-
-            <li>
-              <Link href="/" className="text-lg font-bold hover:text-lime-400">
-                Home
+            {navigation.map(({ name, href }) => (
+              <Link key={name} href={href} className="text-lg font-bold hover:text-lime-400">
+                  <p>{name}</p>
               </Link>
-            </li>
-            <li>
-              <Link href="/cryptocurrencies" className="text-lg font-bold hover:text-lime-400">
-                Cryptocurrencies
-              </Link>
-            </li>
-            <li>
-              <Link href="/trade" className="text-lg font-bold hover:text-lime-400">
-                Trade
-              </Link>
-            </li>
+            ))}
+            <ul className="list-none ml-8">
+              <li>
+                <input
+                  type="search"
+                  className="px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
+                  placeholder="Search"
+                />
+              </li>
+            </ul>
+            <ul className="list-none ml-8">
+              <li>
+                <button className="px-4 bg-lime-600 hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap">Connect Wallet</button>
+              </li>
+            </ul>
           </ul>
         </div>
-        <ul className="list-none ml-8">
-          <li>
-            <input
-              type="search"
-              className="px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
-              placeholder="Search"
-            />
-          </li>
-        </ul>
-        <ul className="list-none ml-8">
-          <li>
-            <button className="px-4 bg-lime-600 hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap">Connect Wallet</button>
-          </li>
-        </ul>
       </nav>
+
       <div className="md:hidden flex items-center ml-auto">
         <div className="relative">
           <button className={`pr-5 ${buttonColor}`} onClick={toggle}>
@@ -77,34 +62,13 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          
           <div className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'}`}>
             <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
-              <Link href="/" className="block px-4 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
-
-                Home
-
-              </Link>
-              <Link
-                href="/cryptocurrencies"
-                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
-
-                Cryptocurrencies
-
-              </Link>
-              <Link
-                href="/trade"
-                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
-
-                Trade
-
-              </Link>
-              <Link href="/trade"
-                className="block px-4 shadow lg:px-4 py-4 h-14" onClick={toggle}>
-
-                Connect Wallet
-                
-              </Link>
+              {navigation.map(({ name, href }) => (
+                <Link key={name} href={href} className="block px-4 bg-gray-900 shadow lg:px-4 py-4 h-14" onClick={toggle}>
+                  <p>{name}</p>
+                </Link>
+              ))}
               {/* <input
                 type="search"
                 className="w-full md:px-0 px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
@@ -115,8 +79,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-    );
-
+  );
 };
 
 export default Navbar;
