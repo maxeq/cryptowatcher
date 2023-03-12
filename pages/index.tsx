@@ -10,8 +10,6 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Home" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <H1Template text="CryptoWatcher never sleeps. Built by diamond hands." />
       <Ticker pageName="Crypto" />

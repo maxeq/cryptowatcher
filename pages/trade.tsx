@@ -10,8 +10,6 @@ export default function Trade() {
         <NoSSR>
             <Head>
                 <title>Home</title>
-                <meta name="description" content="Home" />
-                <link rel="icon" href="/favicon.ico" />
             </Head>
             <H1Template text="Swap crypto with confidence" />
             <Trader />

@@ -11,8 +11,6 @@ const Cryptocurrencies: NextPage = () => {
     <NoSSR>
       <Head>
         <title>Cryptocurrencies</title>
-        <meta name="description" content="Cryptocurrencies" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <H1Template text="Cryptocurrency Market Overview" />
       <Crypto_table />
