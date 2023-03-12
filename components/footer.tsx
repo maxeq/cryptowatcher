@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Logo from "../components/logo";
+import Logo from "./logo";
+
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white flex shadow py-8">
