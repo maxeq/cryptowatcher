@@ -43,17 +43,17 @@ const Navbar = () => {
       </nav>
 
       <div className="md:hidden flex items-center ml-auto">
-        <div className="relative">
-          <button className={`pr-5 ${buttonColor}`} onClick={toggle}>
+        <div className="relative pr-3">
+          <button className={`${buttonColor} rounded`} onClick={toggle}>
             <div>
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 24 24"
+              viewBox="0 0 22 22"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-8 h-8"
+              className="w-8 h-8 pr-1"
             >
               <path
                 strokeLinecap="round"
