@@ -9,7 +9,7 @@ const header_navigation = [
   { name: "Trade", href: "/trade" },
 ];
 
-const Navbar = () => {
+const NavbarModule = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -87,4 +87,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarModule;
