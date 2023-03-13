@@ -2,6 +2,7 @@ import usePagination from "@/lib/usePagination";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
 import Image from 'next/image';
+import Link from "next/link";
 import ChartFetcher from "./charts/ChartFetcher";
 import { formatPrice, formatPercent } from "@/utils";
 
@@ -44,12 +45,14 @@ export default function Crypto_table() {
                     </thead>
                     <tbody>
                         {data?.flatMap((page) => page.getdata).map((crypto: any, index: number) => (
-                            <tr key={crypto.id} className="">
+                            <tr key={crypto.id} className=""> 
                                 <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 py-12    ">{index + 1}</td>
                                 <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
                                     <div className={`flex items-center max-w-xs`}>
                                         <Image src={crypto.image} alt={crypto.name} width="32" height="32" className="mr-3 ml-3" />
+                                        <Link href={`/cryptocurrency/${crypto.id}`}>
                                         <span className="max-sm:mr-12">{crypto.name}</span>
+                                        </Link>
                                     </div>
                                 </td>
                                 <td className="table__end">{formatPrice(crypto.current_price)}</td>

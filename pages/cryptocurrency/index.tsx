@@ -2,7 +2,7 @@ import React from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import NoSSR from "../components/NoSSR";
+import NoSSR from "../../components/NoSSR";
 import H1Template from '@/components/h1template'
 import Crypto_table from "@/components/Crypto_table";
 
