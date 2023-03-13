@@ -15,7 +15,7 @@ const fetcher = async (url: string) => {
 export default function DashboardCrypto(): JSX.Element {
     const router = useRouter();
     const ids = Array.isArray(router.query.ids) ? router.query.ids[0] : router.query.ids;
-    const { data: cryptocurrency, error } = useSWR(
+    const { data: cryptocurrencies, error } = useSWR(
         `/api/crypto/getCryptoData?id=${ids}`,
         fetcher,
         {
@@ -42,9 +42,9 @@ export default function DashboardCrypto(): JSX.Element {
 
 
     if (error) return <div>Error fetching data</div>;
-    if (!cryptocurrency || !cryptocurrency.getdata) return <div>Loading data...</div>;
+    if (!cryptocurrencies || !cryptocurrencies.getdata) return <div>Loading data...</div>;
 
-    const { ath, atl, total_volume, circulating_supply, price_change_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrency.getdata;
+    const { ath, atl, total_volume, circulating_supply, price_change_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
 
     return (
         <div key={ids}> <div className="p-8 shadow-purple-400 bg-gray-800 hover:bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
