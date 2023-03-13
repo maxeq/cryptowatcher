@@ -1,18 +1,19 @@
-import { Inter } from 'next/font/google'
-import H1Template from '@/components/h1template'
-const inter = Inter({ subsets: ['latin'] })
-import NoSSR from '@/components/NoSSR'
-import Trader from '@/components/Trade'
-import Head from 'next/head'
+import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
+import Web3CustomButton from '../components/Web3Connect'
 
 export default function Trade() {
-    return (
-        <NoSSR>
-            <Head>
-                <title>Home</title>
-            </Head>
-            <H1Template text="Swap crypto with confidence" />
-            <Trader />
-        </NoSSR>
-    )
+  return (
+    <>
+      {/* Predefined button  */}
+      <Web3Button icon="hide" label="Connect Wallet" balance="show" />
+      <br />
+
+      {/* Network Switcher Button */}
+      <Web3NetworkSwitch />
+      <br />
+
+      {/* Custom button */}
+      <Web3CustomButton />
+    </>
+  )
 }
