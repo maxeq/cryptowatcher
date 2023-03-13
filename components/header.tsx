@@ -1,4 +1,4 @@
-import NavbarModule from "./Navbar";
+import NavbarModule from "./Navigation";
 
 export default function Header() {
   return (
