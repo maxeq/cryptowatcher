@@ -5,15 +5,8 @@ import { useAccount, useDisconnect } from 'wagmi'
 
 
 export default function Web3CustomButton() {
-    const theme = {
-        logos: {
-            trust: {
-                show: false
-            }
-        }
-    }
     const [loading, setLoading] = useState(false)
-    const { open } = useWeb3Modal({ theme })
+    const { open } = useWeb3Modal()
     const { isConnected } = useAccount()
     const { disconnect } = useDisconnect()
     const label = isConnected ? 'Disconnect' : 'Connect Custom'
