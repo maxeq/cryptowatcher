@@ -9,7 +9,7 @@ export default function Web3CustomButton() {
     const { open } = useWeb3Modal()
     const { isConnected } = useAccount()
     const { disconnect } = useDisconnect()
-    const label = isConnected ? 'Disconnect' : 'Connect Custom'
+    const label = isConnected ? 'Disconnect' : 'Connect Wallet'
 
     async function onOpen() {
         setLoading(true)
