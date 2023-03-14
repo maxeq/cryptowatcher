@@ -54,8 +54,8 @@ export default function DashboardCrypto(): JSX.Element {
                         <div className="">
                             <div className="flex md:justify-between items-center">
                                 <Image src={image} alt={name} width="64" height="64" className="mr-2" />
-                                <div className="text-5xl ml-4">{name}</div>
-                                <div className="flex pt-4 space-x-3 ml-4">
+                                <div className="text-5xl ml-3">{name}</div>
+                                <div className="flex pt-4 space-x-3 ml-3">
                                     <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaRegStar size="24" /></div>
                                     <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaShareSquare size="24" /></div>
                                 </div>
