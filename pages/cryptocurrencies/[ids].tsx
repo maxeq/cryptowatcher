@@ -44,7 +44,7 @@ export default function DashboardCrypto(): JSX.Element {
     if (error) return <div>Error fetching data</div>;
     if (!cryptocurrencies || !cryptocurrencies.getdata) return <div>Loading data...</div>;
 
-    const { ath, atl, total_volume, circulating_supply, total_supply, price_change_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
+    const { ath, atl, total_volume, circulating_supply, total_supply, price_change_24h, price_change_percentage_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
 
     return (
         <div key={ids}>
@@ -82,7 +82,7 @@ export default function DashboardCrypto(): JSX.Element {
                                 <div className="text-6xl font-bold text-lime-400">{formatPrice(current_price)}</div>
                                 <div className="">
                                     <div className="text-center text-slate-300 text-lg">24h</div>
-                                    <div className={`text-lg md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(price_change_24h)}`}>{formatPercent(price_change_24h)}</div>
+                                    <div className={`text-lg md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(price_change_percentage_24h)}`}>{formatPercent(price_change_percentage_24h)}</div>
                                 </div>
                             </div>
                             <div className="md:flex md:justify-between mt-4">

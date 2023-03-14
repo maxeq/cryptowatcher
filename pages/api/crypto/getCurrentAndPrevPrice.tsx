@@ -13,7 +13,7 @@ export const getCurrentAndPrevPrice = async () => {
     const mongoClient = await clientPromise;
 
     const data = await mongoClient
-        .db()
+        .db('myFirstDatabase')
         .collection('coins')
         .aggregate([
             {

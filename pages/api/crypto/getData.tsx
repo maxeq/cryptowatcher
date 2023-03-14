@@ -42,7 +42,7 @@ const getData = async (page: number, pageSize: number): Promise<CoinData[]> => {
 
   const skip = (page - 1) * pageSize;
   const data = await mongoClient
-    .db()
+    .db('myFirstDatabase')
     .collection('coins')
     .aggregate([
       {
