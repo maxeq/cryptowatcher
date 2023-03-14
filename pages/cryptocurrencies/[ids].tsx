@@ -37,7 +37,7 @@ export default function DashboardCrypto(): JSX.Element {
                 ? "text-white-300"
                 : value < 0
                     ? "bg-rose-600"
-                    : "bg-lime-400"
+                    : "bg-lime-600"
             : "bg-white-300";
 
 
@@ -54,13 +54,13 @@ export default function DashboardCrypto(): JSX.Element {
                         <div className="">
                             <div className="md:flex md:justify-between items-center">
                                 <Image src={image} alt={name} width="64" height="64" className="mr-2" />
-                                <div className="text-5xl mb-2 md:mb-0 md:ml-4">{name}</div>
-                                <div className="flex pt-4 space-x-3 ml-4">
+                                <div className="md:text-5xl text-3xl mb-2 md:mb-0 md:ml-4">{name}</div>
+                                <div className="flex md:pt-4 space-x-3 md:ml-4">
                                     <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaRegStar size="12" /></div>
                                     <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaShareSquare size="12" /></div>
                                 </div>
                             </div>
-                            <div className="md:flex md:space-x-3 text-sm mt-4 text-slate-300">
+                            <div className="flex space-x-3 text-sm mt-4 text-slate-300">
                                 <div className="border-b-gray-500 border text-gray-100 bg-gray-800 rounded px-2">Rank #{market_cap_rank}</div>
                                 <div className="border-b-gray-500 border bg-gray-800 rounded px-2">Coin</div>
                                 <div className="border-b-gray-500 border bg-gray-800 rounded px-2">Followed by {12}</div>
@@ -79,36 +79,33 @@ export default function DashboardCrypto(): JSX.Element {
                     </div>
 
                     <div className="">
-                        <div className="">
-                            <div className="text-slate-300 text-xs flex justify-center">{name} Price ({symbol.toUpperCase()})</div>
-                            <div className="flex items-center space-x-2 mt-2">
-                                <div className="text-6xl font-bold text-lime-400">{formatPrice(current_price)}</div>
-                                <div className="">
+                        <div className="pt-2">
+                            <div className="text-slate-300 text-xs justify-center lg:flex lg:justify-center">{name} Price ({symbol.toUpperCase()})</div>
+                            <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-center">
+                                <div className="text-6xl font-bold">{formatPrice(current_price)}</div>
+                                <div className="lg:px-2">
                                     <div className="text-center text-slate-300 text-lg">24h</div>
-                                    <div className={`text-lg md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(price_change_percentage_24h)}`}>{formatPercent(price_change_percentage_24h)}</div>
+                                    <div className={`text-base md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(price_change_percentage_24h)}`}>{formatPercent(price_change_percentage_24h)}</div>
                                 </div>
                             </div>
-                            <div className="md:flex md:justify-between mt-4">
+                            <div className="flex justify-between mt-4">
                                 <div className="text-lg">Low: {formatPrice(low_24h)}</div>
                                 <div className="text-lg">High: {formatPrice(high_24h)}</div>
                             </div>
                         </div>
-                        <div className="md:flex md:justify-between border-t-2 mt-4">
-                            <div>
-                                <div className="text-slate-300 text-xs flex justify-center">MarketCap</div>
+                        <div className="md:flex md:justify-between border-t-2 mt-4 border-t-purple-400 py-4">
+                            <div className="mr-20">
+                                <div className="text-slate-300 text-xs">MarketCap</div>
                                 <div className="text-xl">{formatPrice(market_cap)}</div>
                             </div>
                             <div>
-                                <div className="text-slate-300 text-xs flex justify-center">Market Cap Change</div>
+                                <div className="text-slate-300 text-xs pt-4">Market Cap Change</div>
                                 <div className="text-xl">{formatPrice(market_cap_change_24h)}</div>
                             </div>
                         </div>
                     </div>
 
                     <div className="">
-                        <div className="flex justify-center">
-                            <button className="text-lg font-bold px-4 py-2 rounded-full bg-lime-400 text-gray-900 hover:bg-lime-500">Buy</button>
-                        </div>
                         <div className="mt-4">
                             <div className="text-sm text-slate-300">Circulating Supply</div>
                             <div className="text-xl">{formatPrice(circulating_supply)}</div>
@@ -123,10 +120,13 @@ export default function DashboardCrypto(): JSX.Element {
                                 <div className="text-xl">{formatPrice(total_supply)}</div>
                             </div>
                         </div>
+                        <div className="flex justify-center">
+                            <button className="px-12 mt-6 bg-lime-600 hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap">Buy</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
+        </div> 
+        </div> 
+ 
     )
 } 
