@@ -23,7 +23,7 @@ const Cryptocurrencies_dynamic: NextPage = () => {
       </Head>
       <Dashboard />
       <div className="md:grid md:grid-cols-3 md:gap-4 py-4 md:py-8 mx-auto">
-        <div className="col-span-2"> <H1Template text={`${ids?.toUpperCase()} CHART`} />
+        <div className="col-span-2"> <H1Template text={`${ids?.toUpperCase()} 24H CHART`} />
           <ChartFetcher _id={ids} showXLabel={true} showYLabel={true} />
         </div>
         <div className="col-span-1 bg-gray-800 rounded-2xl s shadow-lg md:ml-6">
@@ -31,7 +31,7 @@ const Cryptocurrencies_dynamic: NextPage = () => {
             <Logo size={64} /> <div className="">CryptoWatcher</div><Button text="+ Follow" />
           </div>
           <div className="min-h-32 flex flex-col">
-            <div className="bg-gray-900 p-16 "> <div className="mx-8"><Button text="Login to discuss" /></div></div>
+            <div className="bg-gray-900 p-16"> <div className="mx-8"><Button text="Login to discuss" /></div></div>
             </div>
           </div>
         </div>
