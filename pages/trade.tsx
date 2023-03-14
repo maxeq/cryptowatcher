@@ -1,9 +1,9 @@
-import DashboardCrypto from '@/components/DashboardCrypto';
+import { Web3Button } from '@web3modal/react';
 
 export default function Trade() {
   return (
 
-    <DashboardCrypto id="bitcoin" />
+<Web3Button />
 
   )
 }
