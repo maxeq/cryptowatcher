@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Logo from "./logo";
+import Logo from "./Logo";
 
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white flex shadow py-8">
             <div className="flex justify-between items-center mx-auto">
-            <div className="flex-auto mx-20 hidden md:block"><Logo /></div>
+            <div className="flex-auto mx-20 hidden md:block"><Logo size={128} /></div>
                 <div className="flex justify-center">
                     <div className="w-full lg:w-1/4 px-4 hidden md:block">
                         <h3 className="text-xl font-bold mb-4">About</h3>

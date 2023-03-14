@@ -10,15 +10,18 @@ interface CryptoArrayData {
 
 interface Data {
   getarray: CryptoArrayData[];
+
 }
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface Props {
   _id?: string;
+  showXLabel?: boolean;
+  showYLabel?: boolean;
 }
 
-const ChartFetcher: React.FC<Props> = ({ _id }: Props) => {
+const ChartFetcher: React.FC<Props> = ({ _id, showXLabel, showYLabel }: Props) => {
   const { data: cryptoArrayData, error: arrayError } = useSWR<Data>(
     `/api/crypto/getArrayData${_id ? `?_id=${_id}` : ''}`,
     fetcher,
@@ -44,7 +47,7 @@ const ChartFetcher: React.FC<Props> = ({ _id }: Props) => {
   if (!item) return <div>No data found for the given id</div>;
 
   return (
-      <Charts id={item._id} cryptoArray={item.array_current_price} />
+      <Charts id={item._id} cryptoArray={item.array_current_price} showXLabel={showXLabel} showYLabel={showYLabel} />
   );
 };
 

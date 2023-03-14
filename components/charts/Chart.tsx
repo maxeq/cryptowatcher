@@ -20,27 +20,39 @@ ChartJS.register(
 interface ChartsProps {
   id: string;
   cryptoArray: number[];
+  showXLabel?: boolean;
+  showYLabel?: boolean;
 }
 
 
-export default function Charts({ id, cryptoArray }: ChartsProps): JSX.Element {
+export default function Charts({ id, cryptoArray, showXLabel, showYLabel }: ChartsProps): JSX.Element {
   const options = {
     responsive: true,
     plugins: {
       legend: {
-        position: 'left' as const,
+        position: 'top' as const,
         display: false,
       },
     },
     scales: {
       x: {
-        display: false,
+        display: !!showXLabel,
+        title: {
+          display: !!showXLabel,
+          text: showXLabel ? 'Time' : '',
+        },
       },
       y: {
-        display: false,
+        display: !!showYLabel,
+        title: {
+          display: !!showYLabel,
+          text: showYLabel ? 'Price' : '',
+        },
       },
     },
+    
   };
+
 
   const labels = Array.from({ length: cryptoArray?.length ?? 0 }, (_, i) => i.toString());
 
@@ -60,18 +72,18 @@ export default function Charts({ id, cryptoArray }: ChartsProps): JSX.Element {
   };
 
   return (
-      <Line
-        options={options}
-        data={{
-          ...data,
-          datasets: [
-            {
-              ...data.datasets[0],
-              data: cryptoArray,
-              label: id,
-            },
-          ],
-        }}
-      />
+    <Line
+      options={options}
+      data={{
+        ...data,
+        datasets: [
+          {
+            ...data.datasets[0],
+            data: cryptoArray,
+            label: id,
+          },
+        ],
+      }}
+    />
   );
 }
