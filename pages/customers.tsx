@@ -34,7 +34,7 @@ const Customers: NextPage = ({ customers }: InferGetStaticPropsType<typeof getSt
                         <li key={customer._id.toString()}>
                             <h3>{customer._id.toString()}</h3>
                             <p>{customer.array_current_price}</p>
-                            <Charts cryptoName={customer._id.toString()} cryptoArray={customer.array_current_price} />
+                            <Charts id={customer._id.toString()} cryptoArray={customer.array_current_price} />
                         </li>
                     ))}
                 </ul>
