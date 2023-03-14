@@ -18,12 +18,12 @@ ChartJS.register(
 );
 
 interface ChartsProps {
-  cryptoName: string;
+  id: string;
   cryptoArray: number[];
 }
 
 
-export default function Charts({ cryptoName, cryptoArray }: ChartsProps): JSX.Element {
+export default function Charts({ id, cryptoArray }: ChartsProps): JSX.Element {
   const options = {
     responsive: true,
     plugins: {
@@ -68,7 +68,7 @@ export default function Charts({ cryptoName, cryptoArray }: ChartsProps): JSX.El
             {
               ...data.datasets[0],
               data: cryptoArray,
-              label: cryptoName,
+              label: id,
             },
           ],
         }}

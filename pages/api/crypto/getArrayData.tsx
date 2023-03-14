@@ -25,7 +25,7 @@ export const getArrayData = async () => {
       },
       {
         $group: {
-          _id: "$name",
+          _id: "$id",
           array_current_price: { $push: "$current_price" },
           count: { $sum: 1 },
         },
