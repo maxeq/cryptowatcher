@@ -99,7 +99,7 @@ export default function DashboardCrypto(): JSX.Element {
                                 <div className="text-xl">{formatPrice(market_cap)}</div>
                             </div>
                             <div>
-                                <div className="text-slate-300 text-xs pt-4 md:pt-0">Market Cap Change</div>
+                                <div className="text-slate-300 text-xs pt-4 md:pt-0">Market Cap Change 24h</div>
                                 <div className="text-xl">{formatPrice(market_cap_change_24h)}</div>
                             </div>
                         </div>
