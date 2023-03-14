@@ -52,12 +52,12 @@ export default function DashboardCrypto(): JSX.Element {
                 <div className="md:flex md:justify-between">
                     <div className="">
                         <div className="">
-                            <div className="md:flex md:justify-between items-center">
+                            <div className="flex md:justify-between items-center">
                                 <Image src={image} alt={name} width="64" height="64" className="mr-2" />
-                                <div className="md:text-5xl text-3xl mb-2 md:mb-0 md:ml-4">{name}</div>
-                                <div className="flex md:pt-4 space-x-3 md:ml-4">
-                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaRegStar size="12" /></div>
-                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaShareSquare size="12" /></div>
+                                <div className="text-5xl ml-4">{name}</div>
+                                <div className="flex pt-4 space-x-3 ml-4">
+                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaRegStar size="24" /></div>
+                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaShareSquare size="24" /></div>
                                 </div>
                             </div>
                             <div className="flex space-x-3 text-sm mt-4 text-slate-300">
@@ -99,7 +99,7 @@ export default function DashboardCrypto(): JSX.Element {
                                 <div className="text-xl">{formatPrice(market_cap)}</div>
                             </div>
                             <div>
-                                <div className="text-slate-300 text-xs pt-4">Market Cap Change</div>
+                                <div className="text-slate-300 text-xs pt-4 md:pt-0">Market Cap Change</div>
                                 <div className="text-xl">{formatPrice(market_cap_change_24h)}</div>
                             </div>
                         </div>
