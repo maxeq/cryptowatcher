@@ -15,7 +15,7 @@ export default function Logo(props: LogoProps) {
       width={props.size}
       height={props.size}
       onClick={handleTelegram}
-      className={`logo-width-${props.size} my-2 md:my-4`}
+      className={`logo-width-${props.size} my-2 md:my-4 cursor-pointer`}
     />
   );
 }
