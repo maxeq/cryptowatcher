@@ -4,7 +4,7 @@ interface LogoProps {
   size: number;
 }
 
-function Logo(props: LogoProps) {
+export default function Logo(props: LogoProps) {
   const handleTelegram = () => {
     window.open('https://t.me/more_media', '_blank');
   };
@@ -19,5 +19,3 @@ function Logo(props: LogoProps) {
     />
   );
 }
-
-export default Logo
