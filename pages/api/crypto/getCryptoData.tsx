@@ -41,9 +41,9 @@ const getData = async (id: string): Promise<CoinData> => {
   const mongoClient = await clientPromise;
 
   const data = await mongoClient
-    .db()
+    .db('myFirstDatabase')
     .collection('coins')
-    .findOne({ id });
+    .findOne({ id }, { sort: { dbDateAdded: -1 } });
 
   return JSON.parse(JSON.stringify(data));
 };
