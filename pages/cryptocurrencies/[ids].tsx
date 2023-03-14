@@ -44,7 +44,7 @@ export default function DashboardCrypto(): JSX.Element {
     if (error) return <div>Error fetching data</div>;
     if (!cryptocurrencies || !cryptocurrencies.getdata) return <div>Loading data...</div>;
 
-    const { ath, atl, total_volume, circulating_supply, total_supply, price_change_24h, price_change_percentage_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
+    const { ath, atl, max_supply, total_volume, circulating_supply, market_cap_change_24h, total_supply, price_change_percentage_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
 
     return (
         <div key={ids}>
@@ -66,18 +66,21 @@ export default function DashboardCrypto(): JSX.Element {
                                 <div className="border-b-gray-500 border bg-gray-800 rounded px-2">Followed by {12}</div>
                             </div>
                             <div className="text-lg mt-4">
-                                {circulating_supply}</div>
-                            <div className="text-lg mt-4">
-                                {total_supply}</div>
-                        </div>
-                        <div className="mt-4">
-                            <div className="text-lg">Tags</div>
+                                <div className="mt-4">
+                                    <div className="text-sm text-slate-300">Volume</div>
+                                    <div className="text-xl">{formatPrice(total_volume)}</div>
+                                </div>
+                                <div className="mt-4">
+                                    <div className="text-sm text-slate-300">Fully Diluted Valuation</div>
+                                    <div className="text-xl">{formatPrice(fully_diluted_valuation)}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className="">
                         <div className="">
-                            <div className="text-xl text-slate-300 text-xs">{name} Price ({symbol.toUpperCase()})</div>
+                            <div className="text-slate-300 text-xs flex justify-center">{name} Price ({symbol.toUpperCase()})</div>
                             <div className="flex items-center space-x-2 mt-2">
                                 <div className="text-6xl font-bold text-lime-400">{formatPrice(current_price)}</div>
                                 <div className="">
@@ -92,27 +95,33 @@ export default function DashboardCrypto(): JSX.Element {
                         </div>
                         <div className="md:flex md:justify-between border-t-2 mt-4">
                             <div>
-                                <div className="text-lg">MarketCap</div>
+                                <div className="text-slate-300 text-xs flex justify-center">MarketCap</div>
                                 <div className="text-xl">{formatPrice(market_cap)}</div>
                             </div>
                             <div>
-                                <div className="text-lg">Fully Diluted</div>
-                                <div className="text-xl">{formatPrice(fully_diluted_valuation)}</div>
+                                <div className="text-slate-300 text-xs flex justify-center">Market Cap Change</div>
+                                <div className="text-xl">{formatPrice(market_cap_change_24h)}</div>
                             </div>
                         </div>
                     </div>
 
                     <div className="">
-                        <div className="">
+                        <div className="flex justify-center">
                             <button className="text-lg font-bold px-4 py-2 rounded-full bg-lime-400 text-gray-900 hover:bg-lime-500">Buy</button>
                         </div>
                         <div className="mt-4">
-                            <div className="text-lg">Volume</div>
-                            <div className="text-xl">{formatPrice(total_volume)}</div>
-                        </div>
-                        <div className="mt-4">
-                            <div className="text-lg">Circulating Supply</div>
+                            <div className="text-sm text-slate-300">Circulating Supply</div>
                             <div className="text-xl">{formatPrice(circulating_supply)}</div>
+                        </div>
+                        <div className="mt-4 space-y-2">
+                            <div className="mt-4">
+                                <div className="text-sm text-slate-300">Max Supply</div>
+                                <div className="text-xl">{formatPrice(max_supply)}</div>
+                            </div>
+                            <div className="">
+                                <div className="text-sm text-slate-300">Total Supply</div>
+                                <div className="text-xl">{formatPrice(total_supply)}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,4 +129,4 @@ export default function DashboardCrypto(): JSX.Element {
         </div>
 
     )
-}
+} 
