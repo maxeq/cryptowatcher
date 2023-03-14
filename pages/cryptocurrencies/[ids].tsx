@@ -48,7 +48,7 @@ export default function DashboardCrypto(): JSX.Element {
 
     return (
         <div key={ids}>
-            <div className="p-8 shadow-purple-400 bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
+            <div className="md:p-8 p-4 shadow-purple-400 bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
                 <div className="md:flex md:justify-between">
                     <div className="">
                         <div className="">
