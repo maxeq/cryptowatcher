@@ -108,16 +108,16 @@ export default function DashboardCrypto(): JSX.Element {
                     <div className="">
                         <div className="mt-4">
                             <div className="text-sm text-slate-300">Circulating Supply</div>
-                            <div className="text-xl">{formatPrice(circulating_supply)}</div>
+                            <div className="text-xl">{formatPrice(circulating_supply).replace("$", "")}</div>
                         </div>
                         <div className="mt-4 space-y-2">
                             <div className="mt-4">
                                 <div className="text-sm text-slate-300">Max Supply</div>
-                                <div className="text-xl">{formatPrice(max_supply)}</div>
+                                <div className="text-xl">{formatPrice(max_supply).replace("$", "")}</div>
                             </div>
                             <div className="">
                                 <div className="text-sm text-slate-300">Total Supply</div>
-                                <div className="text-xl">{formatPrice(total_supply)}</div>
+                                <div className="text-xl">{formatPrice(total_supply).replace("$", "")}</div>
                             </div>
                         </div>
                         <div className="flex justify-center">
