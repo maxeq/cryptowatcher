@@ -44,79 +44,80 @@ export default function DashboardCrypto(): JSX.Element {
     if (error) return <div>Error fetching data</div>;
     if (!cryptocurrencies || !cryptocurrencies.getdata) return <div>Loading data...</div>;
 
-    const { ath, atl, total_volume, circulating_supply, price_change_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
+    const { ath, atl, total_volume, circulating_supply, total_supply, price_change_24h, current_price, high_24h, id, image, low_24h, market_cap, market_cap_rank, name, symbol, fully_diluted_valuation } = cryptocurrencies.getdata;
 
     return (
-        <div key={ids}> <div className="p-8 shadow-purple-400 bg-gray-800 hover:bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
-            <div className="md:flex md:justify-between">
-                <div className="">
+        <div key={ids}>
+            <div className="p-8 shadow-purple-400 bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
+                <div className="md:flex md:justify-between">
                     <div className="">
-                        <div className="md:flex md:justify-between">
-                            <Image src={image} alt={name} width="64" height="64" className="mr-2" />
-                            <div className="text-6xl">{name}</div>
-                            <div className="flex self-center ">
-                                <div className="border-2 border-gray-100 rounded-lg p-2"><FaRegStar size="16" /></div>
-                                <div className="border-2 border-gray-100 rounded-lg p-2"><FaShareSquare size="16" /></div>
+                        <div className="">
+                            <div className="md:flex md:justify-between items-center">
+                                <Image src={image} alt={name} width="64" height="64" className="mr-2" />
+                                <div className="text-5xl mb-2 md:mb-0 md:ml-4">{name}</div>
+                                <div className="flex pt-4 space-x-3 ml-4">
+                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaRegStar size="12" /></div>
+                                    <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200"><FaShareSquare size="12" /></div>
+                                </div>
                             </div>
+                            <div className="md:flex md:space-x-3 text-sm mt-4 text-slate-300">
+                                <div className="border-b-gray-500 border text-gray-100 bg-gray-800 rounded px-2">Rank #{market_cap_rank}</div>
+                                <div className="border-b-gray-500 border bg-gray-800 rounded px-2">Coin</div>
+                                <div className="border-b-gray-500 border bg-gray-800 rounded px-2">Followed by {12}</div>
+                            </div>
+                            <div className="text-lg mt-4">
+                                {circulating_supply}</div>
+                            <div className="text-lg mt-4">
+                                {total_supply}</div>
                         </div>
-                        <div className="md:flex md:justify-between">
-                            <div>{market_cap_rank}</div>
-                            <div>Type</div>
-                            <div>FavouriteTimes</div>
+                        <div className="mt-4">
+                            <div className="text-lg">Tags</div>
                         </div>
-                        <div>Content</div>
                     </div>
-                    <div className="">
-                        <div>Tags</div>
-                    </div>
-                </div>
 
-                <div className="">
                     <div className="">
-                        <div>{symbol}</div>
-                        <div className="flex items-center space-x-2">
-                            <div className="text-lg md:text-6xl text-lime-400">${current_price}</div>
-                            <div className="">
-                                <div className="text-center text-gray-300">24h</div>
-                                <div className={`text-sm md:text-base text-white rounded-lg px-2 ${classPriceChangePercent(price_change_24h)}`}>{formatPercent(price_change_24h)}</div>
+                        <div className="">
+                            <div className="text-xl text-slate-300 text-xs">{name} Price ({symbol.toUpperCase()})</div>
+                            <div className="flex items-center space-x-2 mt-2">
+                                <div className="text-6xl font-bold text-lime-400">{formatPrice(current_price)}</div>
+                                <div className="">
+                                    <div className="text-center text-slate-300 text-lg">24h</div>
+                                    <div className={`text-lg md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(price_change_24h)}`}>{formatPercent(price_change_24h)}</div>
+                                </div>
+                            </div>
+                            <div className="md:flex md:justify-between mt-4">
+                                <div className="text-lg">Low: {formatPrice(low_24h)}</div>
+                                <div className="text-lg">High: {formatPrice(high_24h)}</div>
                             </div>
                         </div>
-                        <div className="md:flex md:justify-between">
-                            <div>Low: {formatPrice(low_24h)}</div>
-                            <div>High: {formatPrice(high_24h)}</div>
-                        </div>
-                    </div>
-                    <div className="md:flex md:justify-between border-t-2 ">
-                        <div >
+                        <div className="md:flex md:justify-between border-t-2 mt-4">
                             <div>
-                                <div>MarketCap</div>
-                                <div>{formatPrice(market_cap)}</div>
+                                <div className="text-lg">MarketCap</div>
+                                <div className="text-xl">{formatPrice(market_cap)}</div>
+                            </div>
+                            <div>
+                                <div className="text-lg">Fully Diluted</div>
+                                <div className="text-xl">{formatPrice(fully_diluted_valuation)}</div>
                             </div>
                         </div>
-                        <div>
-                            <div>Fully Diluted</div>
-                            <div>{formatPrice(fully_diluted_valuation)}</div>
-                        </div>
                     </div>
-                </div>
 
-                <div className="">
-                    <div className="">
-                        <div>Buttons</div>
-                    </div>
                     <div className="">
                         <div className="">
-                            <div>Volume</div>
-                            <div>{formatPrice(total_volume)}</div>
+                            <button className="text-lg font-bold px-4 py-2 rounded-full bg-lime-400 text-gray-900 hover:bg-lime-500">Buy</button>
                         </div>
-                        <div className="">
-                            <div>Circulating Supply</div>
-                            <div>{formatPrice(circulating_supply)}</div>
+                        <div className="mt-4">
+                            <div className="text-lg">Volume</div>
+                            <div className="text-xl">{formatPrice(total_volume)}</div>
+                        </div>
+                        <div className="mt-4">
+                            <div className="text-lg">Circulating Supply</div>
+                            <div className="text-xl">{formatPrice(circulating_supply)}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div >
+
     )
 }
