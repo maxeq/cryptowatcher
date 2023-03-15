@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from 'next/router';
@@ -16,6 +16,8 @@ const Cryptocurrencies_dynamic: NextPage = () => {
   const ids = Array.isArray(router.query.ids) ? router.query.ids[0] : router.query.ids;
   console.log(router)
 
+  const [selectedBtn, setSelectedBtn] = useState('top');
+
   return (
     <NoSSR>
       <Head>
@@ -32,10 +34,28 @@ const Cryptocurrencies_dynamic: NextPage = () => {
           </div>
           <div className="min-h-32 flex flex-col">
             <div className="bg-gray-900 p-16"> <div className="mx-8"><Button text="Login to discuss" /></div></div>
+
+            <div className="border md:rounded border-slate-700 text-slate-600 md:mx-10 mx-6 my-4">
+              <form className="flex justify-evenly my-1 md:px-20">
+                <button
+                  type="button"
+                  className={`border ${selectedBtn === 'top' ? 'text-white border-transparent bg-slate-600 rounded px-14 flex items-center ' : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'}`}
+                  onClick={() => setSelectedBtn('top')}>
+                  Top
+                </button>
+                <button
+                  type="button"
+                  className={`border ${selectedBtn === 'latest' ? 'text-white border-transparent bg-slate-600 rounded px-14 flex items-center' : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'}`}
+                  onClick={() => setSelectedBtn('latest')}>
+                  Latest
+                </button>
+              </form>
             </div>
+
           </div>
         </div>
-    </NoSSR>
+      </div>
+    </NoSSR >
   );
 };
 
