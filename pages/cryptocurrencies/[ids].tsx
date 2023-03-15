@@ -55,15 +55,18 @@ const Cryptocurrencies_dynamic: NextPage = () => {
                 </form>
               </div>
               <div className="flex justify-between px-1 py-3 text-teal-300">
-                <div className="flex items-center hover:bg-opacity-10 hover:bg-slate-50 rounded px-1">
+                <div className="flex items-center hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
                   <span className="mr-1">All posts</span>
                   <ChevronDownIcon className="w-4 h-4" />
                 </div>
-                <div className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-slate-50 rounded px-1">
+                <div className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
                   <ArrowPathIcon className="w-4 h-4" />
                   <span className="ml-1">Refresh</span>
                 </div>
               </div>
+            </div>
+            <div className="hover:bg-opacity-10 hover:bg-white/5 p-32">
+
             </div>
           </div>
         </div>
