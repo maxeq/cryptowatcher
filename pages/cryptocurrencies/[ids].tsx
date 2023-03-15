@@ -65,7 +65,8 @@ const Cryptocurrencies_dynamic: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="hover:bg-opacity-10 hover:bg-white/5 p-32">
+            <div className="hover:bg-opacity-10 hover:bg-white/5 p-32 -mt-5">
+              
 
             </div>
           </div>

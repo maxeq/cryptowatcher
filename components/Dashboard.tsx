@@ -105,10 +105,15 @@ export default function Dashboard(): JSX.Element {
                         </div>
                     </div>
 
-                    <div className="">
+                    <div className="space-y-2">
                         <div className="mt-4">
                             <div className="text-sm text-slate-300">Circulating Supply</div>
                             <div className="text-xl">{formatPrice(circulating_supply).replace("$", "")}</div>
+                            <div className="mt-2">
+                                <div className="md:w-2/3 w-1/3 bg-gray-200 rounded-full dark:bg-gray-700">
+                                    <div className={`bg-slate-400 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full`}>{((circulating_supply / max_supply) * 100).toFixed(0)}%</div>
+                                </div>
+                            </div>
                         </div>
                         <div className="mt-4 space-y-2">
                             <div className="mt-4">
@@ -125,8 +130,8 @@ export default function Dashboard(): JSX.Element {
                         </div>
                     </div>
                 </div>
-        </div> 
-        </div> 
- 
+            </div>
+        </div>
+
     )
 } 
