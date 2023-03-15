@@ -10,7 +10,8 @@ export type ArrayData = {
 
 export const getArrayData = async () => {
   const mongoClient = await clientPromise;
-
+  const date24HoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000); // current date minus 24 hours
+  
   const data = await mongoClient
     .db('myFirstDatabase')
     .collection('coins')
@@ -18,8 +19,8 @@ export const getArrayData = async () => {
       {
         $match: {
           dbDateAdded: {
-            $gte: new Date('2023-03-07T00:53:33.634Z'),
-            $lte: new Date('2023-03-08T23:53:33.634Z'),
+            $gte: date24HoursAgo,
+            $lte: new Date(),
           },
         },
       },
