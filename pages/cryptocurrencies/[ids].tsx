@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from 'next/router';
-import { Dropdown } from "flowbite";
-import type { DropdownOptions, DropdownInterface } from "flowbite";
 
 import NoSSR from "../../components/NoSSR";
 import Dashboard from "@/components/Dashboard";
