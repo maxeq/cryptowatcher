@@ -24,7 +24,7 @@ export default function Web3CustomButton() {
     }
 
     return (
-        <button className="px-4 bg-lime-600 hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap" onClick={onClick} disabled={loading}>
+        <button className="px-4 bg-lime-600 transition duration-300 ease-in-out hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap" onClick={onClick} disabled={loading}>
             {loading ? 'Loading...' : label}
         </button>
     )
