@@ -1,9 +1,9 @@
-import { Web3Button } from '@web3modal/react';
+import Comments from '@/components/Comments';
 
 export default function Trade() {
   return (
 
-<Web3Button />
+<Comments />
 
   )
 }
