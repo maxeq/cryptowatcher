@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from 'next/router';
+import { Dropdown } from "flowbite";
+import type { DropdownOptions, DropdownInterface } from "flowbite";
 
 import NoSSR from "../../components/NoSSR";
 import Dashboard from "@/components/Dashboard";
@@ -9,12 +11,13 @@ import ChartFetcher from "@/components/charts/ChartFetcher";
 import H1Template from "@/components/h1template";
 import Logo from "@/components/LogoNew";
 import Button from "@/components/Button";
+import { ChevronDownIcon } from "@/components/icons/ChevronDown";
+import { ArrowPathIcon } from "@/components/icons/ArrowPath";
 
 
 const Cryptocurrencies_dynamic: NextPage = () => {
   const router = useRouter();
   const ids = Array.isArray(router.query.ids) ? router.query.ids[0] : router.query.ids;
-  console.log(router)
 
   const [selectedBtn, setSelectedBtn] = useState('top');
 
@@ -51,9 +54,15 @@ const Cryptocurrencies_dynamic: NextPage = () => {
                   </button>
                 </form>
               </div>
-              <div className="flex justify-between px-4 py-2 text-teal-300">
-                <div className="">All posts</div>
-                <div className="">Refresh</div>
+              <div className="flex justify-between px-1 py-3 text-teal-300">
+                <div className="flex items-center hover:bg-opacity-10 hover:bg-slate-50 rounded px-1">
+                  <span className="mr-1">All posts</span>
+                  <ChevronDownIcon className="w-4 h-4" />
+                </div>
+                <div className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-slate-50 rounded px-1">
+                  <ArrowPathIcon className="w-4 h-4" />
+                  <span className="ml-1">Refresh</span>
+                </div>
               </div>
             </div>
           </div>
