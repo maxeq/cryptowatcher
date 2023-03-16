@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import ButtonGray from "./Button-gray";
 import Web3CustomButton from "./Web3Connect";
+import AuthModal from './AuthModal';
 
 const header_navigation = [
     { name: "Home", href: "/" },
@@ -12,6 +13,11 @@ const header_navigation = [
 ];
 
 const NavbarModule = () => {
+    //login modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [authMode, setAuthMode] = useState<'signup' | 'login'>('signup');
+
+    //mobile menu
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen);
@@ -19,6 +25,7 @@ const NavbarModule = () => {
     };
     const [buttonColor, setButtonColor] = useState('');
 
+    //router
     const { pathname } = useRouter();
 
     return (
@@ -41,8 +48,19 @@ const NavbarModule = () => {
                             </li>
                         </ul>
                         <div className="flex justify-evenly w-full">
-                            <ButtonGray text="Login" className="" />
-                            <Button text="Sign Up" className="" />
+                            <ButtonGray text="Login" className="" onClick={() => {
+                                setAuthMode('login');
+                                setIsModalOpen(true);
+                            }} />
+                            <Button text="Sign Up" className="" onClick={() => {
+                                setAuthMode('signup');
+                                setIsModalOpen(true);
+                            }} />
+                            <AuthModal
+                                isOpen={isModalOpen}
+                                onClose={() => setIsModalOpen(false)}
+                                mode={authMode}
+                            />
                         </div>
                     </ul>
                 </div>
@@ -75,10 +93,24 @@ const NavbarModule = () => {
                                     <p className={pathname === href ? `text-lime-500 shadow-lg font-bold` : ''}>{name}</p>
                                 </Link>
                             ))}
-                            <ul className="list-none ml-8">
-                                <li>
-                                    <Web3CustomButton />
-                                </li>
+                            <ul className="items-center">
+
+                                <div className="space-y-4">
+                                    <ButtonGray text="Login" className="w-full" onClick={() => {
+                                        setAuthMode('login');
+                                        setIsModalOpen(true);
+                                    }} />
+                                    <Button text="Sign Up" className="w-full" onClick={() => {
+                                        setAuthMode('signup');
+                                        setIsModalOpen(true);
+                                    }} />
+                                    <AuthModal
+                                        isOpen={isModalOpen}
+                                        onClose={() => setIsModalOpen(false)}
+                                        mode={authMode}
+                                    />
+                                </div>
+
                             </ul>
                             {/* <input
                 type="search"
