@@ -83,10 +83,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
               type="email"
               name="email"
               id="email"
-              className="block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
+              className="placeholder-gray-600 block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
               value={email}
               onChange={handleEmailChange}
               required
+              title="Enter your email address"
+              placeholder='Enter your email address'
             />
           </div>
           <div className="mb-4">
@@ -97,10 +99,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
               type="password"
               name="password"
               id="password"
-              className="block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
+              className="placeholder-gray-600 block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
               value={password}
               onChange={handlePasswordChange}
               required
+              title="Enter your password"
+              placeholder='Enter your password'
             />
           </div>
           {/* Success message */}
