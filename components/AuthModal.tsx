@@ -6,6 +6,7 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   mode: 'signup' | 'login';
+  onLoginButtonClick?: () => void;
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {

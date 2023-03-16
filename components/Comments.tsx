@@ -4,6 +4,8 @@ import Button from "./Button";
 import Image from 'next/image'
 import { ChevronDownIcon } from "@/components/icons/ChevronDown";
 import { ArrowPathIcon } from "@/components/icons/ArrowPath";
+import { useUser } from '../context/UserContext';
+import AuthModal from "./AuthModal";
 
 
 interface Comment {
@@ -17,6 +19,9 @@ interface Comment {
 const Comments: React.FC = () => {
     const [comments, setComments] = useState<Comment[]>([]);
     const [selectedBtn, setSelectedBtn] = useState('top');
+
+    const { user } = useUser();
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -49,7 +54,6 @@ const Comments: React.FC = () => {
 
     return (
         <div className="min-h-32 flex flex-col">
-            <div className="bg-gray-900 p-16"> <div className="mx-8"><Button text="Login to discuss" /></div></div>
             <div className="hover:bg-opacity-10">
                 <div className=" min-h-screen">
                     <div className="container mx-auto">
@@ -57,15 +61,33 @@ const Comments: React.FC = () => {
                             onSubmit={handleSubmit}
                             className="rounded-lg mx-auto"
                         >
-                            <textarea
-                                name="comment"
-                                placeholder="Write your comment here..."
-                                rows={4}
-                                className="w-full border-2 mb-2 rounded-lg p-4 resize-none focus:border-purple-400 border-transparent hover:border-slate-700/50 bg-gray-900 focus:outline-none"
-                            ></textarea>
-                            <div className="flex justify-center">
-                                <Button text="Submit Post" type="submit" className="" />
-                            </div>
+                            {!user ? (
+                                <div className="bg-gray-900 p-16">
+                                    <div className="mx-8 flex justify-center">
+                                        <Button text="Login to discuss" onClick={() => setIsLoginModalOpen(true)} />
+                                    </div>
+                                </div>
+
+                            ) : (
+                                <>
+                                    <textarea
+                                        name="comment"
+                                        placeholder="Write your comment here..."
+                                        rows={4}
+                                        className="w-full border-2 mb-2 rounded-lg p-4 resize-none focus:border-purple-400 border-transparent hover:border-slate-700/50 bg-gray-900 focus:outline-none"
+                                    ></textarea>
+                                    <div className="flex justify-center">
+                                        <Button text="Submit Post" type="submit" className="" />
+                                    </div>
+                                </>
+                            )}
+                            <AuthModal
+                                isOpen={isLoginModalOpen}
+                                onClose={() => setIsLoginModalOpen(false)}
+                                mode="login"
+                                onLoginButtonClick={() => setIsLoginModalOpen(true)} // Pass the callback function here
+                            />
+
                             <div className="mx-4 mt-4">
                                 <div className="border md:rounded-lg border-slate-700/50 text-slate-600">
                                     <div className="flex justify-evenly m-2">
