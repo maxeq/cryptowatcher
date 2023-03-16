@@ -38,9 +38,17 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
         const user = await registerUser({ email, password });
         console.log('User registered successfully:', user);
         setSuccessMessage('User registered successfully');
+        
+        // Log in the user after successful registration
+        const loggedInUser = await loginUser(email, password);
+        console.log('User logged in successfully:', loggedInUser);
+        setUser(loggedInUser); // Update the user state on successful login
+        onClose(); // Close the login modal
+
       } catch (error) {
         console.error('Registration failed:', error);
         setErrorMessage((error as Error).message);
+
       }
     } else {
       try {

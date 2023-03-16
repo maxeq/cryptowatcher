@@ -59,8 +59,14 @@ const Comments: React.FC = () => {
                     <div className="container mx-auto">
                         <form
                             onSubmit={handleSubmit}
-                            className="rounded-lg mx-auto"
-                        >
+                            className="rounded-lg mx-auto">
+
+                            <AuthModal
+                                isOpen={isLoginModalOpen}
+                                onClose={() => setIsLoginModalOpen(false)}
+                                mode="login"
+                                onLoginButtonClick={() => setIsLoginModalOpen(true)} />
+
                             {!user ? (
                                 <div className="bg-gray-900 p-16">
                                     <div className="mx-8 flex justify-center">
@@ -81,12 +87,7 @@ const Comments: React.FC = () => {
                                     </div>
                                 </>
                             )}
-                            <AuthModal
-                                isOpen={isLoginModalOpen}
-                                onClose={() => setIsLoginModalOpen(false)}
-                                mode="login"
-                                onLoginButtonClick={() => setIsLoginModalOpen(true)} // Pass the callback function here
-                            />
+
 
                             <div className="mx-4 mt-4">
                                 <div className="border md:rounded-lg border-slate-700/50 text-slate-600">
