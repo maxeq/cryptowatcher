@@ -65,7 +65,7 @@ const Comments: React.FC = () => {
                                 isOpen={isLoginModalOpen}
                                 onClose={() => setIsLoginModalOpen(false)}
                                 mode="login"
-                                onLoginButtonClick={() => setIsLoginModalOpen(true)} />
+                                />
 
                             {!user ? (
                                 <div className="bg-gray-900 p-16">
