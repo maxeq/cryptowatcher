@@ -6,50 +6,94 @@ import { ChevronDownIcon } from "@/components/icons/ChevronDown";
 import { ArrowPathIcon } from "@/components/icons/ArrowPath";
 import { useUser } from '../context/UserContext';
 import AuthModal from "./AuthModal";
+import useSWR, { mutate } from "swr";
 
+const fetcher = async (url: string) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Error fetching data");
+    }
+    return response.json();
+};
 
 interface Comment {
     id: string;
-    author: string;
+    author: any;
     content: string;
     createdAt: Date;
     likes: number;
 }
 
 const Comments: React.FC = () => {
-    const [comments, setComments] = useState<Comment[]>([]);
+    const { data: comments, error } = useSWR<Comment[]>("/api/getComments", fetcher);
+
     const [selectedBtn, setSelectedBtn] = useState('top');
 
     const { user } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const comment = (e.target as any).comment.value.trim();
         if (!comment) return;
 
         const newComment: Comment = {
             id: Date.now().toString(),
-            author: "User", // Replace with the actual user's name or ID when you implement authentication
+            author: user?.email, // Replace with the actual user's ID when you implement authentication
             content: comment,
             createdAt: new Date(),
             likes: 0,
         };
 
-        setComments([newComment, ...comments]);
-        e.currentTarget.reset();
+        try {
+            const response = await fetch("/api/saveComment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ comment: newComment }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Error saving comment");
+            }
+
+            mutate("/api/getComments");
+            e.currentTarget.reset();
+        } catch (error) {
+            console.error("Error saving comment:", error);
+        }
     };
 
-    const handleLike = (id: string) => {
-        setComments(
-            comments.map((comment) =>
-                comment.id === id ? { ...comment, likes: comment.likes + 1 } : comment
-            )
-        );
+    const handleLike = async (id: string) => {
+        try {
+            const response = await fetch(`/api/updateLike/${id}`, {
+                method: "PUT",
+            });
+
+            if (!response.ok) {
+                throw new Error("Error updating like");
+            }
+
+            // Refresh comments after updating the like
+            mutate("/api/getComments");
+        } catch (error) {
+            console.error("Error updating like:", error);
+        }
     };
 
-    const handleDelete = (id: string) => {
-        setComments(comments.filter((comment) => comment.id !== id));
+    const handleDelete = async (id: string) => {
+        try {
+            const response = await fetch(`/api/deleteComment/${id}`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) {
+                throw new Error("Error deleting comment");
+            }
+
+            mutate("/api/getComments");
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
     };
 
     return (
@@ -65,7 +109,7 @@ const Comments: React.FC = () => {
                                 isOpen={isLoginModalOpen}
                                 onClose={() => setIsLoginModalOpen(false)}
                                 mode="login"
-                                />
+                            />
 
                             {!user ? (
                                 <div className="bg-gray-900 p-16">
@@ -119,7 +163,7 @@ const Comments: React.FC = () => {
                             </div>
                         </form>
                         <div className="space-y-0">
-                            {comments.map((comment) => (
+                            {comments?.map((comment) => (
                                 <div
                                     key={comment.id}
                                     className="p-4 border-b border-slate-600 flex hover:bg-white/5"
@@ -136,7 +180,7 @@ const Comments: React.FC = () => {
                                             <div>
                                                 <span className="text-sm">{comment.author}</span>
                                                 <span className="ml-4">
-                                                    {formatDistanceToNow(comment.createdAt)} ago
+                                                    {formatDistanceToNow(new Date(comment.createdAt))} ago
                                                 </span>
                                             </div>
                                         </div>
