@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser, loginUser } from '../lib/user';
+import { useUser } from '../context/UserContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const { user, setUser } = useUser();
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -43,7 +46,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
         const user = await loginUser(email, password);
         console.log('User logged in successfully:', user);
         setSuccessMessage('User logged in successfully');
-        // Perform any additional actions after successful login here, e.g., updating the header, setting user data in context, etc.
+        setUser(user); // Update the user state on successful login
+        onClose(); // Close the login modal
       } catch (error) {
         console.error('Registration failed:', error);
         setErrorMessage((error as Error).message);
