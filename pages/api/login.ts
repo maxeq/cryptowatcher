@@ -15,14 +15,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const isValidPassword = await validateUserPassword(password, user.password);
 
             if (!isValidPassword) {
-                return res.status(401).json
-                    ({ error: 'Invalid email or password' });
-
-
+                return res.status(401).json({ error: 'Invalid email or password' });
             }
+
+            // Send the user data or a success message when the login is successful
+            return res.status(200).json({ message: 'User logged in successfully', user });
+
         } catch (error) {
             return res.status(500).json({ error: 'Something went wrong' });
         }
     }
 }
-

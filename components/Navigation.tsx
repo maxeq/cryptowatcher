@@ -94,8 +94,7 @@ const NavbarModule = () => {
                                 </Link>
                             ))}
                             <ul className="items-center">
-
-                                <div className="space-y-4">
+                            <div className="space-y-4">
                                     <ButtonGray text="Login" className="w-full" onClick={() => {
                                         setAuthMode('login');
                                         setIsModalOpen(true);
@@ -110,7 +109,6 @@ const NavbarModule = () => {
                                         mode={authMode}
                                     />
                                 </div>
-
                             </ul>
                             {/* <input
                 type="search"

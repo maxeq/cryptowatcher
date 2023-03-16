@@ -10,27 +10,9 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [currentMode, setMode] = useState(mode);
 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    // Clear previous messages
-    setSuccessMessage('');
-    setErrorMessage('');
-
-    try {
-      const user = await loginUser(email, password);
-      console.log('User logged in successfully:', user);
-      setSuccessMessage('User logged in successfully');
-    } catch (error) {
-      console.error('Login failed:', error);
-      setErrorMessage('Login failed');
-    }
-  };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -47,7 +29,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
     setSuccessMessage('');
     setErrorMessage('');
 
-    if (currentMode === 'signup') {
+    if (mode === 'signup') {
       try {
         const user = await registerUser({ email, password });
         console.log('User registered successfully:', user);
@@ -69,10 +51,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
     }
   };
 
-  const handleModeToggle = () => {
-    currentMode === 'signup' ? setMode('login') : setMode('signup');
-  };
-
   if (!isOpen) {
     return null;
   }
@@ -89,7 +67,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
           </svg>
         </button>
         <h2 className="text-2xl mb-6">
-          {currentMode === 'signup' ? 'Sign Up' : 'Log In'}
+          {mode === 'signup' ? 'Sign Up' : 'Log In'}
         </h2>
 
         <form onSubmit={handleSubmit}>
@@ -138,16 +116,16 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
             className="px-4 bg-lime-600 text-center hover:bg-lime-500 shadow-lg transition duration-300 ease-in-out shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap"
             type="submit"
           >
-            {currentMode === 'signup' ? 'Create an Account' : 'Log In'}
+            {mode === 'signup' ? 'Create an Account' : 'Log In'}
           </button>
         </form>
         <div className="text-gray-400 mt-4">
-          {currentMode === 'signup' ? 'Already have an account?' : "Don't have an account? "}
+          {mode === 'signup' ? 'Already have an account?' : "Don't have an account? "}
           <button
-            onClick={handleModeToggle}
+            onClick={onClose}
             className="ml-1 font-medium text-lime-500 hover:text-lime-400 focus:outline-none"
           >
-            {currentMode === 'signup' ? 'Log in' : 'Sign up'}
+            {mode === 'signup' ? 'Log in' : 'Sign up'}
           </button>
         </div>
         <button
