@@ -11,6 +11,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentMode, setMode] = useState(mode);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -22,14 +25,18 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+
+    // Clear previous messages
+    setSuccessMessage('');
+    setErrorMessage('');
+
     try {
       const user = await registerUser({ email, password });
       console.log('User registered successfully:', user);
-      // show a success message to the user or redirect them to the dashboard page
+      setSuccessMessage('User registered successfully');
     } catch (error) {
       console.error('Registration failed:', error);
-      // show an error message to the user
+      setErrorMessage('Registration failed');
     }
   };
 
@@ -55,6 +62,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
         <h2 className="text-2xl mb-6">
           {currentMode === 'signup' ? 'Sign Up' : 'Log In'}
         </h2>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-400 text-sm font-medium mb-2">
@@ -84,6 +92,19 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
               required
             />
           </div>
+          {/* Success message */}
+          {successMessage && (
+            <div className="text-green-500 my-2">
+              {successMessage}
+            </div>
+          )}
+
+          {/* Error message */}
+          {errorMessage && (
+            <div className="text-red-500 my-2">
+              {errorMessage}
+            </div>
+          )}
           <button
             className="px-4 bg-lime-600 text-center hover:bg-lime-500 shadow-lg transition duration-300 ease-in-out shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap"
             type="submit"
