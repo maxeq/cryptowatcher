@@ -15,6 +15,7 @@ import { mainnet } from 'wagmi/chains'
 if (!process.env.NEXT_PUBLIC_PROJECT_ID) {
   throw new Error('You need to provide NEXT_PUBLIC_PROJECT_ID env variable')
 }
+
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
 
 // 2. Configure wagmi client
