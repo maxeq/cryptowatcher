@@ -68,7 +68,7 @@ const Comments: React.FC = () => {
                             </div>
                             <div className="mx-4 mt-4">
                                 <div className="border md:rounded-lg border-slate-700/50 text-slate-600">
-                                    <form className="flex justify-evenly m-2">
+                                    <div className="flex justify-evenly m-2">
                                         <button
                                             type="button"
                                             className={`border ${selectedBtn === 'top' ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center ' : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'}`}
@@ -81,7 +81,7 @@ const Comments: React.FC = () => {
                                             onClick={() => setSelectedBtn('latest')}>
                                             Latest
                                         </button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex justify-between my-4 mx-4 text-teal-300">

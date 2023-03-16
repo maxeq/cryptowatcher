@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { registerUser } from '../lib/user';
+import { registerUser, loginUser } from '../lib/user';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -11,9 +11,26 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentMode, setMode] = useState(mode);
+
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Clear previous messages
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    try {
+      const user = await loginUser(email, password);
+      console.log('User logged in successfully:', user);
+      setSuccessMessage('User logged in successfully');
+    } catch (error) {
+      console.error('Login failed:', error);
+      setErrorMessage('Login failed');
+    }
+  };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -30,13 +47,25 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
     setSuccessMessage('');
     setErrorMessage('');
 
-    try {
-      const user = await registerUser({ email, password });
-      console.log('User registered successfully:', user);
-      setSuccessMessage('User registered successfully');
-    } catch (error) {
-      console.error('Registration failed:', error);
-      setErrorMessage('Registration failed');
+    if (currentMode === 'signup') {
+      try {
+        const user = await registerUser({ email, password });
+        console.log('User registered successfully:', user);
+        setSuccessMessage('User registered successfully');
+      } catch (error) {
+        console.error('Registration failed:', error);
+        setErrorMessage((error as Error).message);
+      }
+    } else {
+      try {
+        const user = await loginUser(email, password);
+        console.log('User logged in successfully:', user);
+        setSuccessMessage('User logged in successfully');
+        // Perform any additional actions after successful login here, e.g., updating the header, setting user data in context, etc.
+      } catch (error) {
+        console.error('Registration failed:', error);
+        setErrorMessage((error as Error).message);
+      }
     }
   };
 

@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
 import { User as UserType } from '../../types/user';
 import { RegistrationData } from '../../types/registration';
-import clientPromise from '@/lib/mongodb';
+import { findUserByEmail } from './userValidation';
 
 // Your MongoDB-related functions here
 export type User = UserType;
@@ -15,28 +15,6 @@ if (!process.env.MONGODB_URI) {
 const uri = process.env.MONGODB_URI;
 const options = {}
 const client = new MongoClient(uri, options);
-
-export async function findUserByEmail(email: string): Promise<User | null> {
-  await client.connect();
-  const db = client.db();
-
-  // Find user by email
-  const user = await db.collection<User>('users').findOne({ email });
-  return user;
-}
-
-export async function validateUserPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return await bcrypt.compare(password, hashedPassword);
-}
-
-export async function findUserById(id: string): Promise<User | null> {
-  await client.connect();
-  const db = client.db();
-
-  // Find user by id
-  const user = await db.collection<User>('users').findOne({ _id: new ObjectId(id) });
-  return user;
-}
 
 export async function createUser(registrationData: RegistrationData): Promise<User> {
   await client.connect();
@@ -77,9 +55,13 @@ export default async function handler(
       // You can add your own validation logic here
 
       try {
-        const mongoClient = await clientPromise;
-        const newUser = await createUser(registrationData);
-        res.status(200).json({ user: newUser, message: 'User created successfully' });
+        const existingUser = await findUserByEmail(registrationData.email);
+        if (existingUser) {
+          res.status(400).json({ error: 'Email already in use' });
+        } else {
+          const newUser = await createUser(registrationData);
+          res.status(200).json({ user: newUser, message: 'User created successfully' });
+        }
       } catch (error) {
         res.status(400).json({ error: (error as Error).message });
       }
