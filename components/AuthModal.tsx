@@ -43,10 +43,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-gray-900 p-8 rounded-md w-full max-w-md relative">
+      <div className="bg-gray-900 p-8 rounded-md w-full max-w-md relative shadow-lg shadow-purple-400">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-500 focus:outline-none bg-transparent border-none"
+          className="absolute top-2 right-2 text-gray-400 hover:text-gray-500"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -64,7 +64,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
               type="email"
               name="email"
               id="email"
-              className="block w-full px-3 py-2 rounded-md bg-gray-800 border-gray-700 focus:border-blue-500 focus:outline-none text-gray-200"
+              className="block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
               value={email}
               onChange={handleEmailChange}
               required
@@ -78,14 +78,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
               type="password"
               name="password"
               id="password"
-              className="block w-full px-3 py-2 rounded-md bg-gray-800 border-gray-700 focus:border-blue-500 focus:outline-none text-gray-200"
+              className="block w-full px-3 py-2 rounded-md bg-gray-800 border border-gray-900 focus:border-lime-400 focus:outline-none text-gray-200"
               value={password}
               onChange={handlePasswordChange}
               required
             />
           </div>
           <button
-            className="mt-4 py-2 px-4 bg-blue-600 text-white rounded-md"
+            className="px-4 bg-lime-600 text-center hover:bg-lime-500 shadow-lg transition duration-300 ease-in-out shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap"
             type="submit"
           >
             {currentMode === 'signup' ? 'Create an Account' : 'Log In'}
@@ -95,7 +95,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
           {currentMode === 'signup' ? 'Already have an account?' : "Don't have an account? "}
           <button
             onClick={handleModeToggle}
-            className="ml-1 font-medium text-blue-400 hover:text-blue-500 focus:outline-none"
+            className="ml-1 font-medium text-lime-500 hover:text-lime-400 focus:outline-none"
           >
             {currentMode === 'signup' ? 'Log in' : 'Sign up'}
           </button>
