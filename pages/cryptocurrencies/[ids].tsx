@@ -7,7 +7,6 @@ import NoSSR from "../../components/NoSSR";
 import Dashboard from "@/components/Dashboard";
 import ChartFetcher from "@/components/charts/ChartFetcher";
 import H1Template from "@/components/h1template";
-import Logo from "@/components/LogoNew";
 import Comments from "@/components/Comments";
 import Twitter from "@/components/TwitterHandler";
 

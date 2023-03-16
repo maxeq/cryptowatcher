@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { formatPrice, formatPercent } from "@/utils";
 
 import { FaShareSquare, FaRegStar } from 'react-icons/fa';
+import Web3Connect from "./Web3Connect";
 
 const fetcher = async (url: string) => {
     const res = await fetch(url);
@@ -126,7 +127,7 @@ export default function Dashboard(): JSX.Element {
                             </div>
                         </div>
                         <div className="flex justify-center">
-                            <button className="px-12 mt-6 bg-lime-600 transition duration-300 ease-in-out hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap">Buy {name}</button>
+                            <Web3Connect text={`Buy ${name}`}/>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import Button from "./Button";
+import ButtonGray from "./Button-gray";
 import Web3CustomButton from "./Web3Connect";
 
 const header_navigation = [
@@ -38,11 +40,10 @@ const NavbarModule = () => {
                                 />
                             </li>
                         </ul>
-                        <ul className="list-none ml-8">
-                            <li>
-                                <Web3CustomButton />
-                            </li>
-                        </ul>
+                        <div className="flex justify-evenly w-full">
+                            <ButtonGray text="Login" className="" />
+                            <Button text="Sign Up" className="" />
+                        </div>
                     </ul>
                 </div>
             </nav>
