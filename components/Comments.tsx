@@ -162,6 +162,7 @@ const Comments: React.FC = () => {
                                 </div>
                             </div>
                         </form>
+                        
                         <div className="space-y-0">
                             {comments?.map((comment) => (
                                 <div
@@ -191,6 +192,7 @@ const Comments: React.FC = () => {
                                         >
                                             Like ({comment.likes})
                                         </button>
+
                                         {comment.author === "User" && ( // Replace with an actual user ID check when you implement authentication
                                             <button
                                                 onClick={() => handleDelete(comment.id)}
