@@ -88,7 +88,7 @@ const Comments: React.FC = () => {
         }
     };
 
-    const handleLike = async (id: string, author: any) => {
+    const handleLike = async (id: string, uid: any) => {
         // If the user is not logged in, show the login modal
         if (!user) {
             setIsLoginModalOpen(true);
@@ -99,7 +99,7 @@ const Comments: React.FC = () => {
             const response = await fetch(`/api/user/updateLike/${id}`, {
                 method: "PUT",
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ author }),
+                body: JSON.stringify({ uid }),
             });
 
             if (!response.ok) {
@@ -223,13 +223,13 @@ const Comments: React.FC = () => {
 
                                             <p className="mt-2 text-lg">{comment.content}</p>
                                             <button
-                                                onClick={() => handleLike(comment.id, comment.author)}
+                                                onClick={() => handleLike(comment.id, user?.email)}
                                                 className="hover:text-purple-400 mt-4"
                                             >
                                                 Like ({comment.likes})
                                             </button>
 
-                                            {comment.author === "User" && ( // Replace with an actual user ID check when you implement authentication
+                                            {comment.author === user?.email && (
                                                 <button
                                                     onClick={() => handleDelete(comment.id)}
                                                     className="hover:text-red-600 ml-2"
@@ -242,6 +242,7 @@ const Comments: React.FC = () => {
                                     </div>
                                 ))}
                         </div>
+
                     </div>
                 </div>
             </div>
