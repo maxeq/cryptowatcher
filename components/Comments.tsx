@@ -171,47 +171,49 @@ const Comments: React.FC = () => {
                         </div>
 
                         <div className="space-y-0">
-                            {comments?.map((comment) => (
-                                <div
-                                    key={comment.id}
-                                    className="p-4 border-b border-slate-600 flex hover:bg-white/5"
-                                >
-                                    <Image
-                                        src="/logo.png" // Replace with the actual user's avatar URL
-                                        alt="User avatar"
-                                        width={40}
-                                        height={40}
-                                        className="w-10 h-10 rounded-full mr-4"
-                                    />
-                                    <div className="">
-                                        <div className="flex text-xs">
-                                            <div>
-                                                <span className="text-sm">{comment.author}</span>
-                                                <span className="ml-4">
-                                                    {formatDistanceToNow(new Date(comment.createdAt))} ago
-                                                </span>
+                            {comments
+                                ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                                .map((comment) => (
+                                    <div
+                                        key={comment.id}
+                                        className="p-4 border-b border-slate-600 flex hover:bg-white/5"
+                                    >
+                                        <Image
+                                            src="/logo.png" // Replace with the actual user's avatar URL
+                                            alt="User avatar"
+                                            width={40}
+                                            height={40}
+                                            className="w-10 h-10 rounded-full mr-4"
+                                        />
+                                        <div className="">
+                                            <div className="flex text-xs">
+                                                <div>
+                                                    <span className="text-sm">{comment.author}</span>
+                                                    <span className="ml-4">
+                                                        {formatDistanceToNow(new Date(comment.createdAt))} ago
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <p className="mt-2 text-lg">{comment.content}</p>
-                                        <button
-                                            onClick={() => handleLike(comment.id)}
-                                            className="hover:text-purple-400 mt-4"
-                                        >
-                                            Like ({comment.likes})
-                                        </button>
-
-                                        {comment.author === "User" && ( // Replace with an actual user ID check when you implement authentication
+                                            <p className="mt-2 text-lg">{comment.content}</p>
                                             <button
-                                                onClick={() => handleDelete(comment.id)}
-                                                className="hover:text-red-600 ml-2"
+                                                onClick={() => handleLike(comment.id)}
+                                                className="hover:text-purple-400 mt-4"
                                             >
-                                                Delete
+                                                Like ({comment.likes})
                                             </button>
-                                        )}
-                                    </div>
 
-                                </div>
-                            ))}
+                                            {comment.author === "User" && ( // Replace with an actual user ID check when you implement authentication
+                                                <button
+                                                    onClick={() => handleDelete(comment.id)}
+                                                    className="hover:text-red-600 ml-2"
+                                                >
+                                                    Delete
+                                                </button>
+                                            )}
+                                        </div>
+
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </div>
