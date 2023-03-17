@@ -1,5 +1,4 @@
 import { useState, FormEvent } from "react";
-import { formatDistanceToNow } from "date-fns";
 import Button from "./buttons/Button";
 import Image from 'next/image'
 import { ChevronDownIcon } from "@/components/icons/ChevronDown";
@@ -31,6 +30,29 @@ const Comments: React.FC = () => {
 
     const { user } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    //format date to time ago
+    const formatTimeAgo = (date: Date) => {
+        const now = new Date();
+        const diffInSeconds = Math.abs((now.getTime() - date.getTime()) / 1000);
+
+        if (diffInSeconds < 60) {
+            return `${Math.floor(diffInSeconds)}s`;
+        }
+
+        const diffInMinutes = diffInSeconds / 60;
+        if (diffInMinutes < 60) {
+            return `${Math.floor(diffInMinutes)}m`;
+        }
+
+        const diffInHours = diffInMinutes / 60;
+        if (diffInHours < 24) {
+            return `${Math.floor(diffInHours)}h`;
+        }
+
+        const diffInDays = diffInHours / 24;
+        return `${Math.floor(diffInDays)}d`;
+    };
 
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -186,14 +208,15 @@ const Comments: React.FC = () => {
                                             className="w-10 h-10 rounded-full mr-4"
                                         />
                                         <div className="">
-                                            <div className="flex text-xs">
-                                                <div>
-                                                    <span className="text-sm">{comment.author}</span>
-                                                    <span className="ml-4">
-                                                        {formatDistanceToNow(new Date(comment.createdAt))} ago
-                                                    </span>
-                                                </div>
+                                            <div className="flex text-xs w-full">
+                                                <span className="text-xs">
+                                                    {comment.author}
+                                                </span>
+                                                <span className="ml-4">
+                                                    {formatTimeAgo(new Date(comment.createdAt))} ago
+                                                </span>
                                             </div>
+
                                             <p className="mt-2 text-lg">{comment.content}</p>
                                             <button
                                                 onClick={() => handleLike(comment.id)}
