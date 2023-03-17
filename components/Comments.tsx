@@ -30,7 +30,7 @@ const Comments: React.FC = () => {
     const [selectedBtn, setSelectedBtn] = useState('top');
 
     const { user } = useUser();
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(true);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -110,7 +110,7 @@ const Comments: React.FC = () => {
                     <div className="container mx-auto">
                         <div className="rounded-lg mx-auto">
                             <AuthModal
-                                key={`login-modal-${isLoginModalOpen}`}
+                                key={`${isLoginModalOpen}-${setIsLoginModalOpen}`}
                                 isOpen={isLoginModalOpen}
                                 onClose={() => setIsLoginModalOpen(false)}
                                 mode="login"
