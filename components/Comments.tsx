@@ -64,7 +64,12 @@ const Comments: React.FC = () => {
     };
 
     const handleLike = async (id: string) => {
-        
+        // If the user is not logged in, show the login modal
+        if (!user) {
+            setIsLoginModalOpen(true);
+            return;
+        }
+
         try {
             const response = await fetch(`/api/user/updateLike/${id}`, {
                 method: "PUT",
