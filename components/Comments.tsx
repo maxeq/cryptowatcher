@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import Button from "./buttons/Button";
 import Image from 'next/image'
-import { ChevronDownIcon } from "@/components/icons/ChevronDown";
+import DropdownMenu from "@/components/icons/ChevronDown";
 import { ArrowPathIcon } from "@/components/icons/ArrowPath";
 import { useUser } from '../context/UserContext';
 import AuthModal from "./AuthModal";
@@ -195,7 +195,13 @@ const Comments: React.FC = () => {
                             </div>
                             <div className="flex justify-between my-4 mx-4 text-teal-300">
                                 <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
-                                    <ChevronDownIcon className="w-4 h-4" text="All Posts" />
+
+                                        <DropdownMenu
+                                            items={['All posts', 'Page posts']}
+                                            onItemSelected={(item: any) => console.log('Selected item:', item)}
+                                            iconProps={{ className: 'ml-2', strokeWidth: '1.5' }}
+                                        />
+
                                 </div>
                                 <button className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2"
                                     onClick={() => mutate("/api/user/getComments")}>
