@@ -21,6 +21,7 @@ interface Comment {
     content: string;
     createdAt: Date;
     likes: number;
+    likedBy: string[];
 }
 
 const Comments: React.FC = () => {
@@ -66,6 +67,7 @@ const Comments: React.FC = () => {
             content: comment,
             createdAt: new Date(),
             likes: 0,
+            likedBy: [],
         };
 
         try {
@@ -86,7 +88,7 @@ const Comments: React.FC = () => {
         }
     };
 
-    const handleLike = async (id: string) => {
+    const handleLike = async (id: string, author: any) => {
         // If the user is not logged in, show the login modal
         if (!user) {
             setIsLoginModalOpen(true);
@@ -96,6 +98,8 @@ const Comments: React.FC = () => {
         try {
             const response = await fetch(`/api/user/updateLike/${id}`, {
                 method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ author }),
             });
 
             if (!response.ok) {
@@ -219,7 +223,7 @@ const Comments: React.FC = () => {
 
                                             <p className="mt-2 text-lg">{comment.content}</p>
                                             <button
-                                                onClick={() => handleLike(comment.id)}
+                                                onClick={() => handleLike(comment.id, comment.author)}
                                                 className="hover:text-purple-400 mt-4"
                                             >
                                                 Like ({comment.likes})
