@@ -189,10 +189,10 @@ const Comments: React.FC = () => {
                                     <span className="mr-1">All posts</span>
                                     <ChevronDownIcon className="w-4 h-4" />
                                 </div>
-                                <div className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
-                                    <ArrowPathIcon className="w-4 h-4" />
-                                    <span className="ml-1">Refresh</span>
-                                </div>
+                                <button className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2"
+                                onClick={() => mutate("/api/user/getComments")}>
+                                    <ArrowPathIcon className="w-4 h-4" text="Refresh"/>
+                                </button>
                             </div>
                         </div>
 
