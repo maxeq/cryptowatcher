@@ -9,9 +9,10 @@ interface AuthModalProps {
   onLoginButtonClick?: () => void;
 }
 
-const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
+const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode: initialMode }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [authMode, setAuthMode] = useState<'signup' | 'login'>(initialMode);
 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -33,12 +34,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
     setSuccessMessage('');
     setErrorMessage('');
 
-    if (mode === 'signup') {
+    if (authMode === 'signup') {
       try {
         const user = await registerUser({ email, password });
         console.log('User registered successfully:', user);
         setSuccessMessage('User registered successfully');
-        
+
         // Log in the user after successful registration
         const loggedInUser = await loginUser(email, password);
         console.log('User logged in successfully:', loggedInUser);
@@ -80,7 +81,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
           </svg>
         </button>
         <h2 className="text-2xl mb-6">
-          {mode === 'signup' ? 'Sign Up' : 'Log In'}
+          {authMode === 'signup' ? 'Sign Up' : 'Log In'}
         </h2>
 
         <form onSubmit={handleSubmit}>
@@ -131,24 +132,19 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
           )}
           <button
             className="px-4 bg-lime-600 text-center hover:bg-lime-500 shadow-lg transition duration-300 ease-in-out shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap"
-            type="submit"
-          >
-            {mode === 'signup' ? 'Create an Account' : 'Log In'}
+            type="submit">
+            {authMode === 'signup' ? 'Create an Account' : 'Log In'}
           </button>
         </form>
         <div className="text-gray-400 mt-4">
-          {mode === 'signup' ? 'Already have an account?' : "Don't have an account? "}
+          {authMode === 'signup' ? 'Already have an account?' : "Don't have an account? "}
           <button
-            onClick={onClose}
+            onClick={() => setAuthMode(authMode === 'signup' ? 'login' : 'signup')}
             className="ml-1 font-medium text-lime-500 hover:text-lime-400 focus:outline-none"
           >
-            {mode === 'signup' ? 'Log in' : 'Sign up'}
+            {authMode === 'signup' ? 'Log in' : 'Sign up'}
           </button>
         </div>
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-500 focus:outline-none bg-transparent border-none">
-        </button>
       </div>
     </div>
   );
