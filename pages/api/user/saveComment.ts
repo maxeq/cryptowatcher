@@ -9,6 +9,7 @@ interface Comment {
   createdAt: Date;
   likes: number;
   likedBy: string[];
+  page_id: any;
 }
 
 export default async function saveComment(req: NextApiRequest, res: NextApiResponse) {

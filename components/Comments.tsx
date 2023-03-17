@@ -6,6 +6,7 @@ import { ArrowPathIcon } from "@/components/icons/ArrowPath";
 import { useUser } from '../context/UserContext';
 import AuthModal from "./AuthModal";
 import useSWR, { mutate } from "swr";
+import { useRouter } from "next/router";
 
 const fetcher = async (url: string) => {
     const response = await fetch(url);
@@ -22,6 +23,7 @@ interface Comment {
     createdAt: Date;
     likes: number;
     likedBy: string[];
+    page_id: any;
 }
 
 const Comments: React.FC = () => {
@@ -31,6 +33,10 @@ const Comments: React.FC = () => {
 
     const { user } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    //page id for saveComment
+    const router = useRouter();
+    const { ids } = router.query;
 
     //format date to time ago
     const formatTimeAgo = (date: Date) => {
@@ -68,14 +74,18 @@ const Comments: React.FC = () => {
             createdAt: new Date(),
             likes: 0,
             likedBy: [],
+            page_id: ids,
         };
 
         try {
-            const response = await fetch("/api/user/saveComment", {
+            console.log('Submitting comment:', newComment);
+            const response = await fetch(`/api/user/saveComment`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ comment: newComment }),
+
             });
+            console.log("comment", comment)
 
             if (!response.ok) {
                 throw new Error("Error saving comment");
@@ -165,7 +175,6 @@ const Comments: React.FC = () => {
                                     </div></form>
                             )}
 
-
                             <div className="mx-4 mt-4">
                                 <div className="border md:rounded-lg border-slate-700/50 text-slate-600">
                                     <div className="flex justify-evenly m-2">
@@ -190,8 +199,8 @@ const Comments: React.FC = () => {
                                     <ChevronDownIcon className="w-4 h-4" />
                                 </div>
                                 <button className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2"
-                                onClick={() => mutate("/api/user/getComments")}>
-                                    <ArrowPathIcon className="w-4 h-4" text="Refresh"/>
+                                    onClick={() => mutate("/api/user/getComments")}>
+                                    <ArrowPathIcon className="w-4 h-4" text="Refresh" />
                                 </button>
                             </div>
                         </div>
