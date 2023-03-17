@@ -30,7 +30,7 @@ const Comments: React.FC = () => {
     const [selectedBtn, setSelectedBtn] = useState('top');
 
     const { user } = useUser();
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(true);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -64,6 +64,7 @@ const Comments: React.FC = () => {
     };
 
     const handleLike = async (id: string) => {
+        
         try {
             const response = await fetch(`/api/user/updateLike/${id}`, {
                 method: "PUT",
@@ -101,10 +102,7 @@ const Comments: React.FC = () => {
             <div className="hover:bg-opacity-10">
                 <div className=" min-h-screen">
                     <div className="container mx-auto">
-                        <form
-                            onSubmit={handleSubmit}
-                            className="rounded-lg mx-auto">
-
+                        <div className="rounded-lg mx-auto">
                             <AuthModal
                                 isOpen={isLoginModalOpen}
                                 onClose={() => setIsLoginModalOpen(false)}
@@ -119,7 +117,10 @@ const Comments: React.FC = () => {
                                 </div>
 
                             ) : (
-                                <>
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="">
+
                                     <textarea
                                         name="comment"
                                         placeholder="Write your comment here..."
@@ -128,8 +129,7 @@ const Comments: React.FC = () => {
                                     ></textarea>
                                     <div className="flex justify-center">
                                         <Button text="Submit Post" type="submit" className="" />
-                                    </div>
-                                </>
+                                    </div></form>
                             )}
 
 
@@ -161,7 +161,7 @@ const Comments: React.FC = () => {
                                     <span className="ml-1">Refresh</span>
                                 </div>
                             </div>
-                        </form>
+                        </div>
 
                         <div className="space-y-0">
                             {comments?.map((comment) => (
