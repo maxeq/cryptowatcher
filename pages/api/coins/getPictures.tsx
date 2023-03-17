@@ -1,13 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../lib/mongodb';
-import { ObjectId } from 'mongodb';
-
-export type Customer = {
-    _id: ObjectId;
-    current_price: number;
-    name: string;
-    dbDateAdded: Date;
-};
+import { CurrentPrice } from '@/types/coins/currentprice';
 
 export const getPictures = async () => {
     const mongoClient = await clientPromise;
@@ -29,7 +22,7 @@ export const getPictures = async () => {
     return JSON.parse(JSON.stringify(data));
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<{ customers: Customer[] }>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<{ customers: CurrentPrice[] }>) => {
     const data = await getPictures();
     res.status(200).json({ customers: data });
 };

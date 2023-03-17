@@ -1,7 +1,7 @@
 import React from 'react';
 import NavbarModuleLoggedOut from './NavbarLoggedOut';
 import NavbarModuleLoggedIn from './NavbarLoggedIn';
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../context/UserContext';
 
 export default function Header() {
   const { user } = useUser();

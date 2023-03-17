@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../lib/mongodb';
-import { ObjectId } from 'mongodb';
-
-export type ArrayData = {
-    _id: string;
-    array_current_price: number[];
-    count: number;
-};
+import { ArrayData } from '../../../types/coins/arraydata';
 
 export const getArrayData = async () => {
   const mongoClient = await clientPromise;

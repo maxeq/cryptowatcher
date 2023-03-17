@@ -1,6 +1,6 @@
 import usePagination from "@/lib/usePagination";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "./Loader";
+import Loader from "./icons/Loader";
 import Image from 'next/image';
 import Link from "next/link";
 import ChartFetcher from "./charts/ChartFetcher";
@@ -8,7 +8,7 @@ import { formatPrice, formatPercent } from "@/utils";
 
 export default function Crypto_table() {
 
-    const { data, size, setSize, isReachedEnd, loadingMore } = usePagination('/api/crypto/getData');
+    const { data, size, setSize, isReachedEnd, loadingMore } = usePagination('/api/coins/getData');
     const classPriceChangePercent = (value: any) =>
         value
             ? value === "0%"

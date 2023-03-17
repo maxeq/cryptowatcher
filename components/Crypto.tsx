@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import Image from 'next/image';
-import Loader from "./Loader";
+import Loader from "./icons/Loader";
 import Status from "./Status";
 import { formatPrice } from "@/utils";
 

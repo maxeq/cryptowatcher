@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient, ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
-import { User as UserType } from '../../types/user';
-import { RegistrationData } from '../../types/registration';
+import { User as UserType } from '../../../types/user/user';
+import { RegistrationData } from '../../../types/user/registration';
 import { findUserByEmail } from './userValidation';
 
 // Your MongoDB-related functions here

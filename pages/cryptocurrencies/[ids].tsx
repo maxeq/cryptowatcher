@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from 'next/router';
 
-import NoSSR from "../../components/NoSSR";
+import NoSSR from "../../components/layouts/NoSSR";
 import Dashboard from "@/components/Dashboard";
 import ChartFetcher from "@/components/charts/ChartFetcher";
 import H1Template from "@/components/h1template";

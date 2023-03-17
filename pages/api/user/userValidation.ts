@@ -1,8 +1,7 @@
 import { MongoClient, ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
-import { User as UserType } from '../../types/user';
+import { User as UserType } from '../../../types/user/user';
 
-// Your MongoDB-related functions here
 export type User = UserType;
 
 if (!process.env.MONGODB_URI) {

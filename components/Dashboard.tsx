@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { formatPrice, formatPercent } from "@/utils";
 
 import { FaShareSquare, FaRegStar } from 'react-icons/fa';
-import Web3Connect from "./Web3Connect";
+import Web3Connect from "./buttons/Web3Connect";
 
 const fetcher = async (url: string) => {
     const res = await fetch(url);
@@ -17,7 +17,7 @@ export default function Dashboard(): JSX.Element {
     const router = useRouter();
     const ids = Array.isArray(router.query.ids) ? router.query.ids[0] : router.query.ids;
     const { data: cryptocurrencies, error } = useSWR(
-        `/api/crypto/getCryptoData?id=${ids}`,
+        `/api/coins/getCryptoData?id=${ids}`,
         fetcher,
         {
             shouldRetryOnError: false,

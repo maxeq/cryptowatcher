@@ -1,6 +1,5 @@
-// api/getComments.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../lib/db";
+import { connectToDatabase } from "../../../lib/db";
 
 export default async function getComments(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {

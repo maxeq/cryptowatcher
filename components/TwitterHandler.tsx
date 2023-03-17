@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Logo from "@/components/LogoNew";
+import Button from "./buttons/Button";
+import Logo from "@/components/icons/LogoNew";
 
 export default function Twitter() {
 

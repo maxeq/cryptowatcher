@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import { formatDistanceToNow } from "date-fns";
-import Button from "./Button";
+import Button from "./buttons/Button";
 import Image from 'next/image'
 import { ChevronDownIcon } from "@/components/icons/ChevronDown";
 import { ArrowPathIcon } from "@/components/icons/ArrowPath";
@@ -25,7 +25,7 @@ interface Comment {
 }
 
 const Comments: React.FC = () => {
-    const { data: comments, error } = useSWR<Comment[]>("/api/getComments", fetcher);
+    const { data: comments, error } = useSWR<Comment[]>("/api/user/getComments", fetcher);
 
     const [selectedBtn, setSelectedBtn] = useState('top');
 
@@ -46,7 +46,7 @@ const Comments: React.FC = () => {
         };
 
         try {
-            const response = await fetch("/api/saveComment", {
+            const response = await fetch("/api/user/saveComment", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ comment: newComment }),
@@ -56,7 +56,7 @@ const Comments: React.FC = () => {
                 throw new Error("Error saving comment");
             }
 
-            mutate("/api/getComments");
+            mutate("/api/user/getComments");
             e.currentTarget.reset();
         } catch (error) {
             console.error("Error saving comment:", error);
@@ -65,7 +65,7 @@ const Comments: React.FC = () => {
 
     const handleLike = async (id: string) => {
         try {
-            const response = await fetch(`/api/updateLike/${id}`, {
+            const response = await fetch(`/api/user/updateLike/${id}`, {
                 method: "PUT",
             });
 
@@ -74,7 +74,7 @@ const Comments: React.FC = () => {
             }
 
             // Refresh comments after updating the like
-            mutate("/api/getComments");
+            mutate("/api/user/getComments");
         } catch (error) {
             console.error("Error updating like:", error);
         }
@@ -82,7 +82,7 @@ const Comments: React.FC = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            const response = await fetch(`/api/deleteComment/${id}`, {
+            const response = await fetch(`/api/user/deleteComment/${id}`, {
                 method: "DELETE",
             });
 
@@ -90,7 +90,7 @@ const Comments: React.FC = () => {
                 throw new Error("Error deleting comment");
             }
 
-            mutate("/api/getComments");
+            mutate("/api/user/getComments");
         } catch (error) {
             console.error("Error deleting comment:", error);
         }
@@ -162,7 +162,7 @@ const Comments: React.FC = () => {
                                 </div>
                             </div>
                         </form>
-                        
+
                         <div className="space-y-0">
                             {comments?.map((comment) => (
                                 <div

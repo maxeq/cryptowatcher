@@ -1,6 +1,6 @@
 // api/saveComment.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../lib/db";
+import { connectToDatabase } from "../../../lib/db";
 
 interface Comment {
   id: string;

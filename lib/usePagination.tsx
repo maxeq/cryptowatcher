@@ -1,4 +1,3 @@
-
 import useSWRInfinite from "swr/infinite";
 
 export const usePagination = (url:string) => {

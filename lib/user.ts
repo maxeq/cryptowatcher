@@ -1,8 +1,8 @@
-import { RegistrationData } from '../types/registration';
-import { User } from '../types/user';
+import { RegistrationData } from '../types/user/registration';
+import { User } from '../types/user/user';
 
 export async function registerUser(registrationData: RegistrationData) {
-  const response = await fetch('/api/register', {
+  const response = await fetch('/api/user/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export async function registerUser(registrationData: RegistrationData) {
 
 
 export async function loginUser(email: string, password: string): Promise<User> {
-  const response = await fetch('/api/login', {
+  const response = await fetch('/api/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

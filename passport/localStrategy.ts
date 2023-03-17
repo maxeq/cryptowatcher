@@ -1,7 +1,7 @@
 // passport/localStrategy.ts
 import { Strategy as LocalStrategy } from 'passport-local';
-import passport, { PassportStatic } from 'passport';
-import { findUserByEmail, validateUserPassword, findUserById, User } from '../pages/api/userValidation';
+import { PassportStatic } from 'passport';
+import { findUserByEmail, validateUserPassword, findUserById, User } from '../pages/api/user/userValidation';
 
 const configurePassport = (passport: PassportStatic) => {
   passport.use(

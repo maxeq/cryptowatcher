@@ -1,7 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import Charts from '@/components/charts/Chart'
-import Loader from "../Loader";
+import Loader from "../icons/Loader";
 
 interface CryptoArrayData {
   _id: string;
@@ -23,7 +23,7 @@ interface Props {
 
 const ChartFetcher: React.FC<Props> = ({ _id, showXLabel, showYLabel }: Props) => {
   const { data: cryptoArrayData, error: arrayError } = useSWR<Data>(
-    `/api/crypto/getArrayData${_id ? `?_id=${_id}` : ''}`,
+    `/api/coins/getArrayData${_id ? `?_id=${_id}` : ''}`,
     fetcher,
     {
       shouldRetryOnError: false,
