@@ -195,8 +195,7 @@ const Comments: React.FC = () => {
                             </div>
                             <div className="flex justify-between my-4 mx-4 text-teal-300">
                                 <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
-                                    <span className="mr-1">All posts</span>
-                                    <ChevronDownIcon className="w-4 h-4" />
+                                    <ChevronDownIcon className="w-4 h-4" text="All Posts" />
                                 </div>
                                 <button className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2"
                                     onClick={() => mutate("/api/user/getComments")}>
