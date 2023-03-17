@@ -115,7 +115,7 @@ const Comments: React.FC = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            const response = await fetch(`/api/user/deleteComment/${id}`, {
+            const response = await fetch(`/api/user/handleDelete/${id}`, {
                 method: "DELETE",
             });
 
