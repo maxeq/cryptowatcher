@@ -6,7 +6,7 @@ export default async function updateLike(req: NextApiRequest, res: NextApiRespon
         const { id } = req.query;
         console.log("id", id);
         const { uid } = req.body;
-        console.log("author", uid);
+        console.log("uid", uid);
 
         try {
             const { db } = await connectToDatabase();
