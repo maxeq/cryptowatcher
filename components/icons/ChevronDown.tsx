@@ -41,7 +41,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   iconProps,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState('');
+  const [selectedItem, setSelectedItem] = useState('All posts');
 
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
@@ -52,18 +52,18 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   return (
     <div className="relative inline-block">
       <button
-        className="flex items-center justify-between mx-1 my-1 rounded"
+        className="flex items-center justify-between px-4 py-2 rounded"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selectedItem || 'All posts'}</span>
         <ChevronDownIcon {...iconProps} />
       </button>
       {isOpen && (
-        <ul className="absolute left-0 w-full mt-2 bg-gray-800 rounded shadow-lg whitespace-nowrap">
+        <ul className="absolute left-0 w-full mt-2 bg-gray-800 border border-slate-600 rounded shadow-lg">
           {items.map((item, index) => (
             <li
               key={index}
-              className="px-4 py-2 hover:bg-white/5  cursor-pointer"
+              className={`px-4 py-2 ${item === selectedItem ? 'text-white' : 'text-gray-400'} ${item === selectedItem ? 'hover:text-white' : 'hover:text-gray-200'} hover:bg-white/5 hover:bg-opacity-10 cursor-pointer transition duration-300 ease-in-out`}
               onClick={() => handleItemClick(item)}
             >
               {item}

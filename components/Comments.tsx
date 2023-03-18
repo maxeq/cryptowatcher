@@ -193,17 +193,17 @@ const Comments: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex justify-between my-4 mx-4 text-teal-300">
-                                <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded px-2">
+                            <div className="flex justify-between my-2 mx-2 text-teal-300">
+                                <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded">
 
                                         <DropdownMenu
                                             items={['All posts', 'Page posts']}
                                             onItemSelected={(item: any) => console.log('Selected item:', item)}
-                                            iconProps={{ className: 'ml-2', strokeWidth: '1.5' }}
+                                            iconProps={{ className: 'ml-1 mt-1', strokeWidth: '1.5' }}
                                         />
 
                                 </div>
-                                <button className="flex items-center ml-4 hover:bg-opacity-10 hover:bg-white/5 rounded px-2"
+                                <button className="flex items-center hover:bg-opacity-10 hover:bg-white/5 rounded px-4 py-2"
                                     onClick={() => mutate("/api/user/getComments")}>
                                     <ArrowPathIcon className="w-4 h-4" text="Refresh" />
                                 </button>
