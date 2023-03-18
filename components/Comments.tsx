@@ -201,10 +201,12 @@ const Comments: React.FC = () => {
                                 <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded">
 
                                     <DropdownMenu
-                                        items={['All posts', 'Page posts']} 
-                                        onItemSelected={(item: any) => {console.log('Selected item:', item)
-                                        setFilterOption(item);}
-                                    }
+                                        items={['All posts', 'Page posts']}
+                                        onItemSelected={(item: any) => {
+                                            console.log('Selected item:', item)
+                                            setFilterOption(item);
+                                        }
+                                        }
                                         iconProps={{ className: 'ml-1 mt-1', strokeWidth: '1.5' }}
                                     />
 
@@ -218,11 +220,13 @@ const Comments: React.FC = () => {
 
                         <div className="space-y-0">
                             {comments
-                                ?.sort(
-                                    (a, b) =>
-                                        new Date(b.createdAt).getTime() -
-                                        new Date(a.createdAt).getTime()
-                                )
+                                ?.sort((a, b) => {
+                                    if (selectedBtn === 'top') {
+                                        return b.likes - a.likes;
+                                    } else {
+                                        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                                    }
+                                })
                                 .filter((comment) =>
                                     filterOption === "All posts"
                                         ? true
