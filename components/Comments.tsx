@@ -73,7 +73,7 @@ const Comments: React.FC = () => {
 
         const newComment: Comment = {
             id: Date.now().toString(),
-            author: user?.email, // Replace with the actual user's ID when you implement authentication
+            author: user?.email,
             content: comment,
             createdAt: new Date(),
             likes: 0,
@@ -238,7 +238,7 @@ const Comments: React.FC = () => {
                                         className="p-4 border-b border-slate-600 flex hover:bg-white/5"
                                     >
                                         <Image
-                                            src="/logo.png" // Replace with the actual user's avatar URL
+                                            src="/logo.png"
                                             alt="User avatar"
                                             width={40}
                                             height={40}
