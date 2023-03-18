@@ -38,6 +38,10 @@ const Comments: React.FC = () => {
     const router = useRouter();
     const { ids } = router.query;
 
+    //filter comments by page id
+    const [filterOption, setFilterOption] = useState("All posts");
+
+
     //format date to time ago
     const formatTimeAgo = (date: Date) => {
         const now = new Date();
@@ -196,11 +200,13 @@ const Comments: React.FC = () => {
                             <div className="flex justify-between my-2 mx-2 text-teal-300">
                                 <div className="flex hover:bg-opacity-10 hover:bg-white/5 rounded">
 
-                                        <DropdownMenu
-                                            items={['All posts', 'Page posts']}
-                                            onItemSelected={(item: any) => console.log('Selected item:', item)}
-                                            iconProps={{ className: 'ml-1 mt-1', strokeWidth: '1.5' }}
-                                        />
+                                    <DropdownMenu
+                                        items={['All posts', 'Page posts']} 
+                                        onItemSelected={(item: any) => {console.log('Selected item:', item)
+                                        setFilterOption(item);}
+                                    }
+                                        iconProps={{ className: 'ml-1 mt-1', strokeWidth: '1.5' }}
+                                    />
 
                                 </div>
                                 <button className="flex items-center hover:bg-opacity-10 hover:bg-white/5 rounded px-4 py-2"
@@ -212,7 +218,16 @@ const Comments: React.FC = () => {
 
                         <div className="space-y-0">
                             {comments
-                                ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                                ?.sort(
+                                    (a, b) =>
+                                        new Date(b.createdAt).getTime() -
+                                        new Date(a.createdAt).getTime()
+                                )
+                                .filter((comment) =>
+                                    filterOption === "All posts"
+                                        ? true
+                                        : comment.page_id === ids
+                                )
                                 .map((comment) => (
                                     <div
                                         key={comment.id}
