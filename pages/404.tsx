@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import H1Template from '@/components/UI/h1template'
+import H1Template from '@/components/UI/H1template'
 
 const Error = () => {
     const router = useRouter();
