@@ -1,9 +1,9 @@
 import React from 'react';
 import type { NextPage } from 'next';
 
-import Ticker from '../components/Ticker';
 import H1Template from '@/components/UI/H1template';
 import Head from 'next/head';
+import CryptoCards from '@/components/UI/CryptoCards';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <H1Template text="CryptoWatcher never sleeps. Built by diamond hands." />
-      <Ticker pageName="CryptoCards" />
+      <CryptoCards />
     </>
   );
 };
