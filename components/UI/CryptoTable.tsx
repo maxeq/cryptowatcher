@@ -52,7 +52,7 @@ export default function CryptoTableList() {
             {data
               ?.flatMap(page => page.getdata)
               .map((crypto: any, index: number) => (
-                <tr key={crypto.id} className="">
+                <tr key={crypto.id} >
                   <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 py-12    ">
                     {index + 1}
                   </td>

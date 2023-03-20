@@ -39,8 +39,8 @@ export default function Dashboard(): JSX.Element {
       ? value === '0%'
         ? 'text-white-300'
         : value < 0
-        ? 'bg-rose-600'
-        : 'bg-lime-600'
+          ? 'bg-rose-600'
+          : 'bg-lime-600'
       : 'bg-white-300';
 
   if (error) return <div>Error fetching data</div>;
@@ -72,8 +72,8 @@ export default function Dashboard(): JSX.Element {
     <div key={ids}>
       <div className="md:p-8 p-4 shadow-purple-400 bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
         <div className="md:flex md:justify-between">
-          <div className="">
-            <div className="">
+          <div >
+            <div >
               <div className="flex md:justify-between items-center">
                 <Image
                   src={image}
@@ -120,7 +120,7 @@ export default function Dashboard(): JSX.Element {
             </div>
           </div>
 
-          <div className="">
+          <div >
             <div className="pt-2">
               <div className="text-slate-300 text-xs justify-center lg:flex lg:justify-center">
                 {name} Price ({symbol.toUpperCase()})
@@ -184,7 +184,7 @@ export default function Dashboard(): JSX.Element {
                   {formatPrice(max_supply).replace('$', '')}
                 </div>
               </div>
-              <div className="">
+              <div >
                 <div className="text-sm text-slate-300">Total Supply</div>
                 <div className="text-xl">
                   {formatPrice(total_supply).replace('$', '')}

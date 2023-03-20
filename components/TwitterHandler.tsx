@@ -4,7 +4,7 @@ import Logo from '@/components/icons/LogoNew';
 export default function Twitter() {
   return (
     <div className="top mx-4 mt-4 md:mx-6 md:my-2 flex items-center justify-between">
-      <Logo size={64} /> <div className="">CryptoWatcher</div>
+      <Logo size={64} /> <div >CryptoWatcher</div>
       <Button text="+ Follow" />
     </div>
   );

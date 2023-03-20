@@ -58,7 +58,7 @@ const NavbarModuleLoggedIn = () => {
               </li>
             </ul>
             <div className="flex justify-evenly w-full">
-              <ButtonGray text="Log Out" className="" onClick={handleLogout} />
+              <ButtonGray text="Log Out" onClick={handleLogout} />
             </div>
           </ul>
         </div>
@@ -84,9 +84,8 @@ const NavbarModuleLoggedIn = () => {
             </svg>
           </button>
           <div
-            className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${
-              isOpen ? '' : 'hidden'
-            }`}
+            className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'
+              }`}
           >
             <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
               {header_navigation.map(({ name, href }) => (
@@ -111,7 +110,7 @@ const NavbarModuleLoggedIn = () => {
                 <div className="space-y-4">
                   <ButtonGray
                     text="Log Out"
-                    className=""
+
                     onClick={handleLogout}
                   />
                 </div>

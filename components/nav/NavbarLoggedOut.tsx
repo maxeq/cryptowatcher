@@ -67,7 +67,7 @@ const NavbarModuleLoggedOut = () => {
               />
               <Button
                 text="Sign Up"
-                className=""
+
                 onClick={() => {
                   setAuthMode('signup');
                   setIsModalOpen(true);
@@ -103,9 +103,8 @@ const NavbarModuleLoggedOut = () => {
             </svg>
           </button>
           <div
-            className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${
-              isOpen ? '' : 'hidden'
-            }`}
+            className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'
+              }`}
           >
             <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
               {header_navigation.map(({ name, href }) => (

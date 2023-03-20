@@ -166,7 +166,7 @@ const Comments: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="">
+                <form onSubmit={handleSubmit} >
                   <textarea
                     name="comment"
                     placeholder="Write your comment here..."
@@ -174,7 +174,7 @@ const Comments: React.FC = () => {
                     className="w-full border-2 mb-2 rounded-lg p-4 resize-none focus:border-purple-400 border-transparent hover:border-slate-700/50 bg-gray-900 focus:outline-none"
                   ></textarea>
                   <div className="flex justify-center">
-                    <Button text="Submit Post" type="submit" className="" />
+                    <Button text="Submit Post" type="submit" />
                   </div>
                 </form>
               )}
@@ -184,22 +184,20 @@ const Comments: React.FC = () => {
                   <div className="flex justify-evenly m-2">
                     <button
                       type="button"
-                      className={`border ${
-                        selectedBtn === 'top'
+                      className={`border ${selectedBtn === 'top'
                           ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center '
                           : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
-                      }`}
+                        }`}
                       onClick={() => setSelectedBtn('top')}
                     >
                       Top
                     </button>
                     <button
                       type="button"
-                      className={`border ${
-                        selectedBtn === 'latest'
+                      className={`border ${selectedBtn === 'latest'
                           ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center'
                           : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
-                      }`}
+                        }`}
                       onClick={() => setSelectedBtn('latest')}
                     >
                       Latest
@@ -254,7 +252,7 @@ const Comments: React.FC = () => {
                       height={40}
                       className="w-10 h-10 rounded-full mr-4"
                     />
-                    <div className="">
+                    <div >
                       <div className="flex text-xs w-full">
                         <span className="text-xs">{comment.author}</span>
                         <span className="ml-4">
