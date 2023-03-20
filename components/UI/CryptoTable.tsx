@@ -4,7 +4,7 @@ import Loader from '../icons/Loader';
 import Image from 'next/image';
 import Link from 'next/link';
 import ChartFetcher from '../charts/ChartFetcher';
-import { formatPrice, formatPercent } from '@/utils';
+import { formatPrice, formatPercent } from '../../utils/NumberFormatter';
 import ErrorMessage from '.././errorMessage';
 
 export default function CryptoTableList() {

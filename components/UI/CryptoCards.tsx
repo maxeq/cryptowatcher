@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Image from 'next/image';
 import Loader from '../icons/Loader';
 import Status from '../Status';
-import { formatPrice } from '@/utils';
+import { formatPrice } from '../../utils/NumberFormatter';
 
 interface Props {
   crypto: {
@@ -18,7 +18,7 @@ interface Props {
   };
 }
 
-function Crypto({ crypto }: Props) {
+function CryptoCards({ crypto }: Props) {
   const colorClassName = crypto.prevPrice
     ? crypto.price > crypto.prevPrice
       ? ' text-lime-300'
@@ -75,4 +75,4 @@ function Crypto({ crypto }: Props) {
   );
 }
 
-export default memo(Crypto);
+export default memo(CryptoCards);

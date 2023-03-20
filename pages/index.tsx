@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <H1Template text="CryptoWatcher never sleeps. Built by diamond hands." />
-      <Ticker pageName="Crypto" />
+      <Ticker pageName="CryptoCards" />
     </>
   );
 };

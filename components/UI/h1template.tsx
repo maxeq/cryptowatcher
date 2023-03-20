@@ -1,5 +1,5 @@
 interface H1TemplateProps {
-  text: any;
+  text: number | string;
 }
 
 export default function H1Template({ text }: H1TemplateProps) {

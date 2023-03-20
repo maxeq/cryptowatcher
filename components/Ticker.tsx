@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Crypto from './UI/Crypto';
+import Crypto from './UI/CryptoCards';
 import { useCoingeckoTicker } from '../utils/coingeckohooks';
 
 interface TickerProps {

@@ -7,6 +7,7 @@ import { useUser } from '../context/UserContext';
 import AuthModal from './AuthModal';
 import useSWR, { mutate } from 'swr';
 import { useRouter } from 'next/router';
+import { formatTimeAgo } from '@/utils/NumberFormatter';
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -45,27 +46,7 @@ const Comments: React.FC = () => {
   const [filterOption, setFilterOption] = useState('All posts');
 
   //format date to time ago
-  const formatTimeAgo = (date: Date) => {
-    const now = new Date();
-    const diffInSeconds = Math.abs((now.getTime() - date.getTime()) / 1000);
 
-    if (diffInSeconds < 60) {
-      return `${Math.floor(diffInSeconds)}s`;
-    }
-
-    const diffInMinutes = diffInSeconds / 60;
-    if (diffInMinutes < 60) {
-      return `${Math.floor(diffInMinutes)}m`;
-    }
-
-    const diffInHours = diffInMinutes / 60;
-    if (diffInHours < 24) {
-      return `${Math.floor(diffInHours)}h`;
-    }
-
-    const diffInDays = diffInHours / 24;
-    return `${Math.floor(diffInDays)}d`;
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -185,8 +166,8 @@ const Comments: React.FC = () => {
                     <button
                       type="button"
                       className={`border ${selectedBtn === 'top'
-                          ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center '
-                          : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
+                        ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center '
+                        : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
                         }`}
                       onClick={() => setSelectedBtn('top')}
                     >
@@ -195,8 +176,8 @@ const Comments: React.FC = () => {
                     <button
                       type="button"
                       className={`border ${selectedBtn === 'latest'
-                          ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center'
-                          : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
+                        ? 'text-white border-transparent bg-slate-600 rounded-md px-14 flex items-center'
+                        : 'hover:text-slate-100 px-14 flex items-center border-transparent transition duration-300 ease-in-out'
                         }`}
                       onClick={() => setSelectedBtn('latest')}
                     >

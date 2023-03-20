@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Image from 'next/image';
-import { formatPrice, formatPercent } from '@/utils';
+import { formatPrice, formatPercent } from '../../utils/NumberFormatter';
 
 import { FaShareSquare, FaRegStar } from 'react-icons/fa';
 import Web3Connect from '../buttons/Web3Connect';
@@ -34,22 +34,16 @@ export default function Dashboard(): JSX.Element {
     }
   );
 
-  const classPriceChangePercent = (value: any) =>
-    value
-      ? value === '0%'
-        ? 'text-white-300'
-        : value < 0
-          ? 'bg-rose-600'
-          : 'bg-lime-600'
-      : 'bg-white-300';
+  const classPriceChangePercent = (value: number) =>
+    value < 0
+      ? 'bg-rose-600'
+      : 'bg-lime-600'
 
   if (error) return <div>Error fetching data</div>;
   if (!cryptocurrencies || !cryptocurrencies.getdata)
     return <div>Loading data...</div>;
 
   const {
-    ath,
-    atl,
     max_supply,
     total_volume,
     circulating_supply,
@@ -58,7 +52,6 @@ export default function Dashboard(): JSX.Element {
     price_change_percentage_24h,
     current_price,
     high_24h,
-    id,
     image,
     low_24h,
     market_cap,
