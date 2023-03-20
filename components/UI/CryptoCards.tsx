@@ -55,12 +55,12 @@ export default function CryptoCards() {
                 </div>
                 <div className='justify-between flex'>
                   <span className="text-sm text-cyan-50">24h High </span>
-                  <span className="text-sm text-cyan-50">{formatPrice(crypto.high_24h)}</span>
+                  <span className="text-sm ">{formatPrice(crypto.high_24h)}</span>
                 </div>
                 <div className='justify-between flex'>
                   <span className="font-semibold text-cyan-50" >24h Change</span>
                   <span className={`font-semibold text-cyan-50 ${classPriceChangePercent(
-                    crypto.price_change_percentage_1h_in_currency
+                    crypto.price_change_percentage_24h
                   )}`}>{formatPercent(crypto.price_change_percentage_24h)}</span>
                 </div>
                 <div className='text-center mt-8'>
