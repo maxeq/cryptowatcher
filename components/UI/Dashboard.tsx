@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Image from 'next/image';
 import { formatPrice, formatPercent } from '../../utils/NumberFormatter';
-
 import { FaShareSquare, FaRegStar } from 'react-icons/fa';
 import Web3Connect from '../buttons/Web3Connect';
+import ErrorMessage from '../errorMessage';
+import Loader from '../icons/Loader';
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -18,17 +19,10 @@ export default function Dashboard(): JSX.Element {
   const ids = Array.isArray(router.query.ids)
     ? router.query.ids[0]
     : router.query.ids;
-  const { data: cryptocurrencies, error } = useSWR(
+  const { data: cryptocurrencies, isLoading, error } = useSWR(
     `/api/coins/getCryptoData?id=${ids}`,
     fetcher,
     {
-      shouldRetryOnError: false,
-      onSuccess: data => {
-        return data || [];
-      },
-      onError: error => {
-        console.error(error);
-      },
       revalidateOnMount: true,
       dedupingInterval: 5000, // Cache for 5 minutes
     }
@@ -60,6 +54,14 @@ export default function Dashboard(): JSX.Element {
     symbol,
     fully_diluted_valuation,
   } = cryptocurrencies.getdata;
+
+  if (error) {
+    return <ErrorMessage error={error} />;
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div key={ids}>

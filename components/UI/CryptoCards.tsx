@@ -29,12 +29,12 @@ export default function CryptoCards() {
       loader={<Loader />}
       dataLength={data?.length ?? 0}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-2 mr-2">
         {data
           ?.flatMap(page => page.getdata)
-          .map((crypto: any) => (
-            <div key={crypto.id} className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg mx-2">
-
+          .map((crypto: any, index: number) => (
+            <div key={crypto.id} className={`max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200
+             hover:text-lime-400 border-gray-100 rounded-lg shadow-lg`}>
               <div className="flex items-center justify-between">
                 <Image
                   src={crypto.image}
@@ -64,7 +64,7 @@ export default function CryptoCards() {
                   )}`}>{formatPercent(crypto.price_change_percentage_24h)}</span>
                 </div>
                 <div className='text-center mt-8'>
-                  <Link href={`/cryptocurrencies/${crypto.id}`}>
+                  <Link href={`/ cryptocurrencies / ${crypto.id}`}>
                     <Button text="Trade now" />
                   </Link>
                 </div>
