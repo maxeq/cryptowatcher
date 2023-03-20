@@ -64,7 +64,7 @@ export default function CryptoCards() {
                   )}`}>{formatPercent(crypto.price_change_percentage_24h)}</span>
                 </div>
                 <div className='text-center mt-8'>
-                  <Link href={`/ cryptocurrencies / ${crypto.id}`}>
+                  <Link href={`/cryptocurrencies/${crypto.id}`}>
                     <Button text="Trade now" />
                   </Link>
                 </div>
