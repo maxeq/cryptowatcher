@@ -7,6 +7,7 @@ import usePagination from '@/lib/usePagination';
 import ErrorMessage from '../errorMessage';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Button from '../buttons/Button';
+import Link from 'next/link';
 
 export default function CryptoCards() {
   const { data, size, setSize, isReachedEnd, isLoading, error } =
@@ -64,7 +65,9 @@ export default function CryptoCards() {
                   )}`}>{formatPercent(crypto.price_change_percentage_24h)}</span>
                 </div>
                 <div className='text-center mt-8'>
-                  <Button text="Trade now" />
+                  <Link href={`/cryptocurrencies/${crypto.id}`}>
+                    <Button text="Trade now" />
+                  </Link>
                 </div>
               </div>
             </div>
