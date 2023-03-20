@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import NoSSR from '../../components/layouts/NoSSR';
-import H1Template from '@/components/UI/H1template';
+import H1Template from '@/components/UI/HeaderTemplate';
 import CryptoTableList from '@/components/UI/CryptoTable';
 
 const Cryptocurrencies: NextPage = () => {

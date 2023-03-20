@@ -1,7 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 
-import H1Template from '@/components/UI/H1template';
+import H1Template from '@/components/UI/HeaderTemplate';
 import Head from 'next/head';
 import CryptoCards from '@/components/UI/CryptoCards';
 

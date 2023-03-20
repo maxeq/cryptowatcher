@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import NoSSR from '../../components/layouts/NoSSR';
 import Dashboard from '@/components/UI/Dashboard';
 import ChartFetcher from '@/components/charts/ChartFetcher';
-import H1Template from '@/components/UI/H1template';
+import H1Template from '@/components/UI/HeaderTemplate';
 import Comments from '@/components/Comments';
 import Twitter from '@/components/TwitterHandler';
 
