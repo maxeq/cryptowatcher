@@ -34,7 +34,7 @@ export default function CryptoCards() {
         {data
           ?.flatMap(page => page.getdata)
           .map((crypto: any) => (
-            <div key={crypto.id} className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
+            <div key={crypto.id} className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg mx-2">
 
               <div className="flex items-center justify-between">
                 <Image
