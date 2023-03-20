@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import Image from 'next/image';
 import Loader from '../icons/Loader';
-import Status from '../Status';
 import { formatPercent, formatPrice } from '../../utils/NumberFormatter';
 import usePagination from '@/lib/usePagination';
 import ErrorMessage from '../errorMessage';
