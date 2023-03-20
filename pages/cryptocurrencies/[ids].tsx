@@ -4,9 +4,9 @@ import Head from "next/head";
 import { useRouter } from 'next/router';
 
 import NoSSR from "../../components/layouts/NoSSR";
-import Dashboard from "@/components/Dashboard";
+import Dashboard from "@/components/UI/Dashboard";
 import ChartFetcher from "@/components/charts/ChartFetcher";
-import H1Template from "@/components/h1template";
+import H1Template from "@/components/UI/h1template";
 import Comments from "@/components/Comments";
 import Twitter from "@/components/TwitterHandler";
 

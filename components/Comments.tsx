@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import Button from "./buttons/Button";
 import Image from 'next/image'
-import DropdownMenu from "@/components/icons/ChevronDown";
+import DropdownMenu from "@/components/UI/DropDown";
 import { ArrowPathIcon } from "@/components/icons/ArrowPath";
 import { useUser } from '../context/UserContext';
 import AuthModal from "./AuthModal";

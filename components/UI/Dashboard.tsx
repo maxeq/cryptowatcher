@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { formatPrice, formatPercent } from "@/utils";
 
 import { FaShareSquare, FaRegStar } from 'react-icons/fa';
-import Web3Connect from "./buttons/Web3Connect";
+import Web3Connect from "../buttons/Web3Connect";
 
 const fetcher = async (url: string) => {
     const res = await fetch(url);

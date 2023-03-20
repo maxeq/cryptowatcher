@@ -3,8 +3,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import NoSSR from "../../components/layouts/NoSSR";
-import H1Template from '@/components/h1template'
-import Crypto_table from "@/components/Crypto_table";
+import H1Template from '@/components/UI/h1template'
+import CryptoTableList from "@/components/UI/CryptoTable";
 
 const Cryptocurrencies: NextPage = () => {
   return (
@@ -13,7 +13,7 @@ const Cryptocurrencies: NextPage = () => {
         <title>Cryptocurrencies</title>
       </Head>
       <H1Template text="Cryptocurrency Market Overview" />
-      <Crypto_table />
+      <CryptoTableList />
     </NoSSR>
   );
 };

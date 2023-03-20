@@ -1,7 +1,6 @@
 import React from "react";
 
-import Crypto from "./Crypto";
-import Crypto_table from "./Crypto_table";
+import Crypto from "./UI/Crypto";
 import { useCoingeckoTicker } from "../utils/coingeckohooks";
 
 

@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Button from "../buttons/Button";
-import ButtonGray from "../buttons/Button-gray";
-import AuthModal from '../AuthModal';
+import ButtonGray from "../buttons/ButtonGray";
+import { useUser } from '../../context/UserContext';
 
 const header_navigation = [
     { name: "Home", href: "/" },
@@ -11,11 +10,13 @@ const header_navigation = [
     { name: "Trade", href: "/trade" },
 ];
 
-const NavbarModuleLoggedOut = () => {
-    //login modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [authMode, setAuthMode] = useState<'signup' | 'login'>('signup');
+const NavbarModuleLoggedIn = () => {
+    const { setUser } = useUser();
 
+    const handleLogout = () => {
+        setUser(null);
+      };
+      
     //mobile menu
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => {
@@ -46,20 +47,8 @@ const NavbarModuleLoggedOut = () => {
                                 />
                             </li>
                         </ul>
-                        <div className="flex justify-evenly w-full mx-auto">
-                            <ButtonGray text="Login" className="mr-4" onClick={() => {
-                                setAuthMode('login');
-                                setIsModalOpen(true);
-                            }} />
-                            <Button text="Sign Up" className="" onClick={() => {
-                                setAuthMode('signup');
-                                setIsModalOpen(true);
-                            }} />
-                            <AuthModal
-                                isOpen={isModalOpen}
-                                onClose={() => setIsModalOpen(false)}
-                                mode={authMode}
-                            />
+                        <div className="flex justify-evenly w-full">
+                        <ButtonGray text="Log Out" className="" onClick={handleLogout} />
                         </div>
                     </ul>
                 </div>
@@ -94,19 +83,7 @@ const NavbarModuleLoggedOut = () => {
                             ))}
                             <ul className="items-center">
                             <div className="space-y-4">
-                                    <ButtonGray text="Login" className="w-full" onClick={() => {
-                                        setAuthMode('login');
-                                        setIsModalOpen(true);
-                                    }} />
-                                    <Button text="Sign Up" className="w-full" onClick={() => {
-                                        setAuthMode('signup');
-                                        setIsModalOpen(true);
-                                    }} />
-                                    <AuthModal
-                                        isOpen={isModalOpen}
-                                        onClose={() => setIsModalOpen(false)}
-                                        mode={authMode}
-                                    />
+                            <ButtonGray text="Log Out" className="" onClick={handleLogout} />
                                 </div>
                             </ul>
                             {/* <input
@@ -122,4 +99,4 @@ const NavbarModuleLoggedOut = () => {
     );
 };
 
-export default NavbarModuleLoggedOut;
+export default NavbarModuleLoggedIn;

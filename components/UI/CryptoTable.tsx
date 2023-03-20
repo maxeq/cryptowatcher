@@ -1,12 +1,12 @@
 import usePagination from "@/lib/usePagination";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "./icons/Loader";
+import Loader from "../icons/Loader";
 import Image from 'next/image';
 import Link from "next/link";
-import ChartFetcher from "./charts/ChartFetcher";
+import ChartFetcher from "../charts/ChartFetcher";
 import { formatPrice, formatPercent } from "@/utils";
 
-export default function Crypto_table() {
+export default function CryptoTableList() {
 
     const { data, size, setSize, isReachedEnd, loadingMore, isLoading, error } = usePagination('/api/coins/getData');
     // TODO: refactor nested ternary conditionals. Bad for readability.

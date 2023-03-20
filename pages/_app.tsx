@@ -1,9 +1,9 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
-import Footer from '@/components/footer'
+import Footer from '@/components/nav/FooterNav'
 import Layout from "../components/layouts/Layout";
-import Header from '@/components/header/header';
+import Header from '@/components/nav/HeaderNav';
 
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
