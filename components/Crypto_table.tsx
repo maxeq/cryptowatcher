@@ -8,7 +8,8 @@ import { formatPrice, formatPercent } from "@/utils";
 
 export default function Crypto_table() {
 
-    const { data, size, setSize, isReachedEnd, loadingMore } = usePagination('/api/coins/getData');
+    const { data, size, setSize, isReachedEnd, loadingMore, isLoading, error } = usePagination('/api/coins/getData');
+    // TODO: refactor nested ternary conditionals. Bad for readability.
     const classPriceChangePercent = (value: any) =>
         value
             ? value === "0%"
@@ -18,7 +19,8 @@ export default function Crypto_table() {
                     : "text-lime-300"
             : "text-white-300";
 
-    if (!data) {
+    // Add error handling using `error`
+    if (isLoading) {
         return <Loader />;
     }
 

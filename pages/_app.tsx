@@ -35,16 +35,10 @@ const ethereumClient = new EthereumClient(wagmiClient, chains)
 
 function MyApp({ Component, pageProps }: AppProps) {
   // 4. Wrap your app with WagmiProvider and add <Web3Modal /> compoennt
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
-    setReady(true)
-  }, [])
 
   return (
     <>
       <UserProvider>
-        {ready ? (
           <WagmiConfig client={wagmiClient}>
             <Header />
             <Layout>
@@ -53,7 +47,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Layout>
             <Footer />
           </WagmiConfig>
-        ) : null}
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       </UserProvider>
     </>

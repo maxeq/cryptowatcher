@@ -10,13 +10,13 @@ const getKey = (pageIndex: number, previousPageData: any) => {
     return `${url}?page=${pageIndex}&pageSize=${PAGE_SIZE}`;
 };
 
-const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
+const { data, size, setSize, isLoading, error } = useSWRInfinite(getKey, fetcher);
 
 const isReachedEnd = !data || data[data.length - 1].getdata.length < PAGE_SIZE;
 
 const loadingMore = size > 0 && data && typeof data[size - 1] === "undefined";
 
-return { data, size, setSize, isReachedEnd, loadingMore };
+return { data, size, setSize, isReachedEnd, loadingMore, isLoading, error };
             {/*
 {loadingMore && <Loader />}
 {!isReachedEnd && <button
