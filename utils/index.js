@@ -7,14 +7,14 @@ function formatPercent(percent) {
   if (percent == null) {
     return null;
   }
-  
+
   const formattedPercent = parseFloat(Number(percent).toFixed(2));
-  
-  return formattedPercent + "%";
+
+  return formattedPercent + '%';
 }
 
-function extractValues(obj = [], prop = "") {
-  return obj.map((item) => item[prop]);
+function extractValues(obj = [], prop = '') {
+  return obj.map(item => item[prop]);
 }
 
 export { formatPrice, extractValues, formatPercent };

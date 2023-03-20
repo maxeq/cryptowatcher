@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import Crypto from "./UI/Crypto";
-import { useCoingeckoTicker } from "../utils/coingeckohooks";
-
-
+import Crypto from './UI/Crypto';
+import { useCoingeckoTicker } from '../utils/coingeckohooks';
 
 interface TickerProps {
   pageName: string;
@@ -35,10 +33,10 @@ export default function Ticker({ pageName }: TickerProps): JSX.Element {
   const cryptocurrencies = useCoingeckoTicker();
 
   return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cryptocurrencies.map((crypto: CryptoProps["crypto"]) => (
-            <Crypto key={crypto.id} crypto={crypto} />
-          ))}
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {cryptocurrencies.map((crypto: CryptoProps['crypto']) => (
+        <Crypto key={crypto.id} crypto={crypto} />
+      ))}
+    </div>
   );
 }

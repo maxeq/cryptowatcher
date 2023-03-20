@@ -13,7 +13,10 @@ const getData = async (id: string): Promise<CoinData> => {
   return JSON.parse(JSON.stringify(data));
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<{ getdata: CoinData }>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<{ getdata: CoinData }>
+) => {
   const { id } = req.query;
   const data = await getData(id as string);
   res.status(200).json({ getdata: data });

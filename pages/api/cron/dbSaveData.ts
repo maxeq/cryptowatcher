@@ -70,12 +70,15 @@ const coinSchema: Schema = new Schema({
 });
 
 // Define the model for a coin
-const Coin = mongoose.models.Coin || mongoose.model<CoinType>('Coin', coinSchema);
+const Coin =
+  mongoose.models.Coin || mongoose.model<CoinType>('Coin', coinSchema);
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     // Make an HTTP GET request to the API
-    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=1h,7d,30d');
+    const response = await axios.get(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=1h,7d,30d'
+    );
     const coins: CoinType[] = response.data.map((c: any) => ({
       id: c.id,
       dbDateAdded: new Date(),
@@ -104,9 +107,12 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       atl_date: new Date(c.atl_date),
       roi: c.roi,
       last_updated: new Date(c.last_updated),
-      price_change_percentage_1h_in_currency: c.price_change_percentage_1h_in_currency,
-      price_change_percentage_30d_in_currency: c.price_change_percentage_30d_in_currency,
-      price_change_percentage_7d_in_currency: c.price_change_percentage_7d_in_currency,
+      price_change_percentage_1h_in_currency:
+        c.price_change_percentage_1h_in_currency,
+      price_change_percentage_30d_in_currency:
+        c.price_change_percentage_30d_in_currency,
+      price_change_percentage_7d_in_currency:
+        c.price_change_percentage_7d_in_currency,
     }));
 
     // Connect to MongoDB using the connect() method
@@ -115,16 +121,20 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     } else {
       console.error('MONGODB_URI environment variable is not defined');
     }
-    
+
     // Save the coins to the database
     await Coin.insertMany(coins);
 
     // Disconnect from MongoDB
     await mongoose.disconnect();
 
-    res.status(200).json({ message: `Successfully inserted ${coins.length} coins into the database` });
+    res.status(200).json({
+      message: `Successfully inserted ${coins.length} coins into the database`,
+    });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred while inserting coins into the database' });
+    res.status(500).json({
+      message: 'An error occurred while inserting coins into the database',
+    });
   }
 };
 

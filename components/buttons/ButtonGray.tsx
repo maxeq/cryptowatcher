@@ -1,11 +1,16 @@
 interface ButtonProps {
   text: any;
   className?: any;
-  type?: "submit" | "reset" | "button";
+  type?: 'submit' | 'reset' | 'button';
   onClick?: () => void;
 }
 
-const ButtonGray = ({ text, className, type = "button", onClick }: ButtonProps) => {
+const ButtonGray = ({
+  text,
+  className,
+  type = 'button',
+  onClick,
+}: ButtonProps) => {
   return (
     <button
       onClick={onClick}

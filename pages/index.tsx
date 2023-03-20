@@ -1,9 +1,9 @@
-import React from "react";
-import type { NextPage } from "next";
+import React from 'react';
+import type { NextPage } from 'next';
 
-import Ticker from "../components/Ticker";
-import H1Template from '@/components/UI/H1template'
-import Head from "next/head";
+import Ticker from '../components/Ticker';
+import H1Template from '@/components/UI/H1template';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (

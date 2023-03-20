@@ -1,5 +1,5 @@
 // lib/db.ts
-import { MongoClient, Db, MongoClientOptions } from "mongodb";
+import { MongoClient, Db, MongoClientOptions } from 'mongodb';
 
 const uri = process.env.MONGODB_URI as string; // Replace with your MongoDB connection string
 const dbName = process.env.MONGODB_DB_NAME as string; // Replace with your MongoDB database name
@@ -7,12 +7,15 @@ const dbName = process.env.MONGODB_DB_NAME as string; // Replace with your Mongo
 let cachedClient: MongoClient | null = null;
 let cachedDb: Db | null = null;
 
-export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db }> {
+export async function connectToDatabase(): Promise<{
+  client: MongoClient;
+  db: Db;
+}> {
   if (cachedClient && cachedDb) {
     return { client: cachedClient, db: cachedDb };
   }
 
-  const options = {}
+  const options = {};
   const client = new MongoClient(uri, options);
 
   const db = client.db(dbName);
@@ -22,4 +25,3 @@ export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db
 
   return { client, db };
 }
-

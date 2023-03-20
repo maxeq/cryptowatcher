@@ -5,7 +5,7 @@ import { ArrayData } from '../../../types/coins/arraydata';
 export const getArrayData = async () => {
   const mongoClient = await clientPromise;
   const date24HoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000); // current date minus 24 hours
-  
+
   const data = await mongoClient
     .db('myFirstDatabase')
     .collection('coins')
@@ -20,17 +20,15 @@ export const getArrayData = async () => {
       },
       {
         $group: {
-          _id: "$id",
-          array_current_price: { $push: "$current_price" },
+          _id: '$id',
+          array_current_price: { $push: '$current_price' },
           count: { $sum: 1 },
         },
       },
     ])
     .toArray();
 
-    
   return JSON.parse(JSON.stringify(data));
-  
 };
 
 const handler = async (

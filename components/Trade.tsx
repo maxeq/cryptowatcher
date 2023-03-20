@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 export default function Trade() {
   return (
@@ -12,9 +12,7 @@ export default function Trade() {
         <div className="flex">
           <div className="w-3/5">
             <div className="flex justify-between">
-              <div>
-                BNB/ETH
-              </div>
+              <div>BNB/ETH</div>
               <div className="">Expand</div>
             </div>
             <div></div>
@@ -26,8 +24,6 @@ export default function Trade() {
           </div>
         </div>
       </main>
-
     </div>
-
-  )
+  );
 }

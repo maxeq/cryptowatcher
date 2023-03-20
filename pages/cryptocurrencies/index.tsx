@@ -1,10 +1,10 @@
-import React from "react";
-import type { NextPage } from "next";
-import Head from "next/head";
+import React from 'react';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
-import NoSSR from "../../components/layouts/NoSSR";
-import H1Template from '@/components/UI/H1template'
-import CryptoTableList from "@/components/UI/CryptoTable";
+import NoSSR from '../../components/layouts/NoSSR';
+import H1Template from '@/components/UI/H1template';
+import CryptoTableList from '@/components/UI/CryptoTable';
 
 const Cryptocurrencies: NextPage = () => {
   return (

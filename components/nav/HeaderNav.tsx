@@ -8,8 +8,6 @@ export default function Header() {
   const isLoggedIn = Boolean(user);
 
   return (
-    <>
-      {isLoggedIn ? <NavbarModuleLoggedIn /> : <NavbarModuleLoggedOut />}
-    </>
+    <>{isLoggedIn ? <NavbarModuleLoggedIn /> : <NavbarModuleLoggedOut />}</>
   );
 }

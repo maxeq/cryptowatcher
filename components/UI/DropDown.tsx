@@ -21,10 +21,13 @@ const ChevronDownIcon: React.FC<ArrowPathIconProps> = ({
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      {...props}>
-      <path strokeLinecap="round"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
         strokeLinejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+      ></path>
     </svg>
   );
 };
@@ -63,7 +66,13 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
           {items.map((item, index) => (
             <li
               key={index}
-              className={`px-4 py-2 ${item === selectedItem ? 'text-white' : 'text-gray-400'} ${item === selectedItem ? 'hover:text-white' : 'hover:text-gray-200'} hover:bg-white/5 hover:bg-opacity-10 cursor-pointer transition duration-300 ease-in-out`}
+              className={`px-4 py-2 ${
+                item === selectedItem ? 'text-white' : 'text-gray-400'
+              } ${
+                item === selectedItem
+                  ? 'hover:text-white'
+                  : 'hover:text-gray-200'
+              } hover:bg-white/5 hover:bg-opacity-10 cursor-pointer transition duration-300 ease-in-out`}
               onClick={() => handleItemClick(item)}
             >
               {item}

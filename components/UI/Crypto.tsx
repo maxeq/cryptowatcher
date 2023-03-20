@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 import Image from 'next/image';
-import Loader from "../icons/Loader";
-import Status from "../Status";
-import { formatPrice } from "@/utils";
+import Loader from '../icons/Loader';
+import Status from '../Status';
+import { formatPrice } from '@/utils';
 
 interface Props {
   crypto: {
@@ -21,9 +21,9 @@ interface Props {
 function Crypto({ crypto }: Props) {
   const colorClassName = crypto.prevPrice
     ? crypto.price > crypto.prevPrice
-      ? " text-lime-300"
-      : "text-rose-300"
-    : "text-gray-300";
+      ? ' text-lime-300'
+      : 'text-rose-300'
+    : 'text-gray-300';
 
   return (
     <div className="max-w p-6 bg-black shadow-purple-400 hover:shadow-slate-200 hover:text-lime-400 border-gray-100 rounded-lg shadow-lg">
@@ -58,7 +58,8 @@ function Crypto({ crypto }: Props) {
         className="inline-flex items-center text-teal-300 mt-6 hover:text-teal-100"
         href={crypto.explorer}
         target="_blank"
-        rel="norefferer">
+        rel="norefferer"
+      >
         Explorer
         <svg
           className="w5 h2 ml-2"

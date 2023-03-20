@@ -9,13 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Legend);
 
 interface ChartsProps {
   id: string;
@@ -24,8 +18,12 @@ interface ChartsProps {
   showYLabel?: boolean;
 }
 
-
-export default function Charts({ id, cryptoArray, showXLabel, showYLabel }: ChartsProps): JSX.Element {
+export default function Charts({
+  id,
+  cryptoArray,
+  showXLabel,
+  showYLabel,
+}: ChartsProps): JSX.Element {
   const options = {
     responsive: true,
     plugins: {
@@ -50,11 +48,11 @@ export default function Charts({ id, cryptoArray, showXLabel, showYLabel }: Char
         },
       },
     },
-    
   };
 
-
-  const labels = Array.from({ length: cryptoArray?.length ?? 0 }, (_, i) => i.toString());
+  const labels = Array.from({ length: cryptoArray?.length ?? 0 }, (_, i) =>
+    i.toString()
+  );
 
   const data = {
     labels,
@@ -66,7 +64,6 @@ export default function Charts({ id, cryptoArray, showXLabel, showYLabel }: Char
         backgroundColor: 'rgb(163 230 53, 0.5)',
         pointRadius: 0,
         borderWidth: 2,
-
       },
     ],
   };

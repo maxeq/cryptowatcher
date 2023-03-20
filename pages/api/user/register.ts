@@ -13,10 +13,12 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
-const options = {}
+const options = {};
 const client = new MongoClient(uri, options);
 
-export async function createUser(registrationData: RegistrationData): Promise<User> {
+export async function createUser(
+  registrationData: RegistrationData
+): Promise<User> {
   await client.connect();
   const db = client.db();
 
@@ -60,7 +62,9 @@ export default async function handler(
           res.status(400).json({ error: 'Email already in use' });
         } else {
           const newUser = await createUser(registrationData);
-          res.status(200).json({ user: newUser, message: 'User created successfully' });
+          res
+            .status(200)
+            .json({ user: newUser, message: 'User created successfully' });
         }
       } catch (error) {
         res.status(400).json({ error: (error as Error).message });

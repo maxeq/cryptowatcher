@@ -34,9 +34,15 @@ const getData = async (page: number, pageSize: number): Promise<CoinData[]> => {
   return JSON.parse(JSON.stringify(data));
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<{ getdata: CoinData[] }>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<{ getdata: CoinData[] }>
+) => {
   const { page = 1, pageSize = 10 } = req.query;
-  const data = await getData(parseInt(page as string), parseInt(pageSize as string));
+  const data = await getData(
+    parseInt(page as string),
+    parseInt(pageSize as string)
+  );
   res.status(200).json({ getdata: data });
 };
 

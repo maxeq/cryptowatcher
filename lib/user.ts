@@ -5,9 +5,9 @@ export async function registerUser(registrationData: RegistrationData) {
   const response = await fetch('/api/user/register', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(registrationData)
+    body: JSON.stringify(registrationData),
   });
 
   const data = await response.json();
@@ -20,14 +20,16 @@ export async function registerUser(registrationData: RegistrationData) {
   return data.user;
 }
 
-
-export async function loginUser(email: string, password: string): Promise<User> {
+export async function loginUser(
+  email: string,
+  password: string
+): Promise<User> {
   const response = await fetch('/api/user/login', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ email, password }),
   });
 
   const data = await response.json();
