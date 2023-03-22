@@ -14,8 +14,7 @@ export default function Trade() {
       <H1Template text="Trending Widgets" />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <CustomSlider />
-        <CustomSlider />
-        <CustomSlider />
+
       </div>
     </div>
   );

@@ -20,7 +20,7 @@
   
   .slick-dots {
     display: flex !important;
-    padding: 0.5rem 0.5rem !important;
+    padding-bottom: 1rem !important;
     justify-content: center !important;
     position: absolute !important;
     width: 100% !important;
@@ -28,8 +28,9 @@
   }
 
   
-  .slick-slider div { transition: none; }
-  
   .slick-dots li button:hover:before {
     background-color: #e2e8f0 !important;
   }
+
+
+  .slick-slider div { transition: none; }
