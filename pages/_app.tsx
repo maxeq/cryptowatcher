@@ -4,6 +4,9 @@ import { Analytics } from '@vercel/analytics/react';
 import Footer from '@/components/nav/FooterNav';
 import Layout from '../components/layouts/Layout';
 import Header from '@/components/nav/HeaderNav';
+import '../styles/slider.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import {
   EthereumClient,
@@ -11,10 +14,9 @@ import {
   w3mProvider,
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
-import { useEffect, useState } from 'react';
 import { configureChains, createClient, goerli, WagmiConfig } from 'wagmi';
-import { mainnet } from 'wagmi/chains';
 import { UserProvider } from '../context/UserContext';
+import ScrollToTopArrow from '@/components/UI/ScrollToTop';
 
 // 1. Get projectID at https://cloud.walletconnect.com
 if (!process.env.NEXT_PUBLIC_PROJECT_ID) {
@@ -23,7 +25,6 @@ if (!process.env.NEXT_PUBLIC_PROJECT_ID) {
 
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
-// 2. Configure wagmi client
 const chains = [goerli];
 
 const { provider } = configureChains(chains, [w3mProvider({ projectId })]);
@@ -33,11 +34,9 @@ const wagmiClient = createClient({
   provider,
 });
 
-// 3. Configure modal ethereum client
 const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // 4. Wrap your app with WagmiProvider and add <Web3Modal /> compoennt
 
   return (
     <>
@@ -46,6 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Header />
           <Layout>
             <Component {...pageProps} />
+            <ScrollToTopArrow />
             <Analytics />
           </Layout>
           <Footer />

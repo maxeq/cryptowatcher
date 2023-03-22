@@ -1,0 +1,23 @@
+.slick-dots li button:before {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: gray;
+    border: 1px gray;
+    opacity: 0.75;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    background-color: rgb(110, 201, 110);
+    opacity: 1;
+  }
+  
+  .slick-dots {
+    display: flex !important;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+  }
+
+  .slick-slider div { transition: none; }
