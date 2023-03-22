@@ -75,7 +75,7 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
                                                     alt={crypto.name}
                                                     width={24}
                                                     height={24}
-                                                    className="mr-2 rounded"
+                                                    className="mr-2 rounded-xl"
                                                 /></span>
                                             <span className="flex items-center"> {crypto.name}</span>
                                             <span className="text-slate-400 ml-1 uppercase">{crypto.symbol}</span>
