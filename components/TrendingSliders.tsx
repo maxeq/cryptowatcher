@@ -10,7 +10,7 @@ const CustomSlider = () => {
         dots: true,
         infinite: true,
         slidesToShow: 1,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         arrows: false,
         autoplay: true,
         autoplaySpeed: 10000,
@@ -18,7 +18,7 @@ const CustomSlider = () => {
 
 
     return (
-        <div className="bg-slate-700 rounded-lg p-4 px-7 shadow-purple-500 shadow-lg border border-slate-700 hover:shadow-slate-200">
+        <div className="bg-slate-600/50 rounded-lg p-4 px-7 shadow-lg border border-slate-700 mb-5">
             <Slider {...settings} >
                 <SliderTemp url="/api/coins/dataWidget?param=price_change_percentage_24h&order=desc&limit=3" title="Trending" icon={BsFire} iconClassName="text-yellow-400" />
                 <SliderTemp url="/api/coins/dataWidget?param=price_change_percentage_24h&order=asc&limit=3" title="Biggest Losers" icon={FiTrendingDown} iconClassName="text-rose-400" />
