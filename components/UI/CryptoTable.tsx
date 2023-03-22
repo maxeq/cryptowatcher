@@ -4,16 +4,15 @@ import Loader from '../icons/Loader';
 import Image from 'next/image';
 import Link from 'next/link';
 import ChartFetcher from '../charts/ChartFetcher';
-import { formatPrice, formatPercent } from '../../utils/NumberFormatter';
+import { formatPrice } from '../../utils/NumberFormatter';
 import ErrorMessage from '.././errorMessage';
 import { IoInformationCircle } from 'react-icons/io5';
 import { useState } from 'react';
+import PriceChange from '@/utils/PriceArrowFormatter';
 
 export default function CryptoTableList() {
   const { data, size, setSize, isReachedEnd, isLoading, error } =
     usePagination('/api/coins/getData');
-  const classPriceChangePercent = (value: number) =>
-    value < 0 ? 'text-rose-300' : 'text-lime-300';
 
   // tooltips
   const [showTooltip, setShowTooltip] = useState(false);
@@ -159,29 +158,19 @@ export default function CryptoTableList() {
                     {formatPrice(crypto.current_price)}
                   </td>
                   <td
-                    className={`table__end ${classPriceChangePercent(
-                      crypto.price_change_percentage_1h_in_currency
-                    )}`}
-                  >
-                    {formatPercent(
-                      crypto.price_change_percentage_1h_in_currency
-                    )}
+                    className={`table__end`}>
+                    <PriceChange value={crypto.price_change_percentage_1h_in_currency} />
                   </td>
                   <td
-                    className={`table__end ${classPriceChangePercent(
-                      crypto.price_change_percentage_24h
-                    )}`}
+                    className={`table__end`}
                   >
-                    {formatPercent(crypto.price_change_percentage_24h)}
+                    <PriceChange value={crypto.price_change_percentage_24h} />
                   </td>
                   <td
-                    className={`table__end ${classPriceChangePercent(
-                      crypto.price_change_percentage_7d_in_currency
-                    )}`}
-                  >
-                    {formatPercent(
-                      crypto.price_change_percentage_7d_in_currency
-                    )}
+                    className={`table__end`}
+                  ><div className="flex items-center">
+                      <PriceChange value={crypto.price_change_percentage_7d_in_currency} />
+                    </div>
                   </td>
                   <td className="table__end">
                     {formatPrice(crypto.market_cap)}
