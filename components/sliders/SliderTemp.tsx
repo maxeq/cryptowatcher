@@ -47,7 +47,7 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
                     <div key={crypto._id} className="">
                         <div className="mx-2 py-2">
                             <Link href={`/cryptocurrencies/${crypto.id}`}>
-                                <ol className="text-sm space-y-3 cursor-pointer">
+                                <ol className="text-sm space-y-3">
                                     <li className="flex mt-auto"><span className="text-slate-400 mr-5">{index + 1}</span>
                                         <div className="flex justify-between w-full">
                                             <div className="flex items-center">
