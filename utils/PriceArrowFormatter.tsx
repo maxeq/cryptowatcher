@@ -13,7 +13,7 @@ const formatPercent = (value: number) => {
 };
 
 interface PriceChangeProps {
-    value: number;
+    value: any;
 }
 
 const PriceChange: React.FC<PriceChangeProps> = ({ value }) => {

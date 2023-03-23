@@ -12,9 +12,10 @@ interface SliderTemplateProps {
     title: string;
     icon: React.ComponentType<{ className?: string }>;
     iconClassName?: string;
+    priceKey: string;
 }
 
-const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconClassName }) => {
+const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconClassName, priceKey }) => {
     const { data, isLoading, error } = useSWR(url, fetcher,
         {
             revalidateOnMount: true,
@@ -44,7 +45,6 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
             {data.getdata.map
                 ((crypto: any, index: number) => (
                     <div key={crypto._id} className="">
-
                         <div className="mx-2 py-2">
                             <ol className="text-sm space-y-3 cursor-pointer">
                                 <li className="flex mt-auto"><span className="text-slate-400 mr-5">{index + 1}</span>
@@ -61,7 +61,7 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
                                             <span className="flex items-center"> {crypto.name}</span>
                                             <span className="text-slate-400 ml-1 uppercase">{crypto.symbol}</span>
                                         </div>
-                                        <div className="mr-2"><PriceArrowFormatter value={crypto.price_change_percentage_24h} /></div>
+                                        <div className="mr-2"><PriceArrowFormatter value={crypto[priceKey]} /></div>
                                     </div>
                                 </li>
                             </ol>
