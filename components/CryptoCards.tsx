@@ -1,18 +1,18 @@
 import React, { memo } from 'react';
 import Image from 'next/image';
-import Loader from '../components/icons/Loader';
+import Loader from './icons/Loader';
 import { formatPercent, formatPrice } from '../utils/NumberFormatter';
 import usePagination from '@/lib/usePagination';
-import ErrorMessage from '../components/errorMessage';
+import ErrorMessage from './errorMessage';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Button from '../components/buttons/Button';
+import Button from './buttons/Button';
 import Link from 'next/link';
 
 export default function CryptoCards() {
   const { data, size, setSize, isReachedEnd, isLoading, error } =
     usePagination('/api/coins/getData');
-  // const classPriceChangePercent = (value: number) =>
-  //   value < 0 ? 'text-rose-300' : 'text-lime-300';
+  const classPriceChangePercent = (value: number) =>
+    value < 0 ? 'text-rose-300' : 'text-lime-300';
 
   if (error) {
     return <ErrorMessage error={error} />;
@@ -57,12 +57,12 @@ export default function CryptoCards() {
                   <span className="text-sm text-cyan-50">24h High </span>
                   <span className="text-sm ">{formatPrice(crypto.high_24h)}</span>
                 </div>
-                {/* <div className='justify-between flex'>
+                <div className='justify-between flex'>
                   <span className="font-semibold text-cyan-50" >24h Change</span>
                   <span className={`font-semibold text-cyan-50 ${classPriceChangePercent(
                     crypto.price_change_percentage_24h
                   )}`}>{formatPercent(crypto.price_change_percentage_24h)}</span>
-                </div> */}
+                </div>
                 <div className='text-center mt-8'>
                   <Link href={`/cryptocurrencies/${crypto.id}`}>
                     <Button text="Trade now" />

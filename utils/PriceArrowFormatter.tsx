@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
 
-const classPriceChangePercent = (value: number) =>
+const TextColorChange = (value: number) =>
     value < 0 ? 'text-rose-300' : 'text-lime-300';
 
 const classPriceChangeIcon = (value: number) =>
@@ -17,7 +17,7 @@ interface PriceChangeProps {
 }
 
 const PriceChange: React.FC<PriceChangeProps> = ({ value }) => {
-    const textColorClass = classPriceChangePercent(value);
+    const textColorClass = TextColorChange(value);
     const icon = classPriceChangeIcon(value);
     const formattedValue = formatPercent(value);
 
