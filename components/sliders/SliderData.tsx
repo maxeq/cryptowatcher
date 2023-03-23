@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import { BsFire } from 'react-icons/bs';
 import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
 
-const CustomSlider = () => {
+const SliderData = () => {
 
     const settings = {
         dots: true,
@@ -28,4 +28,4 @@ const CustomSlider = () => {
     );
 };
 
-export default CustomSlider;
+export default SliderData;
