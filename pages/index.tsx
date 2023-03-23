@@ -13,11 +13,17 @@ const Cryptocurrencies: NextPage = () => {
       <Head>
         <title>Cryptocurrencies</title>
       </Head>
-      <H1Template text="Cryptocurrency Market Overview" />
+      <H1Template text="Today's Cryptocurrency Prices Overview" />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <SliderData sliderTypes={['trending', 'biggestLosers']} />
-        <SliderData sliderTypes={['biggestLosers', 'trending']} />
-        <SliderData sliderTypes={['topGainers', 'biggestLosers']} />
+        <div className="hidden sm:block">
+          <SliderData sliderTypes={['trending', 'biggestLosers']} />
+        </div>
+        <div className="hidden sm:block">
+          <SliderData sliderTypes={['biggestLosers', 'trending']} />
+        </div>
+        <div className="hidden sm:block">
+          <SliderData sliderTypes={['topGainers', 'biggestLosers']} />
+        </div>
       </div>
       <CryptoTableList />
     </NoSSR>

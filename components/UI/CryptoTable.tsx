@@ -54,14 +54,14 @@ export default function CryptoTableList() {
       loader={<Loader />}
       dataLength={data?.length ?? 0}
     >
-      <div className="overflow-x-auto ">
-        <table className={`table`}>
+      <div className="overflow-x-auto">
+        <table className={`table mobile-solid-background`}>
           <thead>
             <tr className={`table-header`}>
-              <th className="table__start sticky z-0 backdrop-opacity-2 max-sm:bg-gray-800 py-2">
+              <th className="xs:block hidden table__start sticky z-0 backdrop-opacity-2 py-2">
                 #
               </th>
-              <th className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
+              <th className="table__start sticky z-0 backdrop-opacity-0">
                 Name
               </th>
               <th className="table__end whitespace-nowrap">Price (USD)</th>
@@ -137,21 +137,27 @@ export default function CryptoTableList() {
               ?.flatMap(page => page.getdata)
               .map((crypto: any, index: number) => (
                 <tr key={crypto.id} >
-                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
+                  <td className="xs:block hidden table__start sticky z-0 backdrop-opacity-0 ">
                     {index + 1}
                   </td>
-                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
-                    <div className={`flex items-center max-w-xs`}>
+                  <td className="table__start sticky z-0 backdrop-opacity-0">
+                    <div className={`flex items-center max-w-xs mr-5 md:mr-0`}>
                       <Image
                         src={crypto.image}
                         alt={crypto.name}
                         width="32"
                         height="32"
-                        className="mr-1"
+                        className="mr-3"
                       />
                       <Link href={`/cryptocurrencies/${crypto.id}`}>
-                        <span className="max-sm:mr-2 mr-2">{crypto.name}</span>
-                        <span className="max-sm:mr-12 uppercase text-slate-300">{crypto.symbol}</span>
+                        <div className="">
+                          <span className="flex flex-col md:flex-items">
+                            <span className="mr-2">{crypto.name}</span>
+                            <span className="uppercase text-slate-300 text-12px mr-3">
+                              <span className="md:hidden mr-2 bg-slate-700 px-2 py-1 rounded-md text-left">
+                                {index + 1}</span>{crypto.symbol}</span>
+                          </span>
+                        </div>
                       </Link>
                     </div>
                   </td>

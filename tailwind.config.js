@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        '12px': '12px',
+      },
       animation: {
         spin: 'spin 1s linear',
       },

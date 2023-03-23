@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import Button from '../buttons/Button';
 import ButtonGray from '../buttons/ButtonGray';
 import AuthModal from '../AuthModal';
+import { RxHamburgerMenu } from "react-icons/rx";
+import Logo from '../icons/LogoNew';
+import { GrClose } from "react-icons/gr";
 
 const header_navigation = [
   { name: 'Cryptocurrencies', href: '/' },
@@ -16,12 +19,7 @@ const NavbarModuleLoggedOut = () => {
   const [authMode, setAuthMode] = useState<'signup' | 'login'>('signup');
 
   //mobile menu
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => {
-    setIsOpen(!isOpen);
-    setButtonColor(isOpen ? '' : 'bg-lime-500');
-  };
-  const [buttonColor, setButtonColor] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   //router
   const { pathname } = useRouter();
@@ -66,7 +64,6 @@ const NavbarModuleLoggedOut = () => {
               />
               <Button
                 text="Sign Up"
-
                 onClick={() => {
                   setAuthMode('signup');
                   setIsModalOpen(true);
@@ -84,81 +81,70 @@ const NavbarModuleLoggedOut = () => {
 
       <div className="md:hidden flex items-center ml-auto">
         <div className="relative pr-3">
-          <button className={`${buttonColor} rounded`} onClick={toggle}>
-            <div></div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 22 22"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-8 h-8 pr-1"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
+          <button
+            className={`rounded md:hidden`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <RxHamburgerMenu size={32} className="mx-4 text-slate-300" />
           </button>
+
           <div
-            className={`absolute right-5 w-48 bg-lime-500 shadow-lg z-10 ${isOpen ? '' : 'hidden'
+            className={`fixed inset-0 z-50 bg-gray-900 text-cyan-50 md:hidden transition-all duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
               }`}
           >
-            <div className="py-1 flex-auto bg-gray-900 text-cyan-50">
+            <div className="flex justify-between items-center py-0 px-4">
+              <h2 className="text-2xl font-semibold flex items-center">
+                <Logo size={46} />
+                <span className="ml-5">CryptoWatcher</span>
+              </h2>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-2xl font-bold"
+              >
+                <span className="text-5xl mr-4 text-slate-300">&times;</span>
+              </button>
+            </div>
+            <div className="px-4 py-6">
               {header_navigation.map(({ name, href }) => (
-                <Link
-                  key={name}
-                  href={href}
-                  className="block px-4 bg-gray-900 shadow lg:px-4 py-4 h-14"
-                  onClick={toggle}
-                >
+                <Link key={name} href={href}>
                   <p
-                    className={
-                      pathname === href
-                        ? `text-lime-500 shadow-lg font-bold`
-                        : ''
-                    }
+                    className={`block text-2xl font-bold p-4 ${pathname === href ? 'text-cyan-200' : ''
+                      }`}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {name}
                   </p>
                 </Link>
               ))}
-              <ul className="items-center">
-                <div className="space-y-4">
-                  <ButtonGray
-                    text="Login"
-                    className="w-full"
-                    onClick={() => {
-                      setAuthMode('login');
-                      setIsModalOpen(true);
-                    }}
-                  />
-                  <Button
-                    text="Sign Up"
-                    className="w-full"
-                    onClick={() => {
-                      setAuthMode('signup');
-                      setIsModalOpen(true);
-                    }}
-                  />
-                  <AuthModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    mode={authMode}
-                  />
-                </div>
-              </ul>
-              {/* <input
-                type="search"
-                className="w-full md:px-0 px-4 py-2 bg-gray-800 text-white placeholder-gray-300"
-                placeholder="Search"
-              /> */}
+            </div>
+            <div className="px-4 pb-4">
+              <ButtonGray
+                text="Log In"
+                className="w-full mb-4 text-xl"
+                onClick={() => {
+                  setAuthMode('login');
+                  setIsModalOpen(true);
+                }}
+              />
+              <Button
+                text="Create an account"
+                className="w-full text-xl"
+                onClick={() => {
+                  setAuthMode('signup');
+                  setIsModalOpen(true);
+                }}
+              />
+              <AuthModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                mode={authMode}
+              />
             </div>
           </div>
+
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 

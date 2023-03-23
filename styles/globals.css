@@ -15,7 +15,6 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
-  /* text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px; */
 }
 
 * {
@@ -28,8 +27,8 @@
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 16px;
   background-color: rgb(255, 255, 255);
   background-image: linear-gradient(
     88deg,
@@ -39,7 +38,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
-  text-align: center;
+  text-align: left;
+  text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px;
 }
 
 .table {
@@ -74,7 +74,7 @@
 
 /* For desktop */
 .table tr:hover td {
-  background-color: #5553532a;
+  background-color: rgba(170, 172, 173, 0.1);
 }
 
 /* For mobile */
@@ -82,7 +82,34 @@
   .table tr:hover td {
     background-color: #222531;
   }
+
+  .table-header {
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    background-color: #222531;
+    z-index: 100;
+  }
+
+  .table__start {
+    text-align: left;
+    position: sticky;
+    left: 0;
+    background-color: #222531;
+    z-index: 10;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .mobile-solid-background {
+    background-color: #222531; /* Adjust this to match your desired background color */
+  }
+
 }
+
 
 .table-row {
   border-top-width: 1px;
@@ -93,6 +120,7 @@
 .sticky {
   position: sticky;
   left: 0;
+  top: 0;
 }
 
 .lds-dual-ring {
@@ -118,4 +146,8 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.menu-closed {
+  transform: translateX(-100%);
 }
