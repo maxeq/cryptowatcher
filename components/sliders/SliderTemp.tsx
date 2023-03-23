@@ -4,6 +4,7 @@ import Loader from '../icons/Loader';
 import Image from 'next/image';
 import useSWR from 'swr';
 import PriceArrowFormatter from '@/utils/PriceArrowFormatter';
+import Link from 'next/link';
 
 const fetcher = (url: any) => fetch(url).then(res => res.json());
 
@@ -34,7 +35,6 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
     const IconComponent = icon;
 
     return (
-
         <div className="mb-5">
             <h2 className="flex items-center justify-between cursor-pointer mb-3">
                 <div className="font-bold text-xl flex items-center">
@@ -46,25 +46,27 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
                 ((crypto: any, index: number) => (
                     <div key={crypto._id} className="">
                         <div className="mx-2 py-2">
-                            <ol className="text-sm space-y-3 cursor-pointer">
-                                <li className="flex mt-auto"><span className="text-slate-400 mr-5">{index + 1}</span>
-                                    <div className="flex justify-between w-full">
-                                        <div className="flex items-center">
-                                            <span className="mr-1 flex items-center">
-                                                <Image
-                                                    src={crypto.image}
-                                                    alt={crypto.name}
-                                                    width={24}
-                                                    height={24}
-                                                    className="mr-2 rounded-xl"
-                                                /></span>
-                                            <span className="flex items-center"> {crypto.name}</span>
-                                            <span className="text-slate-400 ml-1 uppercase">{crypto.symbol}</span>
+                            <Link href={`/cryptocurrencies/${crypto.id}`}>
+                                <ol className="text-sm space-y-3 cursor-pointer">
+                                    <li className="flex mt-auto"><span className="text-slate-400 mr-5">{index + 1}</span>
+                                        <div className="flex justify-between w-full">
+                                            <div className="flex items-center">
+                                                <span className="mr-1 flex items-center">
+                                                    <Image
+                                                        src={crypto.image}
+                                                        alt={crypto.name}
+                                                        width={24}
+                                                        height={24}
+                                                        className="mr-2 rounded-xl"
+                                                    /></span>
+                                                <span className="flex items-center"> {crypto.name}</span>
+                                                <span className="text-slate-400 ml-1 uppercase">{crypto.symbol}</span>
+                                            </div>
+                                            <div className="mr-2"><PriceArrowFormatter value={crypto[priceKey]} /></div>
                                         </div>
-                                        <div className="mr-2"><PriceArrowFormatter value={crypto[priceKey]} /></div>
-                                    </div>
-                                </li>
-                            </ol>
+                                    </li>
+                                </ol>
+                            </Link>
                         </div>
                     </div>
                 ))
