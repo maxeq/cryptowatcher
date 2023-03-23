@@ -6,9 +6,8 @@ import ButtonGray from '../buttons/ButtonGray';
 import AuthModal from '../AuthModal';
 
 const header_navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Cryptocurrencies', href: '/cryptocurrencies' },
-  { name: 'Trade', href: '/trade' },
+  { name: 'Cryptocurrencies', href: '/' },
+  // { name: 'Trade', href: '/trade' },
 ];
 
 const NavbarModuleLoggedOut = () => {

@@ -5,9 +5,8 @@ import ButtonGray from '../buttons/ButtonGray';
 import { useUser } from '../../context/UserContext';
 
 const header_navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Cryptocurrencies', href: '/cryptocurrencies' },
-  { name: 'Trade', href: '/trade' },
+  { name: 'Cryptocurrencies', href: '/' },
+  // { name: 'Trade', href: '/trade' },
 ];
 
 const NavbarModuleLoggedIn = () => {
