@@ -62,7 +62,7 @@ export default function CryptoTableList() {
                 #
               </th>
               <th className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
-                Cryptocurrency
+                Name
               </th>
               <th className="table__end whitespace-nowrap">Price (USD)</th>
               <th className="table__end">1h %</th>
@@ -137,17 +137,17 @@ export default function CryptoTableList() {
               ?.flatMap(page => page.getdata)
               .map((crypto: any, index: number) => (
                 <tr key={crypto.id} >
-                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 py-12    ">
+                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
                     {index + 1}
                   </td>
-                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800 text-center">
+                  <td className="table__start sticky z-0 backdrop-opacity-0 max-sm:bg-gray-800">
                     <div className={`flex items-center max-w-xs`}>
                       <Image
                         src={crypto.image}
                         alt={crypto.name}
                         width="32"
                         height="32"
-                        className="mr-3 ml-3"
+                        className="mr-1"
                       />
                       <Link href={`/cryptocurrencies/${crypto.id}`}>
                         <span className="max-sm:mr-12">{crypto.name}</span>
@@ -168,9 +168,8 @@ export default function CryptoTableList() {
                   </td>
                   <td
                     className={`table__end`}
-                  ><div className="flex items-center">
-                      <PriceChange value={crypto.price_change_percentage_7d_in_currency} />
-                    </div>
+                  >
+                    <PriceChange value={crypto.price_change_percentage_7d_in_currency} />
                   </td>
                   <td className="table__end">
                     {formatPrice(crypto.market_cap)}
@@ -178,8 +177,8 @@ export default function CryptoTableList() {
                   <td className="table__end">
                     {formatPrice(crypto.total_volume)}
                   </td>
-                  <td className="table__end">
-                    {formatPrice(crypto.circulating_supply)}
+                  <td className="table__end whitespace-nowrap">
+                    {formatPrice(crypto.circulating_supply).replace('$', '')} {crypto.symbol.toUpperCase()}
                   </td>
                   <td className={`table__end max-w-[200px] min-w-[200px]`}>
                     <ChartFetcher _id={crypto.id} />

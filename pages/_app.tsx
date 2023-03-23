@@ -1,9 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
-import Footer from '@/components/nav/FooterNav';
 import Layout from '../components/layouts/Layout';
-import Header from '@/components/nav/HeaderNav';
 import '../styles/slider.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -42,13 +40,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <UserProvider>
         <WagmiConfig client={wagmiClient}>
-          <Header />
           <Layout>
             <Component {...pageProps} />
             <ScrollToTopArrow />
             <Analytics />
           </Layout>
-          <Footer />
         </WagmiConfig>
         <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       </UserProvider>
