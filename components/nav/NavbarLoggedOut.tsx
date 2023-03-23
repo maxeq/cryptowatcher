@@ -92,8 +92,8 @@ const NavbarModuleLoggedOut = () => {
             className={`fixed inset-0 z-50 bg-gray-900 text-cyan-50 md:hidden transition-all duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
               }`}
           >
-            <div className="flex justify-between items-center py-0 px-4">
-              <h2 className="text-2xl font-semibold flex items-center">
+            <div className="flex justify-between items-center px-4 border border-slate-600/50">
+              <h2 className="text-2xl font-semibold flex items-center mb-6">
                 <Logo size={46} />
                 <span className="ml-5">CryptoWatcher</span>
               </h2>
@@ -104,8 +104,8 @@ const NavbarModuleLoggedOut = () => {
                 <span className="text-5xl mr-3 text-slate-300">&times;</span>
               </button>
             </div>
-            <div className="px-4 py-6">
-              <div className="text-2xl flex flex-col w-full text-white bg-gradient-table divide-y divide-gray-400/20">
+            <div className="pb-2">
+              <div className="px-5 text-2xl flex flex-col w-full text-white bg-gradient-table divide-y divide-gray-400/20">
                 {header_navigation.map(({ name, href }) => (
                   <Link key={name} href={href}>
                     <div
