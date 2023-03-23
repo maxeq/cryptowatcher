@@ -85,7 +85,7 @@ const NavbarModuleLoggedOut = () => {
             className={`rounded md:hidden`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <RxHamburgerMenu size={32} className="mx-4 text-slate-300" />
+            <RxHamburgerMenu size={32} className="mx-4 mt-2 text-slate-300" />
           </button>
 
           <div
