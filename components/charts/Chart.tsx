@@ -16,6 +16,8 @@ interface ChartsProps {
   cryptoArray: number[];
   showXLabel?: boolean;
   showYLabel?: boolean;
+  width?: string;
+  height?: string;
 }
 
 export default function Charts({
@@ -23,9 +25,12 @@ export default function Charts({
   cryptoArray,
   showXLabel,
   showYLabel,
+  width,
+  height,
 }: ChartsProps): JSX.Element {
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Add this line
     plugins: {
       legend: {
         position: 'top' as const,
@@ -69,18 +74,20 @@ export default function Charts({
   };
 
   return (
-    <Line
-      options={options}
-      data={{
-        ...data,
-        datasets: [
-          {
-            ...data.datasets[0],
-            data: cryptoArray,
-            label: id,
-          },
-        ],
-      }}
-    />
+    <div style={{ width: width, height: height }} className="py-1">
+      <Line
+        options={options}
+        data={{
+          ...data,
+          datasets: [
+            {
+              ...data.datasets[0],
+              data: cryptoArray,
+              label: id,
+            },
+          ],
+        }}
+      />
+    </div>
   );
 }

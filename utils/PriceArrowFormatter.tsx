@@ -22,7 +22,7 @@ const PriceChange: React.FC<PriceChangeProps> = ({ value }) => {
     const formattedValue = formatPercent(value);
 
     return (
-        <div className={`flex items-center space-x-1 ${textColorClass}`}>
+        <div className={`flex items-center space-x-1 ${textColorClass} justify-end`}>
             {icon}
             <span>{formattedValue}</span>
         </div>

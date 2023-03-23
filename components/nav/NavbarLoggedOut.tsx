@@ -55,10 +55,10 @@ const NavbarModuleLoggedOut = () => {
                 />
               </li>
             </ul>
-            <div className="flex justify-evenly w-full mx-auto">
+            <div className="flex justify-end w-full">
               <ButtonGray
                 text="Login"
-                className="mr-4"
+                className="mx-10"
                 onClick={() => {
                   setAuthMode('login');
                   setIsModalOpen(true);

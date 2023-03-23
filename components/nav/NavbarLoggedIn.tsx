@@ -106,7 +106,8 @@ const NavbarModuleLoggedIn = () => {
                 </Link>
               ))}
               <ul className="items-center">
-                <div className="space-y-4">
+                <div className="space-y-
+                ">
                   <ButtonGray
                     text="Log Out"
 

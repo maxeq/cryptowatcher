@@ -180,8 +180,8 @@ export default function CryptoTableList() {
                   <td className="table__end whitespace-nowrap">
                     {formatPrice(crypto.circulating_supply).replace('$', '')} {crypto.symbol.toUpperCase()}
                   </td>
-                  <td className={`table__end max-w-[200px] min-w-[200px]`}>
-                    <ChartFetcher _id={crypto.id} />
+                  <td className={`table__end`}>
+                    <ChartFetcher _id={crypto.id} width='150px' height='75px' />
                   </td>
                 </tr>
               ))}

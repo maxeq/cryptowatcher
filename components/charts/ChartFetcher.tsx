@@ -10,6 +10,8 @@ interface Props {
   _id?: string;
   showXLabel?: boolean;
   showYLabel?: boolean;
+  width?: string;
+  height?: string;
 }
 
 interface Data {
@@ -23,6 +25,8 @@ const ChartFetcher: React.FC<Props> = ({
   _id,
   showXLabel,
   showYLabel,
+  width,
+  height,
 }: Props) => {
   const {
     data: cryptoArrayData,
@@ -55,6 +59,8 @@ const ChartFetcher: React.FC<Props> = ({
       cryptoArray={item.array_current_price}
       showXLabel={showXLabel}
       showYLabel={showYLabel}
+      width={width}
+      height={height}
     />
   );
 };

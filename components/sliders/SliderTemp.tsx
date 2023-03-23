@@ -38,7 +38,7 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
         <div className="mb-5">
             <h2 className="flex items-center justify-between cursor-pointer mb-3">
                 <div className="font-bold text-xl flex items-center">
-                    <IconComponent className={`mr-2 ${iconClassName}`} />
+                    <IconComponent className={`mr-4 ${iconClassName}`} />
                     {title}</div>
                 <div className="font-bold text-xs text-teal-400 hover:text-teal-300">More &gt;</div>
             </h2>
