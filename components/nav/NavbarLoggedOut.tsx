@@ -10,7 +10,7 @@ import { GrClose } from "react-icons/gr";
 
 const header_navigation = [
   { name: 'Cryptocurrencies', href: '/' },
-  // { name: 'Trade', href: '/trade' },
+  { name: 'Trade', href: '/trade' },
 ];
 
 const NavbarModuleLoggedOut = () => {
@@ -101,21 +101,24 @@ const NavbarModuleLoggedOut = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-2xl font-bold"
               >
-                <span className="text-5xl mr-4 text-slate-300">&times;</span>
+                <span className="text-5xl mr-3 text-slate-300">&times;</span>
               </button>
             </div>
             <div className="px-4 py-6">
-              {header_navigation.map(({ name, href }) => (
-                <Link key={name} href={href}>
-                  <p
-                    className={`block text-2xl font-bold p-4 ${pathname === href ? 'text-cyan-200' : ''
-                      }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {name}
-                  </p>
-                </Link>
-              ))}
+              <div className="text-2xl flex flex-col w-full text-white bg-gradient-table divide-y divide-gray-400/20">
+                {header_navigation.map(({ name, href }) => (
+                  <Link key={name} href={href}>
+                    <div
+                      className={`px-4 py-5 ${pathname === href ? "text-lime-200" : ""
+                        } hover:bg-gray-700 cursor-pointer`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {name}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
             </div>
             <div className="px-4 pb-4">
               <ButtonGray

@@ -151,3 +151,7 @@
 .menu-closed {
   transform: translateX(-100%);
 }
+
+.bg-gradient-table {
+  background-image: linear-gradient(to bottom, #dad8d81c 1%, transparent 20%);
+}
