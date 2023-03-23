@@ -92,8 +92,8 @@ const NavbarModuleLoggedOut = () => {
             className={`fixed inset-0 z-50 bg-gray-900 text-cyan-50 md:hidden transition-all duration-300 ease-in-out transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
               }`}
           >
-            <div className="flex justify-between items-center px-4 border border-slate-600/50">
-              <h2 className="text-2xl font-semibold flex items-center mb-6">
+            <div className="py-5 flex justify-between items-center px-4 border border-slate-600/50">
+              <h2 className="text-2xl font-semibold flex items-center ml-5">
                 <Logo size={46} />
                 <span className="ml-5">CryptoWatcher</span>
               </h2>
@@ -101,7 +101,7 @@ const NavbarModuleLoggedOut = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-2xl font-bold"
               >
-                <span className="text-5xl mr-3 text-slate-300">&times;</span>
+                <span className="text-4xl mr-5 text-slate-300">&times;</span>
               </button>
             </div>
             <div className="pb-2">
