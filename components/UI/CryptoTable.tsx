@@ -150,7 +150,8 @@ export default function CryptoTableList() {
                         className="mr-1"
                       />
                       <Link href={`/cryptocurrencies/${crypto.id}`}>
-                        <span className="max-sm:mr-12">{crypto.name}</span>
+                        <span className="max-sm:mr-2 mr-2">{crypto.name}</span>
+                        <span className="max-sm:mr-12 uppercase text-slate-300">{crypto.symbol}</span>
                       </Link>
                     </div>
                   </td>
