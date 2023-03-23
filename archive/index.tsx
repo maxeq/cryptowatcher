@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 
 import H1Template from '@/components/UI/HeaderTemplate';
 import Head from 'next/head';
-import CryptoCards from '@/archive/CryptoCards';
+import CryptoCards from '@/components/CryptoCards';
 
 const Home: NextPage = () => {
   return (

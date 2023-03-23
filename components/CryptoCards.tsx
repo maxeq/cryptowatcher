@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import Image from 'next/image';
-import Loader from '../components/icons/Loader';
+import Loader from './icons/Loader';
 import { formatPercent, formatPrice } from '../utils/NumberFormatter';
 import usePagination from '@/lib/usePagination';
-import ErrorMessage from '../components/errorMessage';
+import ErrorMessage from './errorMessage';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Button from '../components/buttons/Button';
+import Button from './buttons/Button';
 import Link from 'next/link';
 
 export default function CryptoCards() {
