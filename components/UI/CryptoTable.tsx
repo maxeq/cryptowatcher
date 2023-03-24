@@ -222,8 +222,33 @@ export default function CryptoTableList() {
                           }}
                         ></div>
                         {showTooltipx[index] && (
-                          <div className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left">
-                            {((crypto.circulating_supply / crypto.max_supply) * 100).toFixed(0)}%
+                          <div className="space-y-1 hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left">
+                            <div className="flex items-center justify-between">
+                              <div className="text-slate-200">Percentage</div>
+                              <div className="text-slate-200">{((crypto.circulating_supply / crypto.max_supply) * 100).toFixed(0)}%</div>
+                            </div>
+                            <div>
+
+                              <div
+                                className="relative w-full h-2 bg-slate-500/50 rounded-full"
+                                style={{
+                                  width: `${((crypto.circulating_supply / crypto.max_supply) * 100).toFixed(0)}%`,
+                                  backgroundSize: '100% 200%',
+                                  backgroundPosition: 'left bottom',
+                                  transition: 'background-position 0.5s ease-out'
+                                }}
+                              ></div>
+
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <div className="text-slate-200 mr-20">Circulating Supply</div>
+                              <div>{formatPrice(crypto.circulating_supply, 0, false)} {crypto.symbol.toUpperCase()}</div>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <div className="text-slate-200">Max Supply</div>
+                              <div>{formatPrice(crypto.max_supply, 0, false)} {crypto.symbol.toUpperCase()}</div>
+                            </div>
+
                           </div>
                         )}
                       </div>
