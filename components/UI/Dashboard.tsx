@@ -132,91 +132,94 @@ export default function Dashboard(): JSX.Element {
             </div>
           </div>
 
-          <div >
-            <div className="pt-2">
-              <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
-                {name} Price ({symbol.toUpperCase()})
-              </div>
-              <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-start">
-                <div className="text-4xl font-bold">
-                  {formatPrice(current_price, 0)}
+          <div className="flex justify-end">
+            <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
+              <div className="pt-2">
+                <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
+                  {name} Price ({symbol.toUpperCase()})
                 </div>
-                <div className="lg:px-2">
-                  <div
-                    className={`text-base font-bold rounded-xl px-2 py-1.5 bg-rose-500`}>
-                    <PriceChange value={price_change_percentage_24h} disableColor />
+                <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-start">
+                  <div className="text-4xl font-bold">
+                    {formatPrice(current_price, 0)}
+                  </div>
+                  <div className="lg:px-2">
+                    <div
+                      className={`text-base font-bold rounded-xl px-2 py-1.5 bg-rose-500`}>
+                      <PriceChange value={price_change_percentage_24h} disableColor />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex space-x-4 mt-3">
+                  <div className="text-md font-normal text-gray-300/80">15.67 ETH
+                  </div>
+                  <div><PriceChange value={price_change_percentage_24h} />
+                  </div>
+                </div>
+                <div className="flex justify-evenly my-4">
+                  <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h, 0)}</span> </div>
+                  <div className="relative w-full h-2 mt-2.5 bg-slate-500/50 rounded-full mx-4">
+                    <div
+                      className="h-2 bg-gradient-to-r from-green-400 to-lime-500 rounded-full"
+                      style={{
+                        width: `${((circulating_supply / max_supply) * 100).toFixed(0)}%`,
+                        backgroundSize: '200% 100%',
+                        backgroundPosition: 'left bottom',
+                        transition: 'background-position 0.5s ease-out'
+                      }}
+                    ></div>
+                  </div>
+                  <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span><span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span> </div> </div>
+              </div>
+              <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10">
+                <div className="mr-20">
+                  <div className="text-slate-300 text-xs">MarketCap</div>
+                  <div className="text-xl">{formatPrice(market_cap)}</div>
+                </div>
+                <div>
+                  <div className="text-slate-300 text-xs pt-4 md:pt-0">
+                    Market Cap Change 24h
+                  </div>
+                  <div className="text-xl">
+                    {formatPrice(market_cap_change_24h)}
                   </div>
                 </div>
               </div>
-              <div className="flex space-x-4 mt-3">
-                <div className="text-md font-normal text-gray-300/80">15.67 ETH
+            </div>
+
+            <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
+              <div className="mt-4 ">
+                <div className="text-sm text-slate-300">Circulating Supply</div>
+                <div className="text-xl">
+                  {formatPrice(circulating_supply).replace('$', '')}
                 </div>
-                <div><PriceChange value={price_change_percentage_24h} />
+                <div className="mt-2">
+                  <div className="md:w-2/3 w-1/3 bg-gray-200 rounded-full dark:bg-gray-700">
+                    <div
+                      className={`bg-slate-400 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full`}
+                    >
+                      {((circulating_supply / max_supply) * 100).toFixed(0)}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 space-y-2">
+                <div className="mt-4">
+                  <div className="text-sm text-slate-300">Max Supply</div>
+                  <div className="text-xl">
+                    {formatPrice(max_supply).replace('$', '')}
+                  </div>
+                  <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10"></div>
+                </div>
+                <div >
+                  <div className="text-sm text-slate-300">Total Supply</div>
+                  <div className="text-xl">
+                    {formatPrice(total_supply).replace('$', '')}
+                  </div>
                 </div>
               </div>
               <div className="flex justify-center">
-                <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h, 0)}</span> </div>
-
-                <div
-                  className="mx-4 elative w-full h-2 bg-slate-500/50 rounded-full"
-                  style={{
-                    width: `${((circulating_supply / max_supply) * 100).toFixed(0)}%`,
-                    backgroundSize: '200% 100%',
-                    backgroundPosition: 'left bottom',
-                    transition: 'background-position 0.5s ease-out'
-                  }}
-                ></div>
-
-                <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span> </div> </div>
-            </div>
-            <div className="md:flex md:justify-between border-t-2 mt-4 border-t-purple-400 py-4">
-              <div className="mr-20">
-                <div className="text-slate-300 text-xs">MarketCap</div>
-                <div className="text-xl">{formatPrice(market_cap)}</div>
+                <Web3Connect text={`Buy ${name}`} />
               </div>
-              <div>
-                <div className="text-slate-300 text-xs pt-4 md:pt-0">
-                  Market Cap Change 24h
-                </div>
-                <div className="text-xl">
-                  {formatPrice(market_cap_change_24h)}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="mt-4">
-              <div className="text-sm text-slate-300">Circulating Supply</div>
-              <div className="text-xl">
-                {formatPrice(circulating_supply).replace('$', '')}
-              </div>
-              <div className="mt-2">
-                <div className="md:w-2/3 w-1/3 bg-gray-200 rounded-full dark:bg-gray-700">
-                  <div
-                    className={`bg-slate-400 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full`}
-                  >
-                    {((circulating_supply / max_supply) * 100).toFixed(0)}%
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-4 space-y-2">
-              <div className="mt-4">
-                <div className="text-sm text-slate-300">Max Supply</div>
-                <div className="text-xl">
-                  {formatPrice(max_supply).replace('$', '')}
-                </div>
-              </div>
-              <div >
-                <div className="text-sm text-slate-300">Total Supply</div>
-                <div className="text-xl">
-                  {formatPrice(total_supply).replace('$', '')}
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Web3Connect text={`Buy ${name}`} />
             </div>
           </div>
         </div>

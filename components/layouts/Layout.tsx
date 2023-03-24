@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen">
       <Meta />
       <Header />
-      <div className="mx-auto max-w-[1380px] px-2 sm:py-2 md:py-4 lg:py-10">
+      <div className="mx-auto max-w-[1368px] px-2 sm:py-2 md:py-4 lg:py-10">
         <main className="container mx-auto">
           {children}
         </main>
