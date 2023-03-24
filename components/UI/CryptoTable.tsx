@@ -102,8 +102,10 @@ export default function CryptoTableList() {
         <table className={`table mobile-solid-background`}>
           <thead>
             <tr className={`table-header`}>
-              <th className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0">
-                <div className="h-full w-full flex items-center justify-center">#</div>
+              <th className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0 cursor-pointer" onClick={() => handleSort('market_cap_rank')}>
+                <div className="h-full w-full flex items-center justify-center">
+                  {renderSortIcon('market_cap_rank')} #
+                </div>
               </th>
               <th className="table__start sticky z-0 backdrop-opacity-0 cursor-pointer" onClick={() => handleSort('name')}>
                 Name
@@ -196,7 +198,7 @@ export default function CryptoTableList() {
                 <tr key={crypto.id}>
                   <td className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0">
                     <div className="h-full w-full flex items-center justify-center">
-                      {index + 1}
+                      {crypto.market_cap_rank}
                     </div>
                   </td>
                   <td className="table__start sticky z-0 backdrop-opacity-0">
@@ -214,7 +216,7 @@ export default function CryptoTableList() {
                             <span className="mr-2">{crypto.name}</span>
                             <span className="uppercase text-slate-300 text-12px mr-3">
                               <span className="md:hidden mr-2 bg-slate-700 px-2 py-1 rounded-md text-left">
-                                {index + 1}</span>{crypto.symbol}</span>
+                                {crypto.market_cap_rank}</span>{crypto.symbol}</span>
                           </span>
                         </div>
                       </Link>
