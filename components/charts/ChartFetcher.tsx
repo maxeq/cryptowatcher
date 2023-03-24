@@ -51,7 +51,21 @@ const ChartFetcher: React.FC<Props> = ({
 
   const item = cryptoArrayData.getarray.find(item => item._id === _id);
 
-  if (!item) return <div>No data found for the given id</div>;
+  if (!item) {
+    return (
+      <div
+        style={{
+          width: width,
+          height: height,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        No data found for the given id
+      </div>
+    );
+  }
 
   return (
     <Charts
