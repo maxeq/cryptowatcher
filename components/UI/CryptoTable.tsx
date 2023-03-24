@@ -14,6 +14,12 @@ export default function CryptoTableList() {
   const { data, size, setSize, isReachedEnd, isLoading, error } =
     usePagination('/api/coins/getData');
 
+  const [showTooltipx, setShowTooltipx] = useState<Record<number, boolean>>({});
+
+  const handleTooltipVisibility = (index: any, visible: any) => {
+    setShowTooltipx((prev) => ({ ...prev, [index]: visible }));
+  };
+
   // tooltips
   const [showTooltip, setShowTooltip] = useState(false);
   const handleMouseEnter = () => {
@@ -166,7 +172,7 @@ export default function CryptoTableList() {
                     </div>
                   </td>
                   <td className="table__end">
-                    {formatPrice(crypto.current_price)}
+                    {formatPrice(crypto.current_price, 2)}
                   </td>
                   <td
                     className={`table__end`}>
@@ -186,10 +192,44 @@ export default function CryptoTableList() {
                     {formatPrice(crypto.market_cap)}
                   </td>
                   <td className="table__end">
-                    {formatPrice(crypto.total_volume)}
+                    <div>
+                      {formatPrice(crypto.total_volume)}
+                    </div>
+                    <div className='text-slate-300 text-12px'>
+                      {formatPrice(crypto.total_volume / crypto.current_price, 0, false)} {crypto.symbol.toUpperCase()}
+                    </div>
                   </td>
                   <td className="table__end whitespace-nowrap">
+
                     {formatPrice(crypto.circulating_supply).replace('$', '')} {crypto.symbol.toUpperCase()}
+
+                    {crypto.max_supply !== 0 && crypto.circulating_supply !== 0 && isFinite(crypto.circulating_supply / crypto.max_supply) ? (
+                      <div
+                        className="relative w-3/4 h-2 bg-slate-100/50 rounded-full ml-auto"
+                        onMouseEnter={() => handleTooltipVisibility(index, true)}
+                        onMouseLeave={() => handleTooltipVisibility(index, false)}
+                      >
+                        <div
+                          className="absolute left-0 h-2 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                          style={{
+                            width: `${((crypto.circulating_supply / crypto.max_supply) * 100).toFixed(0)}%`,
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            // add the following styles to change the color to reverse and add transparency
+                            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0.5) 50%, transparent 50%)',
+                            backgroundSize: '200% 100%',
+                            backgroundPosition: 'right bottom',
+                            transition: 'background-position 0.5s ease-out'
+                          }}
+                        ></div>
+                        {showTooltipx[index] && (
+                          <div className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left">
+                            {((crypto.circulating_supply / crypto.max_supply) * 100).toFixed(0)}%
+                          </div>
+                        )}
+                      </div>
+                    ) : null}
+
+
                   </td>
                   <td className={`table__end`}>
                     <ChartFetcher _id={crypto.id} width='150px' height='75px' />

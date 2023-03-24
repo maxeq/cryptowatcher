@@ -161,3 +161,7 @@
 .bg-gradient-table {
   background-image: linear-gradient(to bottom, #dad8d81c 1%, transparent 20%);
 }
+
+.tooltip:hover .tooltip-text {
+  display: block;
+}

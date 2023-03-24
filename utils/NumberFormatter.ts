@@ -1,6 +1,16 @@
-function formatPrice(price = 0) {
-  const formattedPrice = Math.round(Number(price) * 100) / 100;
-  return `$${formattedPrice.toLocaleString()}`;
+function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = true) {
+  const formattedValue = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  }).format(value);
+
+  if (includeCurrencySymbol) {
+    return formattedValue;
+  } else {
+    return formattedValue.replace('$', '');
+  }
 }
 
 function formatPercent(percent: number | null) {
