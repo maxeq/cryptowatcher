@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import Image from 'next/image';
 import Loader from './icons/Loader';
 import { formatPercent, formatPrice } from '../utils/NumberFormatter';
@@ -9,8 +9,13 @@ import Button from './buttons/Button';
 import Link from 'next/link';
 
 export default function CryptoCards() {
-  const { data, size, setSize, isReachedEnd, isLoading, error } =
-    usePagination('/api/coins/getData');
+  const [sortKey, setSortKey] = useState('market_cap_rank');
+  const [sortDirection, setSortDirection] = useState('asc');
+  const { data, size, setSize, isReachedEnd, isLoading, error } = usePagination(
+    `/api/coins/getData`,
+    sortKey,
+    sortDirection
+  );
   const classPriceChangePercent = (value: number) =>
     value < 0 ? 'text-rose-300' : 'text-lime-300';
 
