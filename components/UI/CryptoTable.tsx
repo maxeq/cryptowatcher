@@ -124,23 +124,77 @@ export default function CryptoTableList() {
               </th>
               <th className="table__end" onClick={() => handleSort('market_cap')}>
                 <div className="flex items-center justify-end">
-                  {renderSortIcon('market_cap')}Market Cap {renderSortIcon('market_cap')}
+                  {renderSortIcon('market_cap')}
+                  <div className="relative inline-flex items-center" onClick={() => handleSort('market_cap')}>
+                    Market Cap
+                    <div
+                      className="ml-1"
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
+                      {showTooltip && (
+                        <div
+                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-60 -bottom-28 normal-case text-left"
+                        >
+                          The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.
+                          <br></br><br></br>
+                          Market Cap = Current Price x Circulating Supply.
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </th>
               <th className="table__end" onClick={() => handleSort('total_volume')}>
                 <div className="flex items-center justify-end">
-                  {renderSortIcon('total_volume')}Volume (24h) {renderSortIcon('total_volume')}
+                  {renderSortIcon('total_volume')}
+
+                  <div className="relative inline-flex items-center" onClick={() => handleSort('total_volume')}>
+                    Volume (24h)
+                    <div
+                      className="ml-1"
+                      onMouseEnter={handleMouseEnterVolume}
+                      onMouseLeave={handleMouseLeaveVolume}
+                    >
+                      <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
+                      {showTooltipVolume && (
+                        <div
+                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-48 -bottom-14 normal-case text-left"
+                        >
+                          A measure of how much of a cryptocurrency was traded in the last 24 hours.
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </th>
               <th className="table__end" onClick={() => handleSort('circulating_supply')}>
                 <div className="flex items-center justify-end">
-                  {renderSortIcon('circulating_supply')}Circulating Supply {renderSortIcon('circulating_supply')}
+                  {renderSortIcon('circulating_supply')}
+
+                  <div className="relative inline-flex items-center" onClick={() => handleSort('circulating_supply')}>
+                    Circulating Supply
+                    <div
+                      className="ml-1"
+                      onMouseEnter={handleMouseEnterCirc}
+                      onMouseLeave={handleMouseLeaveCirc}
+                    >
+                      <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
+                      {showTooltipCirc && (
+                        <div
+                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-36 -bottom-20 normal-case text-left"
+                        >
+                          The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </th>
               <th className="table__end">Last 7 days</th>
             </tr>
           </thead>
-
           <tbody>
             {data
               ?.flatMap(page => page.getdata)
@@ -199,6 +253,7 @@ export default function CryptoTableList() {
                     <div className='text-slate-300 text-12px'>
                       {formatPrice(crypto.total_volume / crypto.current_price, 0, false)} {crypto.symbol.toUpperCase()}
                     </div>
+
                   </td>
                   <td className="table__end whitespace-nowrap">
 
