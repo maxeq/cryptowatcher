@@ -104,7 +104,7 @@ export default function CryptoTableList() {
             <tr className={`table-header`}>
               <th className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0 cursor-pointer" onClick={() => handleSort('market_cap_rank')}>
                 <div className="h-full w-full flex items-center justify-center">
-                  {renderSortIcon('market_cap_rank')} #
+                  #
                 </div>
               </th>
               <th className="table__start sticky z-0 backdrop-opacity-0 cursor-pointer" onClick={() => handleSort('name')}>
