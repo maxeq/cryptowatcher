@@ -14,10 +14,11 @@ const formatPercent = (value: number) => {
 
 interface PriceChangeProps {
     value: number;
+    disableColor?: boolean;
 }
 
-const PriceChange: React.FC<PriceChangeProps> = ({ value }) => {
-    const textColorClass = TextColorChange(value);
+const PriceChange: React.FC<PriceChangeProps> = ({ value, disableColor = false }) => {
+    const textColorClass = disableColor ? '' : TextColorChange(value);
     const icon = classPriceChangeIcon(value);
     const formattedValue = formatPercent(value);
 

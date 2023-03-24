@@ -8,6 +8,7 @@ import Web3Connect from '../buttons/Web3Connect';
 import ErrorMessage from '../errorMessage';
 import Loader from '../icons/Loader';
 import Breadcrumbs from '../Breadcrumbs';
+import PriceChange from '@/utils/PriceArrowFormatter';
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -94,7 +95,7 @@ export default function Dashboard(): JSX.Element {
                   Coin
                 </div>
                 <div className="bg-cmc/25 text-gray-300/80 rounded-md px-2 py-1">
-                  Followed by {12}
+                  On 3,908,483 watchlists
                 </div>
               </div>
               <div className="">
@@ -111,12 +112,13 @@ export default function Dashboard(): JSX.Element {
                 </div>
                 <div className="text-slate-300/80 text-sm py-2">Tags:</div>
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">Mineable</div>
-                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">PoW</div>
-                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">SHA-256</div>
-                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">Store of Value</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">Mineable</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">PoW</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">SHA-256</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">Store of Value</div>
+                  <div className="bg-teal-900/25 text-xs w-min rounded-md px-2 py-1 text-teal-400">View all</div>
                 </div>
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <div className="text-sm text-slate-300">Volume</div>
                   <div className="text-xl">{formatPrice(total_volume)}</div>
                   <div className="text-sm text-slate-300">
@@ -125,35 +127,47 @@ export default function Dashboard(): JSX.Element {
                   <div className="text-xl">
                     {formatPrice(fully_diluted_valuation)}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
           <div >
             <div className="pt-2">
-              <div className="text-slate-300 text-xs justify-center lg:flex lg:justify-center">
+              <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
                 {name} Price ({symbol.toUpperCase()})
               </div>
-              <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-center">
-                <div className="text-6xl font-bold">
-                  {formatPrice(current_price, 2)}
+              <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-start">
+                <div className="text-4xl font-bold">
+                  {formatPrice(current_price, 0)}
                 </div>
                 <div className="lg:px-2">
-                  <div className="text-center text-slate-300 text-lg">24h</div>
                   <div
-                    className={`text-base md:text-xl text-white rounded-lg px-2 ${classPriceChangePercent(
-                      price_change_percentage_24h
-                    )}`}
-                  >
-                    {formatPercent(price_change_percentage_24h)}
+                    className={`text-base font-bold rounded-xl px-2 py-1.5 bg-rose-500`}>
+                    <PriceChange value={price_change_percentage_24h} disableColor />
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between mt-4">
-                <div className="text-lg">Low: {formatPrice(low_24h, 2)}</div>
-                <div className="text-lg">High: {formatPrice(high_24h, 2)}</div>
+              <div className="flex space-x-4 mt-3">
+                <div className="text-md font-normal text-gray-300/80">15.67 ETH
+                </div>
+                <div><PriceChange value={price_change_percentage_24h} />
+                </div>
               </div>
+              <div className="flex justify-center">
+                <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h, 0)}</span> </div>
+
+                <div
+                  className="mx-4 elative w-full h-2 bg-slate-500/50 rounded-full"
+                  style={{
+                    width: `${((circulating_supply / max_supply) * 100).toFixed(0)}%`,
+                    backgroundSize: '200% 100%',
+                    backgroundPosition: 'left bottom',
+                    transition: 'background-position 0.5s ease-out'
+                  }}
+                ></div>
+
+                <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span> </div> </div>
             </div>
             <div className="md:flex md:justify-between border-t-2 mt-4 border-t-purple-400 py-4">
               <div className="mr-20">
