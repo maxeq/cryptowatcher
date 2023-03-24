@@ -136,9 +136,11 @@ export default function CryptoTableList() {
             {data
               ?.flatMap(page => page.getdata)
               .map((crypto: any, index: number) => (
-                <tr key={crypto.id} >
-                  <td className="xs:block hidden table__start sticky z-0 backdrop-opacity-0 ">
-                    {index + 1}
+                <tr key={crypto.id}>
+                  <td className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0">
+                    <div className="h-full w-full flex items-center justify-center">
+                      {index + 1}
+                    </div>
                   </td>
                   <td className="table__start sticky z-0 backdrop-opacity-0">
                     <div className={`flex items-center max-w-xs mr-5 md:mr-0`}>
