@@ -244,7 +244,7 @@ export default function CryptoTableList() {
                     <div>
                       {formatPrice(crypto.total_volume)}
                     </div>
-                    <div className='text-slate-300 text-12px'>
+                    <div className='text-slate-300 text-12px item-centered flex justify-end whitespace-nowrap'>
                       {formatPrice(crypto.total_volume / crypto.current_price, 0, false)} {crypto.symbol.toUpperCase()}
                     </div>
 
