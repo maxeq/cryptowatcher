@@ -122,7 +122,7 @@ export default function Dashboard(): JSX.Element {
               </div>
               <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-center">
                 <div className="text-6xl font-bold">
-                  {formatPrice(current_price)}
+                  {formatPrice(current_price, 2)}
                 </div>
                 <div className="lg:px-2">
                   <div className="text-center text-slate-300 text-lg">24h</div>
