@@ -136,8 +136,8 @@ export default function Dashboard(): JSX.Element {
                 </div>
               </div>
               <div className="flex justify-between mt-4">
-                <div className="text-lg">Low: {formatPrice(low_24h)}</div>
-                <div className="text-lg">High: {formatPrice(high_24h)}</div>
+                <div className="text-lg">Low: {formatPrice(low_24h, 2)}</div>
+                <div className="text-lg">High: {formatPrice(high_24h, 2)}</div>
               </div>
             </div>
             <div className="md:flex md:justify-between border-t-2 mt-4 border-t-purple-400 py-4">
