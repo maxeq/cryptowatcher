@@ -64,7 +64,11 @@
   text-align: right;
 }
 
-.table th,
+.table th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
 .table td {
   border-top: 1px solid #333;
   border-bottom: 1px solid #333;
@@ -89,7 +93,7 @@
     top: 0;
     background-color: #222531;
     z-index: 100;
-  }
+}
 
   .table__start {
     text-align: left;
