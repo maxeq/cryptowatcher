@@ -3,10 +3,11 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Image from 'next/image';
 import { formatPrice, formatPercent } from '../../utils/NumberFormatter';
-import { FaShareSquare, FaRegStar } from 'react-icons/fa';
+import { FiShare, FiStar } from 'react-icons/fi';
 import Web3Connect from '../buttons/Web3Connect';
 import ErrorMessage from '../errorMessage';
 import Loader from '../icons/Loader';
+import Breadcrumbs from '../Breadcrumbs';
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -65,45 +66,59 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div key={ids}>
-      <div className="md:p-8 p-4 shadow-purple-400 bg-gray-900 border border-solid border-gray-100 rounded-lg shadow-lg">
+      <div className="">
+        <Breadcrumbs />
         <div className="md:flex md:justify-between">
           <div >
             <div >
-              <div className="flex md:justify-between items-center">
-                <Image
-                  src={image}
-                  alt={name}
-                  width="64"
-                  height="64"
-                  className="mr-2"
-                />
-                <div className="text-5xl md:ml-3">{name}</div>
-                <div className="flex pt-4 space-x-3 ml-3">
-                  <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200">
-                    <FaRegStar size="24" />
+              <div className="flex md:justify-between items-center justify-center">
+                <Image src={image} alt={name} width="36" height="36" className="mr-4 rounded-full" />
+                <div className="text-4xl font-bold tracking-wider">
+                  {name}
+                  <span className="text-sm bg-cmc/25 text-slate-200 tracking-wider opacity-70 bg-opacity-70 rounded-md px-1.5 py-1 mx-3 font-bold space-">{symbol.toUpperCase()}</span>
+                </div>
+                <div className="flex pt-4 space-x-3">
+                  <div className="border border-opacity-50 border-gray-500 hover:bg-gray-500/10 text-gray-300 rounded-lg p-2">
+                    <FiStar size="16" className=" text-white " />
                   </div>
-                  <div className="border-2 border-gray-500 text-gray-300 rounded-lg p-1 hover:text-gray-200">
-                    <FaShareSquare size="24" />
+                  <div className="border border-opacity-50 border-gray-500 hover:bg-gray-500/10 text-gray-300 rounded-lg p-2">
+                    <FiShare size="16" className="text-white" />
                   </div>
                 </div>
               </div>
-              <div className="flex space-x-3 text-sm mt-4 text-slate-300">
-                <div className="border-b-gray-500 border text-gray-100 bg-gray-800 rounded px-2">
+              <div className="flex space-x-3 text-xs mt-4">
+                <div className=" bg-cmc font-bold rounded-md px-2 py-1 text-white">
                   Rank #{market_cap_rank}
                 </div>
-                <div className="border-b-gray-500 border bg-gray-800 rounded px-2">
+                <div className="bg-cmc/25 text-gray-300/80 rounded-md px-2 py-1 text-white">
                   Coin
                 </div>
-                <div className="border-b-gray-500 border bg-gray-800 rounded px-2">
+                <div className="bg-cmc/25 text-gray-300/80 rounded-md px-2 py-1">
                   Followed by {12}
                 </div>
               </div>
-              <div className="text-lg mt-4">
+              <div className="">
+                <div className="mt-4 text-sm font-bold whitespace-nowrap">
+                  <div className="flex items-center h-10 space-x-2">
+                    <div className="w-min hover:bg-cmc px-4 py-1.5 bg-cmc/25 rounded-lg text-center">bitcoing.org</div>
+                    <div className="w-min hover:bg-cmc px-4 py-1.5 bg-cmc/25 rounded-lg text-center">Explorers</div>
+                    <div className="w-min hover:bg-cmc px-4 py-1.5 bg-cmc/25 rounded-lg text-center">Community</div>
+                  </div>
+                  <div className="flex items-center h-10 space-x-2">
+                    <div className="w-min hover:bg-cmc px-4 py-1.5 bg-cmc/25 rounded-lg text-center">Source code</div>
+                    <div className="w-min hover:bg-cmc px-4 py-1.5 bg-cmc/25 rounded-lg text-center">Whitepaper</div>
+                  </div>
+                </div>
+                <div className="text-slate-300/80 text-sm py-2">Tags:</div>
+                <div className="flex items-center space-x-3 whitespace-nowrap">
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">Mineable</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">PoW</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">SHA-256</div>
+                  <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1 text-white">Store of Value</div>
+                </div>
                 <div className="mt-4">
                   <div className="text-sm text-slate-300">Volume</div>
                   <div className="text-xl">{formatPrice(total_volume)}</div>
-                </div>
-                <div className="mt-4">
                   <div className="text-sm text-slate-300">
                     Fully Diluted Valuation
                   </div>
@@ -192,6 +207,6 @@ export default function Dashboard(): JSX.Element {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
