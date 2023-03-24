@@ -58,8 +58,10 @@ export default function CryptoTableList() {
         <table className={`table mobile-solid-background`}>
           <thead>
             <tr className={`table-header`}>
-              <th className="xs:block hidden table__start sticky z-0 backdrop-opacity-2 py-2">
-                #
+              <th className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0">
+                <div className="h-full w-full flex items-center justify-center">
+                  #
+                </div>
               </th>
               <th className="table__start sticky z-0 backdrop-opacity-0">
                 Name
