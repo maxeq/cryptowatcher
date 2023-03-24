@@ -134,9 +134,7 @@ export default function CryptoTableList() {
                     >
                       <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
                       {showTooltip && (
-                        <div
-                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-60 -bottom-28 normal-case text-left"
-                        >
+                        <div className="space-y-1 hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left w-80 h-auto left-1/2 transform -translate-x-1/2">
                           The total market value of a cryptocurrency's circulating supply. It is analogous to the free-float capitalization in the stock market.
                           <br></br><br></br>
                           Market Cap = Current Price x Circulating Supply.
@@ -159,9 +157,7 @@ export default function CryptoTableList() {
                     >
                       <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
                       {showTooltipVolume && (
-                        <div
-                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-48 -bottom-14 normal-case text-left"
-                        >
+                        <div className="space-y-1 hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left w-80 h-auto left-1/2 transform -translate-x-1/2">
                           A measure of how much of a cryptocurrency was traded in the last 24 hours.
                         </div>
                       )}
@@ -182,9 +178,7 @@ export default function CryptoTableList() {
                     >
                       <IoInformationCircle size={18} color="gray" className='md:block hidden ' />
                       {showTooltipCirc && (
-                        <div
-                          className="hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-1 leading-relaxed -right-36 -bottom-20 normal-case text-left"
-                        >
+                        <div className="space-y-1 hidden md:block absolute bg-slate-900 text-slate-300 text-xs rounded-lg py-2 pl-4 pr-4 leading-relaxed normal-case text-left w-80 h-auto left-1/2 transform -translate-x-1/2">
                           The amount of coins that are circulating in the market and are in public hands. It is analogous to the flowing shares in the stock market.
                         </div>
                       )}
