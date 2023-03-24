@@ -13,6 +13,12 @@ module.exports = {
       fontSize: {
         '12px': '12px',
       },
+      colors: {
+        cmc: '#858ca2',
+        cmc2: '#323546',
+        gold: '#FFD700',
+        bronze: '#CD7F32',
+      },
       animation: {
         spin: 'spin 1s linear',
       },

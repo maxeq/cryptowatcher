@@ -13,7 +13,7 @@ const Breadcrumbs: React.FC = () => {
 
     return (
         <nav aria-label="breadcrumb">
-            <ol className="breadcrumb mb-4 text-md text-gray-300" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+            <ol className="breadcrumb mb-4 text-md text-gray-300/75" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
                 {path.map((segment, index) => {
                     const url = `/${path.slice(0, index + 1).join('/')}`;
                     const displayText = capitalizeFirstLetter(segment);
