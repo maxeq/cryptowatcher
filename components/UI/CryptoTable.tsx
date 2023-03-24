@@ -105,27 +105,27 @@ export default function CryptoTableList() {
               <th className="hidden md:table-cell table__start sticky z-0 backdrop-opacity-0">
                 <div className="h-full w-full flex items-center justify-center">#</div>
               </th>
-              <th className="table__start sticky z-0 backdrop-opacity-0" onClick={() => handleSort('name')}>
+              <th className="table__start sticky z-0 backdrop-opacity-0 cursor-pointer" onClick={() => handleSort('name')}>
                 Name
               </th>
               <th className="table__end whitespace-nowrap text-right" onClick={() => handleSort('current_price')}>
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-end cursor-pointer">
                   {renderSortIcon('current_price')} Price (USD)
                 </div>
               </th>
               <th className="table__end" onClick={() => handleSort('price_change_percentage_1h_in_currency')}>
-                <div className="flex items-center justify-end">{renderSortIcon('price_change_percentage_1h_in_currency')}1h %</div>
+                <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_1h_in_currency')}1h %</div>
               </th>
               <th className="table__end" onClick={() => handleSort('price_change_percentage_24h')}>
-                <div className="flex items-center justify-end">{renderSortIcon('price_change_percentage_24h')}24h %</div>
+                <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_24h')}24h %</div>
               </th>
               <th className="table__end" onClick={() => handleSort('price_change_percentage_7d_in_currency')}>
-                <div className="flex items-center justify-end">{renderSortIcon('price_change_percentage_7d_in_currency')}7d %</div>
+                <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_7d_in_currency')}7d %</div>
               </th>
               <th className="table__end" onClick={() => handleSort('market_cap')}>
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-end cursor-pointer">
                   {renderSortIcon('market_cap')}
-                  <div className="relative inline-flex items-center" onClick={() => handleSort('market_cap')}>
+                  <div className="relative inline-flex items-center cursor-pointer" onClick={() => handleSort('market_cap')}>
                     Market Cap
                     <div
                       className="ml-1"
@@ -148,7 +148,7 @@ export default function CryptoTableList() {
                 <div className="flex items-center justify-end">
                   {renderSortIcon('total_volume')}
 
-                  <div className="relative inline-flex items-center" onClick={() => handleSort('total_volume')}>
+                  <div className="relative inline-flex items-center cursor-pointer" onClick={() => handleSort('total_volume')}>
                     Volume (24h)
                     <div
                       className="ml-1"
@@ -169,7 +169,7 @@ export default function CryptoTableList() {
                 <div className="flex items-center justify-end">
                   {renderSortIcon('circulating_supply')}
 
-                  <div className="relative inline-flex items-center" onClick={() => handleSort('circulating_supply')}>
+                  <div className="relative inline-flex items-center cursor-pointer" onClick={() => handleSort('circulating_supply')}>
                     Circulating Supply
                     <div
                       className="ml-1"
