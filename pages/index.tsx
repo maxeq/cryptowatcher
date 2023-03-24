@@ -2,14 +2,13 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import NoSSR from '../components/layouts/NoSSR';
 import H1Template from '@/components/UI/HeaderTemplate';
 import CryptoTableList from '@/components/UI/CryptoTable';
 import SliderData from '@/components/sliders/SliderData';
 
 const Cryptocurrencies: NextPage = () => {
   return (
-    <NoSSR>
+    <>
       <Head>
         <title>Cryptocurrencies</title>
       </Head>
@@ -26,7 +25,7 @@ const Cryptocurrencies: NextPage = () => {
         </div>
       </div>
       <CryptoTableList />
-    </NoSSR>
+    </>
   );
 };
 
