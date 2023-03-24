@@ -1,17 +1,18 @@
 import useSWRInfinite from 'swr/infinite';
 
-export const usePagination = (url: string) => {
+export const usePagination = (baseUrl: string, sortKey: string, sortDirection: string) => {
   const fetcher = (url: any) => fetch(url).then(res => res.json());
   const PAGE_SIZE = 20;
   const getKey = (pageIndex: number, previousPageData: any) => {
     pageIndex = pageIndex + 1;
     if (previousPageData && !previousPageData.getdata.length) return null;
 
-    return `${url}?page=${pageIndex}&pageSize=${PAGE_SIZE}`;
+    return `${baseUrl}?page=${pageIndex}&pageSize=${PAGE_SIZE}&sortKey=${sortKey}&sortDirection=${sortDirection}`;
   };
 
   const { data, size, setSize, isLoading, error } = useSWRInfinite(
-    getKey,
+    (pageIndex, previousPageData) =>
+      getKey(pageIndex, previousPageData),
     fetcher
   );
 
@@ -20,17 +21,15 @@ export const usePagination = (url: string) => {
 
   const loadingMore = size > 0 && data && typeof data[size - 1] === 'undefined';
 
-  return { data, size, setSize, isReachedEnd, loadingMore, isLoading, error };
-  {
-    /*
-{loadingMore && <Loader />}
-{!isReachedEnd && <button
-className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-onClick={() => setSize(size + 1)}
-
-Load more
-</button>} */
-  }
+  return {
+    data,
+    size,
+    setSize,
+    isReachedEnd,
+    loadingMore,
+    isLoading,
+    error,
+  };
 };
 
 export default usePagination;

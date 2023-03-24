@@ -1,11 +1,25 @@
-import clientPromise from '../../../lib/mongodb';
-import { NextApiRequest, NextApiResponse } from 'next/types';
+import { MongoClient } from 'mongodb';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { CoinData } from '../../../types/coins/coindata';
+import clientPromise from '../../../lib/mongodb';
 
-const getData = async (page: number, pageSize: number): Promise<CoinData[]> => {
-  const mongoClient = await clientPromise;
+const getData = async (
+  page: number,
+  pageSize: number,
+  sortKey: string,
+  sortDirection: string
+): Promise<CoinData[]> => {
+  const mongoClient: MongoClient = await clientPromise;
 
   const skip = (page - 1) * pageSize;
+
+  // Set the sort direction
+  const direction = sortDirection === 'asc' ? 1 : -1;
+
+  // Create a dynamic sort object
+  const sortObj: Record<string, number> = {};
+  sortObj[sortKey] = direction;
+
   const data = await mongoClient
     .db('myFirstDatabase')
     .collection('coins')
@@ -20,7 +34,7 @@ const getData = async (page: number, pageSize: number): Promise<CoinData[]> => {
         $replaceRoot: { newRoot: '$latestData' },
       },
       {
-        $sort: { market_cap_rank: 1 },
+        $sort: sortObj,
       },
       {
         $skip: skip,
@@ -38,11 +52,15 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ getdata: CoinData[] }>
 ) => {
-  const { page = 1, pageSize = 10 } = req.query;
+  const { page = 1, pageSize = 10, sortKey = 'market_cap_rank', sortDirection = 'asc' } = req.query;
+
   const data = await getData(
     parseInt(page as string),
-    parseInt(pageSize as string)
+    parseInt(pageSize as string),
+    sortKey as string,
+    sortDirection as string
   );
+
   res.status(200).json({ getdata: data });
 };
 

@@ -11,9 +11,30 @@ import { useState } from 'react';
 import PriceChange from '@/utils/PriceArrowFormatter';
 
 export default function CryptoTableList() {
-  const { data, size, setSize, isReachedEnd, isLoading, error } =
-    usePagination('/api/coins/getData');
 
+  //default sort
+  const [sortKey, setSortKey] = useState('market_cap_rank');
+  const [sortDirection, setSortDirection] = useState('asc');
+
+  //fetching and pagination
+  const { data, size, setSize, isReachedEnd, isLoading, error } = usePagination(
+    `/api/coins/getData`,
+    sortKey,
+    sortDirection
+  );
+
+  // sort
+  const handleSort = (newSortKey: string) => {
+    if (sortKey === newSortKey) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(newSortKey);
+      setSortDirection('desc');
+    }
+    setSize(1);
+  };
+
+  // tooltips for bar
   const [showTooltipx, setShowTooltipx] = useState<Record<number, boolean>>({});
 
   const handleTooltipVisibility = (index: any, visible: any) => {
@@ -69,15 +90,21 @@ export default function CryptoTableList() {
                   #
                 </div>
               </th>
-              <th className="table__start sticky z-0 backdrop-opacity-0">
+              <th
+                className="table__start sticky z-0 backdrop-opacity-0"
+                onClick={() => handleSort('name')}
+              >
                 Name
               </th>
-              <th className="table__end whitespace-nowrap">Price (USD)</th>
-              <th className="table__end">1h %</th>
-              <th className="table__end">24h %</th>
-              <th className="table__end">7d %</th>
+              <th
+                className="table__end whitespace-nowrap"
+                onClick={() => handleSort('current_price')}
+              >Price (USD)</th>
+              <th className="table__end" onClick={() => handleSort('price_change_percentage_1h_in_currency')}>1h %</th>
+              <th className="table__end" onClick={() => handleSort('price_change_percentage_24h')}>24h %</th>
+              <th className="table__end" onClick={() => handleSort('price_change_percentage_7d_in_currency')}>7d %</th>
               <th className="table__end">
-                <div className="relative inline-flex items-center">
+                <div className="relative inline-flex items-center" onClick={() => handleSort('market_cap')}>
                   Market Cap
                   <div
                     className="ml-1"
@@ -98,7 +125,7 @@ export default function CryptoTableList() {
                 </div>
               </th>
               <th className="table__end">
-                <div className="relative inline-flex items-center">
+                <div className="relative inline-flex items-center" onClick={() => handleSort('total_volume')}>
                   Volume (24h)
                   <div
                     className="ml-1"
@@ -117,7 +144,7 @@ export default function CryptoTableList() {
                 </div>
               </th>
               <th className="table__end">
-                <div className="relative inline-flex items-center">
+                <div className="relative inline-flex items-center" onClick={() => handleSort('circulating_supply')}>
                   Circulating Supply
                   <div
                     className="ml-1"
