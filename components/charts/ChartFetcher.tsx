@@ -45,7 +45,7 @@ const ChartFetcher: React.FC<Props> = ({
   if (isLoading)
     return (
       <div>
-        <Loader />
+
       </div>
     );
 

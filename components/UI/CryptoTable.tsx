@@ -307,8 +307,8 @@ export default function CryptoTableList() {
 
 
                   </td>
-                  <td className={`table__end w-0`}>
-                    <ChartFetcher _id={crypto.id} width='150px' height='75px' />
+                  <td className={`table__end`} style={{ width: '150px', height: '75px' }}>
+                    <ChartFetcher _id={crypto.id} width='125px' height='70px' />
                   </td>
                 </tr>
               ))}
