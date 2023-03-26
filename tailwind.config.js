@@ -13,6 +13,9 @@ module.exports = {
       fontSize: {
         '12px': '12px',
       },
+      height: {
+        '13': '3.15rem',
+      },
       colors: {
         cmc: '#858ca2',
         cmc2: '#323546',
