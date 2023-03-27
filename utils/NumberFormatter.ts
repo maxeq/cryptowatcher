@@ -1,4 +1,8 @@
 function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = true) {
+  if (value == null) {
+    return '--';
+  }
+
   const formattedValue = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
