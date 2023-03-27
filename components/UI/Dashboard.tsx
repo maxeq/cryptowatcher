@@ -9,6 +9,9 @@ import ErrorMessage from '../errorMessage';
 import Loader from '../icons/Loader';
 import Breadcrumbs from '../Breadcrumbs';
 import PriceChange from '@/utils/PriceArrowFormatter';
+import { IoInformationCircle } from 'react-icons/io5';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import Logo from '../icons/LogoNew';
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -41,6 +44,7 @@ export default function Dashboard(): JSX.Element {
 
   const {
     max_supply,
+    market_cap_change_percentage_24h,
     total_volume,
     circulating_supply,
     market_cap_change_24h,
@@ -118,16 +122,6 @@ export default function Dashboard(): JSX.Element {
                   <div className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">Store of Value</div>
                   <div className="bg-teal-900/25 text-xs w-min rounded-md px-2 py-1 text-teal-400">View all</div>
                 </div>
-                {/* <div className="mt-4">
-                  <div className="text-sm text-slate-300">Volume</div>
-                  <div className="text-xl">{formatPrice(total_volume)}</div>
-                  <div className="text-sm text-slate-300">
-                    Fully Diluted Valuation
-                  </div>
-                  <div className="text-xl">
-                    {formatPrice(fully_diluted_valuation)}
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
@@ -159,7 +153,7 @@ export default function Dashboard(): JSX.Element {
                   <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h, 0)}</span> </div>
                   <div className="relative w-full h-2 mt-2.5 bg-slate-500/50 rounded-full mx-4">
                     <div
-                      className="h-2 bg-gradient-to-r from-green-400 to-lime-500 rounded-full"
+                      className="h-2 bg-gradient-to-r from-lime-400 to-lime-600 rounded-full"
                       style={{
                         width: `${((circulating_supply / max_supply) * 100).toFixed(0)}%`,
                         backgroundSize: '200% 100%',
@@ -168,61 +162,141 @@ export default function Dashboard(): JSX.Element {
                       }}
                     ></div>
                   </div>
-                  <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span><span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span> </div> </div>
+                  <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span><span className="bg-cmc/25 text-sm w-min text-gray-300/80 rounded px-2 py-1 ml-2">24h</span></div></div>
               </div>
               <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10">
-                <div className="mr-20">
-                  <div className="text-slate-300 text-xs">MarketCap</div>
-                  <div className="text-xl">{formatPrice(market_cap)}</div>
+                <div className="space-y-1 my-4">
+                  <div className="flex items-center">
+                    <div className="text-gray-300/80 text-12px">
+                      Market Cap
+                    </div>
+                    <div>
+                      <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
+                    </div>
+                  </div>
+                  <div className="text-base">{formatPrice(market_cap)}</div>
+                  <div className="flex justify-start">
+                    <PriceChange value={market_cap_change_percentage_24h} />
+                  </div>
+                  <div className="pt-8 pb-2 text-gray-300/80 text-sm">
+                    24h Volume / Market Cap <span className="text-white ml-4">{((market_cap_change_24h / total_volume).toFixed(4))}
+                    </span>
+                  </div>
                 </div>
+                <div className="md:flex md:justify-between border-r border-[#858ca2]/25"></div>
                 <div>
-                  <div className="text-slate-300 text-xs pt-4 md:pt-0">
-                    Market Cap Change 24h
-                  </div>
-                  <div className="text-xl">
-                    {formatPrice(market_cap_change_24h)}
+                  <div className="space-y-1 my-4">
+                    <div className="flex items-center">
+                      <div className="text-gray-300/80 text-12px">
+                        Fully Diluted Market Cap
+                      </div>
+                      <div>
+                        <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
+                      </div>
+                    </div>
+                    <div className="text-base">{formatPrice(fully_diluted_valuation)}</div>
+                    <div className="flex justify-start">
+                      <PriceChange value={fully_diluted_valuation / market_cap} />
+                    </div>
                   </div>
                 </div>
+                <div className="md:flex md:justify-between border-r border-[#858ca2]/25"></div>
               </div>
             </div>
-
+            {/* 3rd */}
             <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
-              <div className="mt-4 ">
-                <div className="text-sm text-slate-300">Circulating Supply</div>
-                <div className="text-xl">
-                  {formatPrice(circulating_supply).replace('$', '')}
+              <div className="flex justify-end space-x-1.5">
+                <div className="flex justify-center">
+                  <Web3Connect text={`Buy ${name}`} />
                 </div>
-                <div className="mt-2">
-                  <div className="md:w-2/3 w-1/3 bg-gray-200 rounded-full dark:bg-gray-700">
-                    <div
-                      className={`bg-slate-400 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full`}
-                    >
-                      {((circulating_supply / max_supply) * 100).toFixed(0)}%
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Exchange <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Gaming <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Earn crypto <IoMdArrowDropdown /></button>
+              </div>
+              <div className="justify-end flex text-10px text-gray-300/80 items-center m-2">
+                <Logo size={15} className="m-1" /> Sponsored
+              </div>
+
+              <div className="md:flex md:justify-start border-t border-[#858ca2]/25 py-10 mb-[33px] mt-[90px]">
+
+                <div className="space-y-1 my-4 mx-10">
+                  <div className="flex items-center">
+                    <div className="text-gray-300/80 text-12px">
+                      Volume <span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span>
+                    </div>
+                    <div>
+                      <IoInformationCircle size={18} color="gray" className='md:block hidden ml-2' />
+                    </div>
+                  </div>
+                  <div className="text-base">{formatPrice(market_cap)}</div>
+                  <div className="flex justify-start">
+                    <PriceChange value={market_cap_change_percentage_24h} />
+                  </div>
+
+                  <div className="mt-4 space-y-2">
+                    <div className="mt-4 justify-between flex">
+                      <div className="text-12px text-gray-300/80 flex items-center">CEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                      <div>
+                        {formatPrice(max_supply).replace('$', '')}
+                      </div>
+                    </div>
+                    <div className="mt-4 justify-between flex">
+                      <div className="text-12px text-gray-300/80 flex items-center">DEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                      <div>
+                        {formatPrice(total_supply).replace('$', '')}
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div className="md:flex border-r border-[#858ca2]/25"></div>
+                <div>
+                  <div className="space-y-1 my-4 mx-10">
+                    <div className="flex items-center">
+                      <div className="text-12px text-gray-300/80 flex items-center">Circulating Supply
+                        <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
+                      </div>
+                    </div>
+                    <div className="text-md flex justify-between">
+                      {formatPrice(circulating_supply).replace('$', '')} {symbol.toUpperCase()}
+                      <span className="text-gray-300/80">{((circulating_supply / max_supply) * 100).toFixed(0)}% </span>
+                    </div>
+                    <div className="flex justify-start">
+                      <div className="w-full h-2 mt-2 bg-slate-500/50 rounded-full">
+                        <div
+                          className="h-2 bg-gradient-to-r from-lime-400 to-lime-600 rounded-full "
+                          style={{
+                            width: `${((circulating_supply / max_supply) * 100).toFixed(0)}%`,
+                            backgroundSize: '200% 100%',
+                            backgroundPosition: 'left bottom',
+                            transition: 'background-position 0.5s ease-out',
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 space-y-2">
+                      <div className="mt-6 justify-between flex">
+                        <div className="text-12px text-gray-300/80 flex items-center">Max Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                        <div>
+                          {formatPrice(max_supply).replace('$', '')}
+                        </div>
+                      </div>
+                      <div className="mt-4 justify-between flex">
+                        <div className="text-12px text-gray-300/80 flex items-center">Total Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                        <div>
+                          {formatPrice(total_supply).replace('$', '')}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mt-4 space-y-2">
-                <div className="mt-4">
-                  <div className="text-sm text-slate-300">Max Supply</div>
-                  <div className="text-xl">
-                    {formatPrice(max_supply).replace('$', '')}
-                  </div>
-                  <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10"></div>
-                </div>
-                <div >
-                  <div className="text-sm text-slate-300">Total Supply</div>
-                  <div className="text-xl">
-                    {formatPrice(total_supply).replace('$', '')}
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-center">
-                <Web3Connect text={`Buy ${name}`} />
-              </div>
             </div>
           </div>
         </div>
+        <div className="md:flex md:justify-between border-b border-[#858ca2]/25"></div>
       </div>
     </div >
   );

@@ -29,7 +29,7 @@ const Web3CustomButton = ({ text }: Web3ConnectProps) => {
 
   return (
     <button
-      className="px-4 bg-lime-600 transition duration-300 ease-in-out hover:bg-lime-500 shadow-lg shadow-lime-500/50 py-2 mx:px-0 text-white font-bold rounded whitespace-nowrap"
+      className="px-4 bg-lime-600 transition duration-300 ease-in-out hover:bg-lime-500 py-2 mx:px-0 text-white font-bold rounded-lg whitespace-nowrap"
       onClick={onClick}
       disabled={loading}
     >

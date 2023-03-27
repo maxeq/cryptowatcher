@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white flex shadow py-8">
       <div className="flex justify-between items-center mx-auto">
         <div className="flex-auto mx-20 hidden md:block">
-          <Logo size={128} />
+          <Logo size={128} className="my-2 md:my-4 cursor-pointer" />
         </div>
         <div className="flex justify-center">
           <div className="w-full lg:w-1/4 px-4 hidden md:block">
