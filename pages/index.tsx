@@ -12,7 +12,7 @@ const Cryptocurrencies: NextPage = () => {
       <Head>
         <title>Cryptocurrencies</title>
       </Head>
-      <H1Template text="Today's Cryptocurrency Prices Overview" />
+      <H1Template text="Today's Cryptocurrency Prices Overview" className="mt-4 md:mt-0" />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="hidden sm:block">
           <SliderData sliderTypes={['trending']} />
