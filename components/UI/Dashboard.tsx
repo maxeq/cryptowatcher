@@ -76,7 +76,7 @@ export default function Dashboard(): JSX.Element {
         <div className="md:flex md:justify-between">
           <div >
             <div >
-              <div className="flex md:justify-between items-center">
+              <div className="flex md:justify-start items-center">
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
