@@ -74,7 +74,7 @@ export default function Dashboard(): JSX.Element {
       <div className="flex-wrap xs:flex container p-4 md:p-0">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
-          <div >
+          <div className="md:min-w-[400px]">
             <div >
               <div className="flex justify-start items-center">
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
@@ -126,7 +126,7 @@ export default function Dashboard(): JSX.Element {
             </div>
           </div>
           {/* // 2nd column */}
-          <div className="md:flex md:justify-end">
+          <div className="md:flex md:justify-end md:flex-grow">
             <div className="column lg:w-[437px] w-full">
               <div className="md:pt-2 pt-4">
                 <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
@@ -204,7 +204,7 @@ export default function Dashboard(): JSX.Element {
               </div>
             </div>
             {/* 3rd */}
-            <div className="column lg:w-[437px] w-full">
+            <div className="column lg:w-[437px] w-full md:flex-grow">
               <div className="flex md:justify-end whitespace-nowrap flex-wrap">
                 <button className="rounded-lg bg-lime-600 py-2 px-3 hover:bg-lime-500 flex items-center mr-2">
                   <Web3Connect className="h-full" text={`Buy ${name}`} />
@@ -289,7 +289,7 @@ export default function Dashboard(): JSX.Element {
                         </div>
                       </div>
                       <div className="mt-4 justify-between flex">
-                        <div className="text-12px text-gray-300/80 flex items-center whitespace-nowrap md:mr-3">Total Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                        <div className="text-12px text-gray-300/80 flex items-center whitespace-nowrap md:mr-5">Total Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
                         <div>
                           {formatPrice(total_supply).replace('$', '')}
                         </div>
