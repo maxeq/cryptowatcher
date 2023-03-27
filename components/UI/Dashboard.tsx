@@ -99,7 +99,7 @@ export default function Dashboard(): JSX.Element {
                   Coin
                 </div>
                 <div className="bg-cmc/25 text-gray-300/80 rounded-md px-2 py-1">
-                  On 3,908,483 watchlists
+                  On 3,908,483 watch-list
                 </div>
               </div>
               <div className="">
@@ -167,7 +167,7 @@ export default function Dashboard(): JSX.Element {
               <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 md:py-10">
                 <div className="space-y-1 my-4">
                   <div className="flex items-center">
-                    <div className="text-gray-300/80 md:text-12px">
+                    <div className="text-gray-300/80 text-12px">
                       Market Cap
                     </div>
                     <div>
@@ -186,8 +186,8 @@ export default function Dashboard(): JSX.Element {
                 <div className="md:flex md:justify-between border-r border-[#858ca2]/25"></div>
                 <div>
                   <div className="space-y-1 my-4">
-                    <div className="flex items-center">
-                      <div className="text-gray-300/80 text-12px">
+                    <div className="flex items-center mb-1 md:mb-0">
+                      <div className="text-gray-300/80 text-12px ">
                         Fully Diluted Market Cap
                       </div>
                       <div>
@@ -222,7 +222,7 @@ export default function Dashboard(): JSX.Element {
                 <div className="space-y-1 my-45">
                   <div className="space-y-1 my-4 md:mx-10">
                     <div className="flex items-center">
-                      <div className="text-gray-300/80 text-12px">
+                      <div className="text-gray-300/80 text-12px mb-2 md:mb-0">
                         Volume <span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span>
                       </div>
                       <div>
@@ -255,7 +255,7 @@ export default function Dashboard(): JSX.Element {
                 <div>
                   <div className="space-y-1 my-4 md:mx-10">
                     <div className="flex items-center">
-                      <div className="text-12px text-gray-300/80 flex items-center">Circulating Supply
+                      <div className="text-12px text-gray-300/80 flex items-center mb-2 md:mb-0">Circulating Supply
                         <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
                       </div>
                     </div>

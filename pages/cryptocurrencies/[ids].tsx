@@ -26,9 +26,11 @@ const Cryptocurrencies_dynamic: NextPage = () => {
         <div className="col-span-2">
           {' '}
           <H1Template text={`${ids?.toUpperCase()} 24H CHART`} />
-          <ChartFetcher _id={ids} showXLabel={true} showYLabel={true} width='1000' height='500px' />
+          <div className="parent-container flex flex-col">
+            <ChartFetcher _id={ids} showXLabel={true} showYLabel={true} width='1000' height='500px' />
+          </div>
         </div>
-        <div className="col-span-1 bg-gray-800 rounded-2xl s shadow-lg md:ml-6">
+        <div className="col-span-1 bg-gray-800 rounded-2xl md:ml-6">
           <Twitter />
           <Comments />
         </div>
