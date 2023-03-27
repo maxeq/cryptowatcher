@@ -127,7 +127,7 @@ export default function Dashboard(): JSX.Element {
           </div>
 
           <div className="md:flex md:justify-end">
-            <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
+            <div className="column" style={{ maxWidth: '437px', minWidth: '437px' }}>
               <div className="pt-2">
                 <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
                   {name} Price ({symbol.toUpperCase()})
@@ -204,7 +204,7 @@ export default function Dashboard(): JSX.Element {
               </div>
             </div>
             {/* 3rd */}
-            <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
+            <div className="column" style={{ maxWidth: '437px', minWidth: '437px' }}>
               <div className="flex md:justify-end space-x-1.5 flex-wrap">
                 <button className="md:flex md:justify-center">
                   <Web3Connect text={`Buy ${name}`} />
