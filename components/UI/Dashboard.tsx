@@ -71,13 +71,13 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div key={ids}>
-      <div className="xs:flex-wrap xs:flex container p-4 md:p-0">
+      <div className="flex-wrap md:flex container p-4 md:p-0">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
           <div >
             <div >
-              <div className="flex md:justify-between items-center justify-center">
-                <Image src={image} alt={name} width="36" height="36" className="-ml-4 md:ml-0 mr-4 rounded-full" />
+              <div className="flex md:justify-between items-center">
+                <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
                   <span className="text-sm bg-cmc/25 text-slate-200 tracking-wider opacity-70 bg-opacity-70 rounded-md px-1.5 py-1 mx-3 font-bold space-">{symbol.toUpperCase()}</span>
