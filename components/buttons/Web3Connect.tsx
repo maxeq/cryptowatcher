@@ -4,9 +4,10 @@ import { useAccount, useDisconnect } from 'wagmi';
 
 interface Web3ConnectProps {
   text?: any;
+  className?: string;
 }
 
-const Web3CustomButton = ({ text }: Web3ConnectProps) => {
+const Web3CustomButton = ({ text, className }: Web3ConnectProps) => {
   const [loading, setLoading] = useState(false);
   const { open } = useWeb3Modal();
   const { isConnected } = useAccount();
@@ -29,12 +30,12 @@ const Web3CustomButton = ({ text }: Web3ConnectProps) => {
 
   return (
     <button
-      className="px-4 bg-lime-600 transition duration-300 ease-in-out hover:bg-lime-500 py-2 mx:px-0 text-white font-bold rounded-lg whitespace-nowrap"
+      className={`className=${className}`}
       onClick={onClick}
       disabled={loading}
     >
       {loading ? 'Loading...' : label} {text}
-    </button>
+    </button >
   );
 };
 

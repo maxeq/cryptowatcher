@@ -71,13 +71,13 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div key={ids}>
-      <div className="xs:flex-wrap xs:flex">
+      <div className="xs:flex-wrap xs:flex container p-4 md:p-0">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
           <div >
             <div >
-              <div className="md:flex md:justify-between items-center justify-center">
-                <Image src={image} alt={name} width="36" height="36" className="mr-4 rounded-full" />
+              <div className="flex md:justify-between items-center justify-center">
+                <Image src={image} alt={name} width="36" height="36" className="-ml-4 md:ml-0 mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
                   <span className="text-sm bg-cmc/25 text-slate-200 tracking-wider opacity-70 bg-opacity-70 rounded-md px-1.5 py-1 mx-3 font-bold space-">{symbol.toUpperCase()}</span>
@@ -125,10 +125,10 @@ export default function Dashboard(): JSX.Element {
               </div>
             </div>
           </div>
-
+          {/* // 2nd column */}
           <div className="md:flex md:justify-end">
-            <div className="column" style={{ maxWidth: '437px', minWidth: '437px' }}>
-              <div className="pt-2">
+            <div className="column lg:w-[437px] w-full">
+              <div className="md:pt-2 pt-4">
                 <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
                   {name} Price ({symbol.toUpperCase()})
                 </div>
@@ -164,7 +164,7 @@ export default function Dashboard(): JSX.Element {
                   </div>
                   <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 0)}</span><span className="bg-cmc/25 text-sm w-min text-gray-300/80 rounded px-2 py-1 ml-2">24h</span></div></div>
               </div>
-              <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10">
+              <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 md:py-10">
                 <div className="space-y-1 my-4">
                   <div className="flex items-center">
                     <div className="text-gray-300/80 md:text-12px">
@@ -178,8 +178,8 @@ export default function Dashboard(): JSX.Element {
                   <div className="flex justify-start">
                     <PriceChange value={market_cap_change_percentage_24h} />
                   </div>
-                  <div className="pt-8 pb-2 text-gray-300/80 text-sm">
-                    24h Volume / Market Cap <span className="text-white ml-4">{((market_cap_change_24h / total_volume).toFixed(4))}
+                  <div className="md:pt-8 pt-4 pb-2 text-gray-300/80 text-sm">
+                    24h Volume / Market Cap <span className="text-white ml-4 ">{((market_cap_change_24h / total_volume).toFixed(4))}
                     </span>
                   </div>
                 </div>
@@ -204,20 +204,21 @@ export default function Dashboard(): JSX.Element {
               </div>
             </div>
             {/* 3rd */}
-            <div className="column" style={{ maxWidth: '437px', minWidth: '437px' }}>
-              <div className="flex md:justify-end space-x-1.5 flex-wrap">
-                <button className="md:flex md:justify-center">
-                  <Web3Connect text={`Buy ${name}`} />
+            <div className="column lg:w-[437px] w-full">
+              <div className="flex md:justify-end whitespace-nowrap flex-wrap">
+                <button className="rounded-lg bg-lime-600 py-2 px-3 hover:bg-lime-500 flex items-center mr-2">
+                  <Web3Connect className="h-full" text={`Buy ${name}`} />
                 </button>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Exchange <IoMdArrowDropdown /></button>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Gaming <IoMdArrowDropdown /></button>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Earn crypto <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center">Exchange <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center">Gaming <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center md:mt-0 mt-1.5">Earn crypto <IoMdArrowDropdown /></button>
               </div>
+
               <div className="md:justify-end flex text-10px text-gray-300/80 items-center m-2">
                 <Logo size={15} className="m-1" /> Sponsored
               </div>
 
-              <div className="md:flex md:justify-start border-t border-[#858ca2]/25 py-10 mb-[33px] mt-[90px]">
+              <div className="md:flex md:justify-start border-t border-[#858ca2]/25 md:py-10 md:mb-[33px] mt-5 md:mt-[90px]">
                 <div className="space-y-1 my-45">
                   <div className="space-y-1 my-4 md:mx-10">
                     <div className="flex items-center">
