@@ -297,7 +297,7 @@ export default function Dashboard(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="md:flex md:justify-between border-b border-[#858ca2]/25"></div>
+        <div className="md:flex md:justify-between border-b md:-mt-10 border-[#858ca2]/25"></div>
       </div>
     </div >
   );
