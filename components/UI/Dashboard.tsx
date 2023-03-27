@@ -71,12 +71,12 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div key={ids}>
-      <div className="">
+      <div className="xs:flex-wrap xs:flex">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
           <div >
             <div >
-              <div className="flex md:justify-between items-center justify-center">
+              <div className="md:flex md:justify-between items-center justify-center">
                 <Image src={image} alt={name} width="36" height="36" className="mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
@@ -126,7 +126,7 @@ export default function Dashboard(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex justify-end">
+          <div className="md:flex md:justify-end">
             <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
               <div className="pt-2">
                 <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
@@ -167,7 +167,7 @@ export default function Dashboard(): JSX.Element {
               <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 py-10">
                 <div className="space-y-1 my-4">
                   <div className="flex items-center">
-                    <div className="text-gray-300/80 text-12px">
+                    <div className="text-gray-300/80 md:text-12px">
                       Market Cap
                     </div>
                     <div>
@@ -205,54 +205,54 @@ export default function Dashboard(): JSX.Element {
             </div>
             {/* 3rd */}
             <div className="" style={{ maxWidth: '437px', minWidth: '437px' }}>
-              <div className="flex justify-end space-x-1.5">
-                <div className="flex justify-center">
+              <div className="flex md:justify-end space-x-1.5 flex-wrap">
+                <button className="md:flex md:justify-center">
                   <Web3Connect text={`Buy ${name}`} />
-                </div>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Exchange <IoMdArrowDropdown /></button>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Gaming <IoMdArrowDropdown /></button>
-                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center">Earn crypto <IoMdArrowDropdown /></button>
+                </button>
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Exchange <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Gaming <IoMdArrowDropdown /></button>
+                <button className="rounded-lg bg-lime-600 p-2 hover:bg-lime-500 flex items-center flex-grow">Earn crypto <IoMdArrowDropdown /></button>
               </div>
-              <div className="justify-end flex text-10px text-gray-300/80 items-center m-2">
+              <div className="md:justify-end flex text-10px text-gray-300/80 items-center m-2">
                 <Logo size={15} className="m-1" /> Sponsored
               </div>
 
               <div className="md:flex md:justify-start border-t border-[#858ca2]/25 py-10 mb-[33px] mt-[90px]">
-
-                <div className="space-y-1 my-4 mx-10">
-                  <div className="flex items-center">
-                    <div className="text-gray-300/80 text-12px">
-                      Volume <span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span>
-                    </div>
-                    <div>
-                      <IoInformationCircle size={18} color="gray" className='md:block hidden ml-2' />
-                    </div>
-                  </div>
-                  <div className="text-base">{formatPrice(market_cap)}</div>
-                  <div className="flex justify-start">
-                    <PriceChange value={market_cap_change_percentage_24h} />
-                  </div>
-
-                  <div className="mt-4 space-y-2">
-                    <div className="mt-4 justify-between flex">
-                      <div className="text-12px text-gray-300/80 flex items-center">CEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                <div className="space-y-1 my-45">
+                  <div className="space-y-1 my-4 md:mx-10">
+                    <div className="flex items-center">
+                      <div className="text-gray-300/80 text-12px">
+                        Volume <span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span>
+                      </div>
                       <div>
-                        {formatPrice(max_supply).replace('$', '')}
+                        <IoInformationCircle size={18} color="gray" className='md:block hidden ml-2' />
                       </div>
                     </div>
-                    <div className="mt-4 justify-between flex">
-                      <div className="text-12px text-gray-300/80 flex items-center">DEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
-                      <div>
-                        {formatPrice(total_supply).replace('$', '')}
+                    <div className="text-base">{formatPrice(market_cap)}</div>
+                    <div className="flex justify-start">
+                      <PriceChange value={market_cap_change_percentage_24h} />
+                    </div>
+
+                    <div className="mt-4 space-y-2">
+                      <div className="mt-4 justify-between flex">
+                        <div className="text-12px text-gray-300/80 flex items-center">CEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                        <div>
+                          {formatPrice(max_supply).replace('$', '')}
+                        </div>
+                      </div>
+                      <div className="mt-4 justify-between flex">
+                        <div className="text-12px text-gray-300/80 flex items-center">DEX Vol <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
+                        <div>
+                          {formatPrice(total_supply).replace('$', '')}
+                        </div>
                       </div>
                     </div>
                   </div>
-
 
                 </div>
                 <div className="md:flex border-r border-[#858ca2]/25"></div>
                 <div>
-                  <div className="space-y-1 my-4 mx-10">
+                  <div className="space-y-1 my-4 md:mx-10">
                     <div className="flex items-center">
                       <div className="text-12px text-gray-300/80 flex items-center">Circulating Supply
                         <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
