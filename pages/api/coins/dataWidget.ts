@@ -1,16 +1,13 @@
 import clientPromise from '../../../lib/mongodb';
 import { NextApiRequest, NextApiResponse } from 'next/types';
 import { CoinData } from '../../../types/coins/coindata';
-import Redis from 'ioredis';
 
-const fetchAndCacheData = async (
+const getData = async (
     param: string,
     value: string,
     order: 'asc' | 'desc',
     limit: number
-): Promise<void> => {
-    const redis = new Redis(process.env.REDIS_URL as string); // Create a new Redis instance here
-
+): Promise<CoinData[]> => {
     const mongoClient = await clientPromise;
 
     const query = value ? { [param]: value } : {};
@@ -25,31 +22,9 @@ const fetchAndCacheData = async (
         .sort({ dbDateAdded: -1, [param]: sortOrder })
         .toArray();
 
-    const result = JSON.parse(JSON.stringify(data));
-    const cacheKey = `dataWidget:${param}:${value}:${order}:${limit}`;
-    await redis.set(cacheKey, JSON.stringify(result), 'EX', 5 * 60); // Cache for 5 minutes
-    redis.disconnect(); // Disconnect the Redis instance here
+    return JSON.parse(JSON.stringify(data));
 };
 
-const getData = async (
-    param: string,
-    value: string,
-    order: 'asc' | 'desc',
-    limit: number
-): Promise<CoinData[]> => {
-    const redis = new Redis(process.env.REDIS_URL as string); // Create a new Redis instance here
-    const cacheKey = `dataWidget:${param}:${value}:${order}:${limit}`;
-    const cacheData = await redis.get(cacheKey);
-    redis.disconnect(); // Disconnect the Redis instance here
-
-    if (cacheData) {
-        return JSON.parse(cacheData);
-    }
-
-    await fetchAndCacheData(param, value, order, limit);
-    const newData = await redis.get(cacheKey);
-    return newData ? JSON.parse(newData) : [];
-};
 
 const handler = async (
     req: NextApiRequest,
@@ -74,36 +49,5 @@ const handler = async (
     res.status(200).json({ getdata: data });
 };
 
-const paramCombinations: {
-    param: string;
-    order: 'asc' | 'desc';
-    limit: number;
-}[] = [
-        {
-            param: 'price_change_percentage_1h_in_currency',
-            order: 'desc',
-            limit: 3
-        },
-        {
-            param: 'price_change_percentage_24h',
-            order: 'asc',
-            limit: 3
-        },
-        {
-            param: 'market_cap_change_percentage_24h',
-            order: 'desc',
-            limit: 3
-        },
-    ];
-
-const refreshCacheEveryFiveMinutes = () => {
-    paramCombinations.forEach(async (combination) => {
-        await fetchAndCacheData(combination.param, '', combination.order, combination.limit);
-    });
-};
-
-
-refreshCacheEveryFiveMinutes();
-setInterval(refreshCacheEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 
 export default handler;

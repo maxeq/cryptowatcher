@@ -26,7 +26,7 @@ const SliderData: React.FC<SliderDataProps> = ({ sliderTypes }) => {
                 return (
                     <SliderTemp
                         key={`trending-${index}`}
-                        url="/api/coins/dataWidget?param=price_change_percentage_1h_in_currency&order=desc&limit=3"
+                        url="/api/coins/dataWidgetRedis?param=price_change_percentage_1h_in_currency&order=desc&limit=3"
                         title="Trending"
                         icon={BsFire}
                         iconClassName="text-yellow-400"
@@ -37,7 +37,7 @@ const SliderData: React.FC<SliderDataProps> = ({ sliderTypes }) => {
                 return (
                     <SliderTemp
                         key={`biggestLosers-${index}`}
-                        url="/api/coins/dataWidget?param=price_change_percentage_24h&order=asc&limit=3"
+                        url="/api/coins/dataWidgetRedis?param=price_change_percentage_24h&order=asc&limit=3"
                         title="Biggest Losers"
                         icon={FiTrendingDown}
                         iconClassName="text-rose-400"
@@ -48,7 +48,7 @@ const SliderData: React.FC<SliderDataProps> = ({ sliderTypes }) => {
                 return (
                     <SliderTemp
                         key={`topGainers-${index}`}
-                        url="/api/coins/dataWidget?param=market_cap_change_percentage_24h&order=desc&limit=3"
+                        url="/api/coins/dataWidgetRedis?param=market_cap_change_percentage_24h&order=desc&limit=3"
                         title="Top Gainers"
                         icon={FiTrendingUp}
                         iconClassName="text-lime-400"
