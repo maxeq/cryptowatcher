@@ -6,12 +6,8 @@ import Redis from 'ioredis';
 
 const redis = new Redis(process.env.REDIS_URL as string);
 
-const cacheAllPages = async (pageSize: number, sortKey: string, sortDirection: string): Promise<void> => {
+const cacheAllPages = async (pageSize: number): Promise<void> => {
     const mongoClient: MongoClient = await clientPromise;
-
-    const direction = sortDirection === 'asc' ? 1 : -1;
-    const sortObj: Record<string, number> = {};
-    sortObj[sortKey] = direction;
 
     const allData = await mongoClient
         .db('myFirstDatabase')
@@ -26,9 +22,6 @@ const cacheAllPages = async (pageSize: number, sortKey: string, sortDirection: s
             {
                 $replaceRoot: { newRoot: '$latestData' },
             },
-            {
-                $sort: sortObj,
-            },
         ])
         .toArray();
 
@@ -37,12 +30,29 @@ const cacheAllPages = async (pageSize: number, sortKey: string, sortDirection: s
     for (let page = 1; page <= totalPages; page++) {
         const skip = (page - 1) * pageSize;
         const pageData = allData.slice(skip, skip + pageSize);
-        const cacheKey = `data:${page}:${pageSize}:${sortKey}:${sortDirection}`;
+        const cacheKey = `data:${page}:${pageSize}`;
 
         // Cache the page data in Redis for 5 minutes (300 seconds)
         await redis.set(cacheKey, JSON.stringify(pageData), 'EX', 5 * 60);
     }
 };
+
+const sortData = (data: CoinData[], sortKey: string, sortDirection: string): CoinData[] => {
+    return data.sort((a, b) => {
+        const key = sortKey as keyof CoinData;
+        const aValue = a[key];
+        const bValue = b[key];
+
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+            return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+        } else if (typeof aValue === 'string' && typeof bValue === 'string') {
+            return sortDirection === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        }
+
+        return 0;
+    });
+};
+
 
 const getData = async (
     page: number,
@@ -50,19 +60,20 @@ const getData = async (
     sortKey: string,
     sortDirection: string
 ): Promise<CoinData[]> => {
-    const cacheKey = `data:${page}:${pageSize}:${sortKey}:${sortDirection}`;
+    const cacheKey = `data:${page}:${pageSize}`;
     const cacheData = await redis.get(cacheKey);
 
     if (cacheData) {
-        return JSON.parse(cacheData);
+        const data = JSON.parse(cacheData);
+        return sortData(data, sortKey, sortDirection);
     }
 
     // If the requested data is not in Redis, cache all pages
-    await cacheAllPages(pageSize, sortKey, sortDirection);
+    await cacheAllPages(pageSize);
 
     const newData = await redis.get(cacheKey);
 
-    return newData ? JSON.parse(newData) : [];
+    return newData ? sortData(JSON.parse(newData), sortKey, sortDirection) : [];
 };
 
 const handler = async (
@@ -83,10 +94,8 @@ const handler = async (
 
 const fetchAndCacheDataEveryFiveMinutes = async () => {
     const pageSize = 10;
-    const sortKey = 'market_cap_rank';
-    const sortDirection = 'asc';
 
-    await cacheAllPages(pageSize, sortKey, sortDirection);
+    await cacheAllPages(pageSize);
     setTimeout(fetchAndCacheDataEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 };
 
