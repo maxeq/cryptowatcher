@@ -26,7 +26,7 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconC
     );
 
     if (error) {
-        return <ErrorMessage error={error} />;
+        return <LoadingSkeleton count={3} />;
     }
 
     if (isLoading) {

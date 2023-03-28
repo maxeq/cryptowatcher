@@ -104,6 +104,6 @@ const refreshCacheEveryFiveMinutes = () => {
 
 
 refreshCacheEveryFiveMinutes();
-setInterval(refreshCacheEveryFiveMinutes, 5 * 60 * 1000); // 5 minutes in milliseconds
+setInterval(refreshCacheEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 
 export default handler;

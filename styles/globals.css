@@ -69,6 +69,38 @@
   text-align: right;
 }
 
+.th-rank {
+  width: 60px;
+}
+
+.th-name {
+  width: 150px;
+}
+
+.th-price {
+  width: 100px;
+}
+
+.th-change {
+  width: 110px;
+}
+
+.th-marketcap {
+  width: 160px;
+}
+
+.th-volume {
+  width: 150px;
+}
+
+.th-supply {
+  width: 150px;
+}
+
+.th-chart {
+  width: 150px;
+}
+
 .table th{
   padding-top: 12px;
   padding-bottom: 12px;
@@ -170,3 +202,5 @@
 .tooltip:hover .tooltip-text {
   display: block;
 }
+
+
