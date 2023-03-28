@@ -74,7 +74,7 @@ export default function Dashboard(): JSX.Element {
       <div className="flex-wrap xs:flex container p-4 md:p-0">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
-          <div className="md:min-w-[450px]">
+          <div className="md:min-w-[440px]">
             <div >
               <div className="flex justify-start items-center">
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
@@ -220,7 +220,7 @@ export default function Dashboard(): JSX.Element {
 
               <div className="md:flex md:justify-start border-t border-[#858ca2]/25 md:py-10 md:mb-[33px] mt-5 md:mt-[90px]">
                 <div className="space-y-1 my-45">
-                  <div className="space-y-1 my-4 md:mx-10">
+                  <div className="space-y-1 my-4 md:mx-8">
                     <div className="flex items-center">
                       <div className="text-gray-300/80 text-12px mb-2 md:mb-0">
                         Volume <span className="bg-cmc/25 text-xs w-min text-gray-300/80 rounded-md px-2 py-1">24h</span>
@@ -253,7 +253,7 @@ export default function Dashboard(): JSX.Element {
                 </div>
                 <div className="md:flex border-r border-[#858ca2]/25"></div>
                 <div>
-                  <div className="space-y-1 my-4 md:mx-10">
+                  <div className="space-y-1 my-4 md:mx-8">
                     <div className="flex items-center">
                       <div className="text-12px text-gray-300/80 flex items-center mb-2 md:mb-0 whitespace-nowrap">Circulating Supply
                         <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' />
