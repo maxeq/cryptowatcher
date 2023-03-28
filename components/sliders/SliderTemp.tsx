@@ -19,10 +19,6 @@ interface SliderTemplateProps {
 
 const SliderTemplate: React.FC<SliderTemplateProps> = ({ url, title, icon, iconClassName, priceKey }) => {
     const { data, isLoading, error } = useSWR(url, fetcher,
-        {
-            revalidateOnMount: true,
-            dedupingInterval: 5000, // Cache for 5 minutes
-        }
     );
 
     if (error) {
