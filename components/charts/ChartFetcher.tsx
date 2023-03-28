@@ -33,7 +33,7 @@ const ChartFetcher: React.FC<Props> = ({
     isLoading,
     error,
   } = useSWR<Data>(
-    `/api/coins/getArrayData${_id ? `?_id=${_id}` : ''}`,
+    `/api/coins/getArrayDataRedis${_id ? `?_id=${_id}` : ''}`,
     fetcher,
     {
       revalidateOnMount: true,
@@ -41,7 +41,9 @@ const ChartFetcher: React.FC<Props> = ({
     }
   );
 
-  if (error) return <ErrorMessage error={error} />;
+  if (error)
+    return <ErrorMessage error={error} />;
+
   if (isLoading)
     return (
       <div>

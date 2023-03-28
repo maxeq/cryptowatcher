@@ -25,7 +25,7 @@ export default function Dashboard(): JSX.Element {
     ? router.query.ids[0]
     : router.query.ids;
   const { data: cryptocurrencies, isLoading, error } = useSWR(
-    `/api/coins/getCryptoData?id=${ids}`,
+    `/api/coins/getCryptoDataRedis?id=${ids}`,
     fetcher,
     {
       revalidateOnMount: true,
@@ -40,7 +40,7 @@ export default function Dashboard(): JSX.Element {
 
   if (error) return <div>Error fetching data</div>;
   if (!cryptocurrencies || !cryptocurrencies.getdata)
-    return <div>Loading data...</div>;
+    return <div></div>;
 
   const {
     max_supply,
