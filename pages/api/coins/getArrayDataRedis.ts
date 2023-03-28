@@ -58,6 +58,7 @@ const handler = async (
   res: NextApiResponse<{ getarray: ArrayData[] }>
 ) => {
   const data = await getArrayData();
+  res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=300');
   res.status(200).json({ getarray: data });
 };
 

@@ -41,6 +41,7 @@ const handler = async (
 ) => {
   const { id } = req.query;
   const data = await getData(id as string);
+  res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=300');
   res.status(200).json({ getdata: data });
 };
 

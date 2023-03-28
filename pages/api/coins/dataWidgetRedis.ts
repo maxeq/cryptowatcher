@@ -73,6 +73,7 @@ const handler = async (
         order as 'asc' | 'desc',
         parsedLimit as number
     );
+    res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=300');
     res.status(200).json({ getdata: data });
 };
 

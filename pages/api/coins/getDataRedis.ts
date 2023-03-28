@@ -78,7 +78,7 @@ const handler = async (
         sortKey as string,
         sortDirection as string
     );
-
+    res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=300');
     res.status(200).json({ getdata: data });
 };
 
