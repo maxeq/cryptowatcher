@@ -6,7 +6,7 @@ import Redis from 'ioredis';
 
 const redis = new Redis(process.env.REDIS_URL as string);
 
-const cacheAllPages = async (pageSize: number): Promise<void> => {
+const cacheAllData = async (): Promise<void> => {
     const mongoClient: MongoClient = await clientPromise;
 
     const allData = await mongoClient
@@ -25,16 +25,7 @@ const cacheAllPages = async (pageSize: number): Promise<void> => {
         ])
         .toArray();
 
-    const totalPages = Math.ceil(allData.length / pageSize);
-
-    for (let page = 1; page <= totalPages; page++) {
-        const skip = (page - 1) * pageSize;
-        const pageData = allData.slice(skip, skip + pageSize);
-        const cacheKey = `data:${page}:${pageSize}`;
-
-        // Cache the page data in Redis for 5 minutes (300 seconds)
-        await redis.set(cacheKey, JSON.stringify(pageData), 'EX', 5 * 60);
-    }
+    await redis.set('allData', JSON.stringify(allData), 'EX', 5 * 60);
 };
 
 const sortData = (data: CoinData[], sortKey: string, sortDirection: string): CoinData[] => {
@@ -60,20 +51,19 @@ const getData = async (
     sortKey: string,
     sortDirection: string
 ): Promise<CoinData[]> => {
-    const cacheKey = `data:${page}:${pageSize}`;
-    const cacheData = await redis.get(cacheKey);
+    const cacheData = await redis.get('allData');
 
-    if (cacheData) {
-        const data = JSON.parse(cacheData);
-        return sortData(data, sortKey, sortDirection);
+    if (!cacheData) {
+        // If the requested data is not in Redis, cache all data
+        await cacheAllData();
     }
 
-    // If the requested data is not in Redis, cache all pages
-    await cacheAllPages(pageSize);
+    const allData = JSON.parse(await redis.get('allData') || '[]');
+    const sortedData = sortData(allData, sortKey, sortDirection);
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
 
-    const newData = await redis.get(cacheKey);
-
-    return newData ? sortData(JSON.parse(newData), sortKey, sortDirection) : [];
+    return sortedData.slice(start, end);
 };
 
 const handler = async (
@@ -93,9 +83,7 @@ const handler = async (
 };
 
 const fetchAndCacheDataEveryFiveMinutes = async () => {
-    const pageSize = 10;
-
-    await cacheAllPages(pageSize);
+    await cacheAllData();
     setTimeout(fetchAndCacheDataEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 };
 
