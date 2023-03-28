@@ -74,7 +74,7 @@ export default function Dashboard(): JSX.Element {
       <div className="flex-wrap xs:flex container p-4 md:p-0">
         <Breadcrumbs />
         <div className="md:flex md:justify-between">
-          <div className="md:min-w-[400px]">
+          <div className="md:min-w-[450px]">
             <div >
               <div className="flex justify-start items-center">
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
