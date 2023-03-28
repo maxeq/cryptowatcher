@@ -35,7 +35,7 @@ export default function CryptoTableList() {
 
   //fetching and pagination
   const { data, size, setSize, isReachedEnd, isLoading, error } = usePagination(
-    `/api/coins/getData`,
+    `/api/coins/getDataRedis`,
     sortKey,
     sortDirection
   );
