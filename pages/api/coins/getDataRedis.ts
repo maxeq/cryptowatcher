@@ -26,6 +26,7 @@ const cacheAllData = async (): Promise<void> => {
         .toArray();
 
     await redis.set('allData', JSON.stringify(allData), 'EX', 5 * 60);
+    redis.disconnect();
 };
 
 const sortData = (data: CoinData[], sortKey: string, sortDirection: string): CoinData[] => {
