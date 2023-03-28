@@ -40,16 +40,18 @@ const getData = async (
     const redis = new Redis(process.env.REDIS_URL as string); // Create a new Redis instance here
     const cacheKey = `dataWidget:${param}:${value}:${order}:${limit}`;
     const cacheData = await redis.get(cacheKey);
-    redis.disconnect(); // Disconnect the Redis instance here
 
     if (cacheData) {
+        redis.disconnect(); // Disconnect the Redis instance here
         return JSON.parse(cacheData);
     }
 
     await fetchAndCacheData(param, value, order, limit);
     const newData = await redis.get(cacheKey);
+    redis.disconnect(); // Disconnect the Redis instance here
     return newData ? JSON.parse(newData) : [];
 };
+
 
 const handler = async (
     req: NextApiRequest,
