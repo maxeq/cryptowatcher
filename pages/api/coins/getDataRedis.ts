@@ -81,4 +81,15 @@ const handler = async (
     res.status(200).json({ getdata: data });
 };
 
+const fetchAndCacheDataEveryFiveMinutes = async () => {
+    const pageSize = 10;
+    const sortKey = 'market_cap_rank';
+    const sortDirection = 'asc';
+
+    await cacheAllPages(pageSize, sortKey, sortDirection);
+    setTimeout(fetchAndCacheDataEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
+};
+
+fetchAndCacheDataEveryFiveMinutes();
+
 export default handler;
