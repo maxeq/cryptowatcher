@@ -7,7 +7,16 @@ const fetchAndCacheArrayData = async (): Promise<void> => {
   const redis = new Redis(process.env.REDIS_URL as string);
 
   const mongoClient = await clientPromise;
-  const date24HoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000); // current date minus 24 hours
+  const latestDate = await mongoClient
+    .db('myFirstDatabase')
+    .collection('coins')
+    .find()
+    .sort({ dbDateAdded: -1 })
+    .limit(1)
+    .toArray();
+
+  const latestDateValue = latestDate[0].dbDateAdded;
+  const date24HoursAgo = new Date(latestDateValue.getTime() - 24 * 60 * 60 * 1000); // latest date minus 24 hours
 
   const data = await mongoClient
     .db('myFirstDatabase')
@@ -17,7 +26,7 @@ const fetchAndCacheArrayData = async (): Promise<void> => {
         $match: {
           dbDateAdded: {
             $gte: date24HoursAgo,
-            $lte: new Date(),
+            $lte: latestDateValue,
           },
         },
       },
@@ -31,7 +40,13 @@ const fetchAndCacheArrayData = async (): Promise<void> => {
     ])
     .toArray();
 
-  const result = JSON.parse(JSON.stringify(data));
+  const result = JSON.parse(JSON.stringify(data)).map((item: ArrayData) => {
+    return {
+      ...item,
+      array_current_price: item.array_current_price.reverse(),
+    };
+  });
+
   const cacheKey = 'arrayData';
   await redis.set(cacheKey, JSON.stringify(result), 'EX', 5 * 60); // Cache for 5 minutes
   redis.disconnect();
