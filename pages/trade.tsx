@@ -1,8 +1,5 @@
-// pages/index.js
 import H1Template from '@/components/UI/HeaderTemplate';
 import Head from 'next/head';
-import LoadingSkeleton from '@/components/icons/LoadingSkeleton';
-import CryptoTableSkeleton from '@/components/UI/CryptoTableSkeleton';
 
 export default function Trade() {
   return (
