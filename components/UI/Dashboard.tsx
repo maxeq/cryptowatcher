@@ -135,7 +135,7 @@ export default function Dashboard(): JSX.Element {
                   </div>
                   <div className="flex items-center space-x-2 mt-2 lg:flex lg:justify-start">
                     <div className="text-4xl font-bold">
-                      {formatPrice(current_price, 2)}
+                      {formatPrice(current_price)}
                     </div>
                     <div className="lg:px-2">
                       <div
@@ -151,7 +151,7 @@ export default function Dashboard(): JSX.Element {
                     </div>
                   </div>
                   <div className="flex justify-evenly my-4">
-                    <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h, 2)}</span> </div>
+                    <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(low_24h)}</span> </div>
                     <div className="relative w-full h-2 mt-2.5 bg-slate-500/50 rounded-full mx-4">
                       <div
                         className="h-2 bg-gradient-to-r from-lime-400 to-lime-600 rounded-full"
@@ -163,7 +163,7 @@ export default function Dashboard(): JSX.Element {
                         }}
                       ></div>
                     </div>
-                    <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h, 2)}</span><span className="bg-cmc/25 text-sm w-min text-gray-300/80 rounded px-2 py-1 ml-2">24h</span></div></div>
+                    <div className="text-sm text-gray-300/80 whitespace-nowrap">Low:<span className="font-bold text-white text-base">{formatPrice(high_24h)}</span><span className="bg-cmc/25 text-sm w-min text-gray-300/80 rounded px-2 py-1 ml-2">24h</span></div></div>
                 </div>
                 <div className="md:flex md:justify-between border-t mt-6 border-[#858ca2]/25 md:py-10">
                   <div className="space-y-1 my-4">

@@ -1,4 +1,4 @@
-function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = true) {
+function formatPrice(value: number, includeCurrencySymbol = true) {
   if (value == null) {
     return '--';
   }
@@ -6,8 +6,8 @@ function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = t
   const formattedValue = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: decimalPlaces,
-    maximumFractionDigits: decimalPlaces,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 20, // Use a large number to allow for any number of decimal places
   }).format(value);
 
   let result;
@@ -18,9 +18,24 @@ function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = t
   }
 
   // Remove trailing zeros after the decimal point
-  result = result.replace(/\.00$/, '');
+  result = result.replace(/\.?0+$/, '');
 
-  return result;
+  // Count the number of zeros in the integer part of the number
+  const match = result.match(/^0+/);
+  const numZeros = match ? match[0].length : 0;
+
+  // Calculate the maximum number of decimal places to display
+  const maxDecimalPlaces = Math.max(0, 6 - numZeros); // Display up to 6 decimal places, minus the number of zeros in the integer part
+
+  // Format the number again with the calculated maximum number of decimal places
+  const finalValue = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: maxDecimalPlaces,
+  }).format(value);
+
+  return includeCurrencySymbol ? finalValue : finalValue.replace('$', '');
 }
 
 

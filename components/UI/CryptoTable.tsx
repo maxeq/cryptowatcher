@@ -224,7 +224,7 @@ export default function CryptoTableList() {
                       </div>
                     </td>
                     <td className="th-price table__end">
-                      {formatPrice(crypto.current_price, 2)}
+                      {formatPrice(crypto.current_price)}
                     </td>
                     <td
                       className={`th-change table__end`}>
@@ -248,7 +248,7 @@ export default function CryptoTableList() {
                         {formatPrice(crypto.total_volume)}
                       </div>
                       <div className='text-slate-300 text-12px item-centered flex justify-end whitespace-nowrap'>
-                        {formatPrice(crypto.total_volume / crypto.current_price, 0, false)} {crypto.symbol.toUpperCase()}
+                        {formatPrice(crypto.total_volume / crypto.current_price, false)} {crypto.symbol.toUpperCase()}
                       </div>
 
                     </td>
@@ -294,11 +294,11 @@ export default function CryptoTableList() {
                               </div>
                               <div className="flex items-center justify-between">
                                 <div className="text-slate-200 mr-20">Circulating Supply</div>
-                                <div>{formatPrice(crypto.circulating_supply, 0, false)} {crypto.symbol.toUpperCase()}</div>
+                                <div>{formatPrice(crypto.circulating_supply, false)} {crypto.symbol.toUpperCase()}</div>
                               </div>
                               <div className="flex items-center justify-between">
                                 <div className="text-slate-200">Max Supply</div>
-                                <div>{formatPrice(crypto.max_supply, 0, false)} {crypto.symbol.toUpperCase()}</div>
+                                <div>{formatPrice(crypto.max_supply, false)} {crypto.symbol.toUpperCase()}</div>
                               </div>
 
                             </div>
