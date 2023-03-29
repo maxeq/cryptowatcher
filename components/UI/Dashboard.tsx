@@ -76,7 +76,7 @@ export default function Dashboard(): JSX.Element {
         <div className="md:flex md:justify-between">
           <div className="md:min-w-[440px]">
             <div >
-              <div className="flex justify-start items-center">
+              <div className="flex justify-start items-center flex-wrap">
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
@@ -205,10 +205,8 @@ export default function Dashboard(): JSX.Element {
             </div>
             {/* 3rd */}
             <div className="column lg:w-[437px] w-full md:flex-grow">
-              <div className="flex md:justify-end whitespace-nowrap flex-wrap">
-                <button className="rounded-lg bg-lime-600 py-2 px-3 hover:bg-lime-500 flex items-center mr-2">
-                  <Web3Connect className="h-full" text={`Buy ${name}`} />
-                </button>
+              <div className="flex md:justify-end whitespace-nowrap flex-wrap space-y-1">
+                <Web3Connect className="" text={`Buy ${name}`} />
                 <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center">Exchange <IoMdArrowDropdown /></button>
                 <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center">Gaming <IoMdArrowDropdown /></button>
                 <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center md:mt-0 mt-1.5">Earn crypto <IoMdArrowDropdown /></button>
