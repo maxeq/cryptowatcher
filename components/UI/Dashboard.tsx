@@ -138,7 +138,7 @@ export default function Dashboard(): JSX.Element {
                   </div>
                   <div className="lg:px-2">
                     <div
-                      className={`text-base font-bold rounded-xl px-2 py-1.5 bg-rose-500`}>
+                      className={`text-base font-bold rounded-xl px-2 py-1.5 ${classPriceChangePercent(price_change_percentage_24h)}`}>
                       <PriceChange value={price_change_percentage_24h} disableColor />
                     </div>
                   </div>
