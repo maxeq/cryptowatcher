@@ -13,7 +13,6 @@ export default function Trade() {
       </Head>
 
       <H1Template text="Trending Widgets" />
-      <CryptoTableSkeleton />
 
     </div>
   );
