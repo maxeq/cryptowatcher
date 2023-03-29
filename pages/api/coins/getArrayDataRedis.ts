@@ -3,9 +3,9 @@ import clientPromise from '../../../lib/mongodb';
 import { ArrayData } from '../../../types/coins/arraydata';
 import Redis from 'ioredis';
 
-const fetchAndCacheArrayData = async (): Promise<void> => {
-  const redis = new Redis(process.env.REDIS_URL as string);
+const redis = new Redis(process.env.REDIS_URL as string);
 
+const fetchAndCacheArrayData = async (): Promise<void> => {
   const mongoClient = await clientPromise;
   const latestDate = await mongoClient
     .db('myFirstDatabase')
@@ -49,22 +49,18 @@ const fetchAndCacheArrayData = async (): Promise<void> => {
 
   const cacheKey = 'arrayData';
   await redis.set(cacheKey, JSON.stringify(result), 'EX', 5 * 60); // Cache for 5 minutes
-  redis.disconnect();
 };
 
 export const getArrayData = async (): Promise<ArrayData[]> => {
-  const redis = new Redis(process.env.REDIS_URL as string);
   const cacheKey = 'arrayData';
   const cacheData = await redis.get(cacheKey);
 
   if (cacheData) {
-    redis.disconnect();
     return JSON.parse(cacheData);
   }
 
   await fetchAndCacheArrayData();
   const newData = await redis.get(cacheKey);
-  redis.disconnect();
   return newData ? JSON.parse(newData) : [];
 };
 
@@ -85,3 +81,7 @@ refreshCache();
 setInterval(refreshCache, 5 * 60 * 1000); // Refresh cache every 5 minutes
 
 export default handler;
+
+process.on('exit', () => {
+  redis.disconnect();
+});
