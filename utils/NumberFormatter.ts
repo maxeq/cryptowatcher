@@ -10,12 +10,19 @@ function formatPrice(value: number, decimalPlaces = 0, includeCurrencySymbol = t
     maximumFractionDigits: decimalPlaces,
   }).format(value);
 
+  let result;
   if (includeCurrencySymbol) {
-    return formattedValue;
+    result = formattedValue;
   } else {
-    return formattedValue.replace('$', '');
+    result = formattedValue.replace('$', '');
   }
+
+  // Remove trailing zeros after the decimal point
+  result = result.replace(/\.00$/, '');
+
+  return result;
 }
+
 
 function formatPercent(percent: number | null) {
   if (percent == null) {
