@@ -30,7 +30,7 @@ const Web3CustomButton = ({ text, className }: Web3ConnectProps) => {
 
   return (
     <button
-      className={`className=${className} m-0 h-[35px] p-2 rounded-lg items-center flex mt-1 bg-lime-600 hover:bg-lime-500 mr-2`}
+      className={`className=${className} m-0 md:h-[35px] p-2 rounded-lg items-center flex md:mt-1 bg-lime-600 hover:bg-lime-500 mr-2`}
       onClick={onClick}
       disabled={loading}
     >
