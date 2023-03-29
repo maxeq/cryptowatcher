@@ -80,9 +80,9 @@ export default function Dashboard(): JSX.Element {
                 <Image src={image} alt={name} width="36" height="36" className="md:ml-0 mr-4 rounded-full" />
                 <div className="text-4xl font-bold tracking-wider">
                   {name}
-                  <span className="text-sm bg-cmc/25 text-slate-200 tracking-wider opacity-70 bg-opacity-70 rounded-md px-1.5 py-1 mx-3 font-bold space-">{symbol.toUpperCase()}</span>
                 </div>
-                <div className="flex pt-4 space-x-3">
+                <div className="flex pt-4 space-x-1 md:space-x-2 items-center md:mr-2">
+                  <span className="text-sm bg-cmc/25 text-slate-200 tracking-wider opacity-70 bg-opacity-70 rounded-md px-1.5 py-1 mx-2 font-bold">{symbol.toUpperCase()}</span>
                   <div className="border border-opacity-50 border-gray-500 hover:bg-gray-500/10 text-gray-300 rounded-lg p-2">
                     <FiStar size="16" className=" text-white " />
                   </div>
@@ -128,7 +128,7 @@ export default function Dashboard(): JSX.Element {
           {/* // 2nd column */}
           <div className="">
             <div className="md:flex md:justify-end md:flex-grow">
-              <div className="column lg:w-[437px] w-full">
+              <div className="column lg:min-w-[437px] w-full">
                 <div className="md:pt-2 pt-4">
                   <div className="text-gray-300/80 font-bold text-sm justify-start lg:flex">
                     {name} Price ({symbol.toUpperCase()})
@@ -205,8 +205,7 @@ export default function Dashboard(): JSX.Element {
                 </div>
               </div>
               {/* 3rd */}
-              <div className="column lg:w-[437px] w-full md:flex-grow">
-
+              <div className="column lg:max-w-[437] w-full md:flex-grow">
                 <div className="flex md:justify-end whitespace-nowrap flex-wrap md:space-y-1 md:h-[39px]">
                   <div className=""><Web3Connect className="" text={`Buy ${name}`} /></div>
                   <button className="rounded-lg bg-lime-600 p-2 mr-2 hover:bg-lime-500 flex items-center">Exchange <IoMdArrowDropdown /></button>
@@ -216,8 +215,6 @@ export default function Dashboard(): JSX.Element {
                     <Logo size={15} className="m-1" /> Sponsored
                   </div>
                 </div>
-
-
 
                 <div className="md:flex md:justify-start border-t border-[#858ca2]/25 md:py-10 md:mb-[33px] mt-5 md:mt-[115px]">
                   <div className="space-y-1 my-45">
@@ -266,7 +263,7 @@ export default function Dashboard(): JSX.Element {
                           {isFinite((circulating_supply / max_supply) * 100) ? `${((circulating_supply / max_supply) * 100).toFixed(0)}%` : ''}
                         </span>
                       </div>
-                      {!isFinite((circulating_supply / max_supply) * 100) ? null : (
+                      {!isFinite((circulating_supply / max_supply) * 100) ? <div className="md:h-[14px] "></div> : (
                         <div className="flex justify-start">
                           <div className="w-full h-2 mt-2 bg-slate-500/50 rounded-full">
                             <div
@@ -281,15 +278,14 @@ export default function Dashboard(): JSX.Element {
                           </div>
                         </div>
                       )}
-
                       <div className="mt-4 space-y-2">
-                        <div className="mt-6 justify-between flex flex-wrap">
+                        <div className="mt-6 justify-between flex ">
                           <div className="text-12px text-gray-300/80 flex items-center whitespace-nowrap">Max Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
                           <div>
                             {formatPrice(max_supply).replace('$', '')}
                           </div>
                         </div>
-                        <div className="mt-4 justify-between flex flex-wrap">
+                        <div className="mt-4 justify-between flex md:min-w-fit">
                           <div className="text-12px text-gray-300/80 flex items-center whitespace-nowrap md:mr-5">Total Supply <IoInformationCircle size={18} color="gray" className='md:block hidden ml-1' /></div>
                           <div>
                             {formatPrice(total_supply).replace('$', '')}
