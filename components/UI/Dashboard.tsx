@@ -216,7 +216,7 @@ export default function Dashboard(): JSX.Element {
                 <Logo size={15} className="m-1" /> Sponsored
               </div>
 
-              <div className="md:flex md:justify-start border-t border-[#858ca2]/25 md:py-10 md:mb-[33px] mt-5 md:mt-[90px]">
+              <div className="md:flex md:justify-start border-t border-[#858ca2]/25 md:py-10 md:mb-[33px] mt-5 md:mt-[86px]">
                 <div className="space-y-1 my-45">
                   <div className="space-y-1 my-4 md:mx-8">
                     <div className="flex items-center">
