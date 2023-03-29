@@ -3,14 +3,14 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import { CoinData } from '../../../types/coins/coindata';
 import Redis from 'ioredis';
 
+const redis = new Redis(process.env.REDIS_URL as string);
+
 const fetchAndCacheData = async (
     param: string,
     value: string,
     order: 'asc' | 'desc',
     limit: number
 ): Promise<void> => {
-    const redis = new Redis(process.env.REDIS_URL as string); // Create a new Redis instance here
-
     const mongoClient = await clientPromise;
 
     const query = value ? { [param]: value } : {};
@@ -28,7 +28,6 @@ const fetchAndCacheData = async (
     const result = JSON.parse(JSON.stringify(data));
     const cacheKey = `dataWidget:${param}:${value}:${order}:${limit}`;
     await redis.set(cacheKey, JSON.stringify(result), 'EX', 5 * 60); // Cache for 5 minutes
-    redis.disconnect(); // Disconnect the Redis instance here
 };
 
 const getData = async (
@@ -37,21 +36,17 @@ const getData = async (
     order: 'asc' | 'desc',
     limit: number
 ): Promise<CoinData[]> => {
-    const redis = new Redis(process.env.REDIS_URL as string); // Create a new Redis instance here
     const cacheKey = `dataWidget:${param}:${value}:${order}:${limit}`;
     const cacheData = await redis.get(cacheKey);
 
     if (cacheData) {
-        redis.disconnect(); // Disconnect the Redis instance here
         return JSON.parse(cacheData);
     }
 
     await fetchAndCacheData(param, value, order, limit);
     const newData = await redis.get(cacheKey);
-    redis.disconnect(); // Disconnect the Redis instance here
     return newData ? JSON.parse(newData) : [];
 };
-
 
 const handler = async (
     req: NextApiRequest,
@@ -105,8 +100,20 @@ const refreshCacheEveryFiveMinutes = () => {
     });
 };
 
-
 refreshCacheEveryFiveMinutes();
 setInterval(refreshCacheEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 
 export default handler;
+
+// Handle application termination for closing Redis connection
+process.on('SIGINT', () => {
+    console.log('Closing Redis connection...');
+    redis.disconnect();
+    process.exit();
+});
+
+process.on('SIGTERM', () => {
+    console.log('Closing Redis connection...');
+    redis.disconnect();
+    process.exit();
+});

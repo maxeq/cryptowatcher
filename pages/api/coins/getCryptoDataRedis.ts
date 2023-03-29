@@ -3,9 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next/types';
 import { CoinData } from '../../../types/coins/coindata';
 import Redis from 'ioredis';
 
-const fetchAndCacheData = async (id: string): Promise<void> => {
-  const redis = new Redis(process.env.REDIS_URL as string);
+const redis = new Redis(process.env.REDIS_URL as string);
 
+const fetchAndCacheData = async (id: string): Promise<void> => {
   const mongoClient = await clientPromise;
 
   const data = await mongoClient
@@ -16,22 +16,18 @@ const fetchAndCacheData = async (id: string): Promise<void> => {
   const result = JSON.parse(JSON.stringify(data));
   const cacheKey = `coinData:${id}`;
   await redis.set(cacheKey, JSON.stringify(result), 'EX', 5 * 60); // Cache for 5 minutes
-  redis.disconnect();
 };
 
 const getData = async (id: string): Promise<CoinData> => {
-  const redis = new Redis(process.env.REDIS_URL as string);
   const cacheKey = `coinData:${id}`;
   const cacheData = await redis.get(cacheKey);
 
   if (cacheData) {
-    redis.disconnect();
     return JSON.parse(cacheData);
   }
 
   await fetchAndCacheData(id);
   const newData = await redis.get(cacheKey);
-  redis.disconnect();
   return newData ? JSON.parse(newData) : null;
 };
 
@@ -67,3 +63,16 @@ refreshCache();
 setInterval(refreshCache, 5 * 60 * 1000); // Refresh cache every 5 minutes
 
 export default handler;
+
+// Handle application termination for closing Redis connection
+process.on('SIGINT', () => {
+  console.log('Closing Redis connection...');
+  redis.disconnect();
+  process.exit();
+});
+
+process.on('SIGTERM', () => {
+  console.log('Closing Redis connection...');
+  redis.disconnect();
+  process.exit();
+});

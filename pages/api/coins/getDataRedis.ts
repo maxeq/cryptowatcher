@@ -4,8 +4,9 @@ import { CoinData } from '../../../types/coins/coindata';
 import clientPromise from '../../../lib/mongodb';
 import Redis from 'ioredis';
 
+const redis = new Redis(process.env.REDIS_URL as string);
+
 const cacheAllData = async (): Promise<string> => {
-    const redis = new Redis(process.env.REDIS_URL as string);
     const mongoClient: MongoClient = await clientPromise;
 
     const allData = await mongoClient
@@ -25,7 +26,6 @@ const cacheAllData = async (): Promise<string> => {
         .toArray();
 
     await redis.set('allData', JSON.stringify(allData), 'EX', 5 * 60);
-    redis.disconnect();
     return JSON.stringify(allData);
 };
 
@@ -49,9 +49,7 @@ const getData = async (
     sortKey: string,
     sortDirection: string
 ): Promise<CoinData[]> => {
-    const redis = new Redis(process.env.REDIS_URL as string);
     let cacheData = await redis.get('allData');
-    redis.disconnect();
 
     if (!cacheData) {
         // If the requested data is not in Redis, cache all data
@@ -90,3 +88,14 @@ const fetchAndCacheDataEveryFiveMinutes = async () => {
 fetchAndCacheDataEveryFiveMinutes();
 
 export default handler;
+
+// Handle application termination for closing Redis connection
+process.on('SIGINT', () => {
+    redis.disconnect();
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    redis.disconnect();
+    process.exit(0);
+});
