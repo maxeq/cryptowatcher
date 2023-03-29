@@ -92,7 +92,7 @@ export default function CryptoTableList() {
     <InfiniteScroll
       next={() => setSize(size + 1)}
       hasMore={!isReachedEnd}
-      loader={<CryptoLoadingSkeleton />}
+      loader={<Loader />}
       dataLength={data?.length ?? 0}
     >
       <div className="overflow-x-auto">
