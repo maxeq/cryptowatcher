@@ -1,4 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+* {
+}
+
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial,
+    sans-serif; 
+  border-color: #000;
+  background-color: #222531;
+  background-image: linear-gradient(to bottom, #dad8d81c 1%, transparent 20%);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+
+* {
+  transition: all 0.2s ease-in-out;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-duration: 150ms;
+  box-sizing: border-box;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'segoe ui', Roboto, Helvetica, Arial,
+    sans-serif;
+}
 
 .title {
   font-weight: bolder;
@@ -16,7 +47,7 @@
   text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px;
 }
 
-.s {
+.table {
   box-sizing: border-box;
   transform: translateZ(0px);
   border-collapse: collapse;
@@ -72,6 +103,25 @@
   vertical-align: middle;
 }
 
+.table th{
+  /* padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px; */
+}
+
+.table td {
+  /* border-top: 1px solid #333;
+  border-bottom: 1px solid #333; */
+  /* padding-left: 12px;
+  padding-right: 12px; */
+}
+
+/* For desktop */
+/* .table tr:hover td {
+  background-color: rgba(170, 172, 173, 0.1);
+} */
+
 /* For mobile */
 @media (max-width: 640px) {
 
@@ -96,11 +146,63 @@
     z-index: 10;
   }
 
+  .table th, td {
+    padding-left: 12px;
+    padding-right: 12px;
+margin-top: 12px;
+    margin-bottom: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .mobile-solid-background {
+    background-color: #222531; /* Adjust this to match your desired background color */
+  }
+
+}
 
 
 .table-row {
   /* border-top-width: 1px;
   border-top-color: #ddd; */
+}
+
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid rgb(163 230 53);
+  border-color: rgb(163 230 53) transparent rgb(163 230 53) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.menu-closed {
+  transform: translateX(-100%);
+}
+
+.bg-gradient-table {
+  background-image: linear-gradient(to bottom, #dad8d81c 1%, transparent 20%);
 }
 
 .tooltip:hover .tooltip-text {
