@@ -364,7 +364,7 @@ const MyTableComponent: React.FC = () => {
     };
 
     const { data, size, setSize, isReachedEnd, isLoading, error } = usePagination(
-        `/api/coins/getData`,
+        `/api/coins/getDataRedis`,
         sortKey,
         sortDirection
     );
