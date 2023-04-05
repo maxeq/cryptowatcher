@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { formatPrice } from '@/utils/NumberFormatter';
 import PriceChange from '@/utils/PriceArrowFormatter';
 import ChartFetcher from '../charts/ChartFetcher';
-import './trade.module.css';
+
 
 type DataRow = {
     id: string;
