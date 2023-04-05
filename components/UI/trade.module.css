@@ -1,0 +1,117 @@
+
+
+.title {
+  font-weight: bolder;
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(
+    88deg,
+    rgb(191, 204, 10) 0%,
+    rgb(36, 238, 9) 100%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  text-align: left;
+  text-shadow: rgb(255 255 255 / 30%) 0px 0px 12px;
+}
+
+.s {
+  box-sizing: border-box;
+  transform: translateZ(0px);
+  border-collapse: collapse;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  width: 100%;
+  background-color: var(--table-background-color);
+}
+
+.table-header {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.table__start {
+  text-align: left;
+}
+
+.table__end {
+  text-align: right;
+}
+
+.th-rank {
+  width: 60px;
+}
+
+.th-name {
+  width: 150px;
+}
+
+.th-price {
+  width: 100px;
+}
+
+.th-change {
+  width: 100px;
+}
+
+.th-marketcap {
+  width: 150px;
+}
+
+.th-volume {
+  width: 200px;
+}
+
+.th-supply {
+  width: 200px;
+}
+
+.th-chart {
+  width: 150px;
+  vertical-align: middle;
+}
+
+/* For mobile */
+@media (max-width: 640px) {
+
+  .sticky {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  .table-header {
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+}
+
+  .table__start {
+    text-align: left;
+    background-color: #222531;
+    z-index: 10;
+  }
+
+
+
+.table-row {
+  /* border-top-width: 1px;
+  border-top-color: #ddd; */
+}
+
+.tooltip:hover .tooltip-text {
+  display: block;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
