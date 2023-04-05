@@ -22,7 +22,6 @@ export default function Trade() {
           <SliderData sliderTypes={['topGainers']} />
         </div>
       </div>
-      <TableComponent />
     </div>
   );
 }
