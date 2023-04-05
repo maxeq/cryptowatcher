@@ -321,7 +321,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
     return (
         <>
             <div className="overflow-x-auto">
-                <table className={`table_table mobile-solid-background w-full justify-evenly border border-t-[#333] border-l-0 border-r-0 border-b-0`}>
+                <table className={`table_table mobile-solid-background w-full justify-evenly border border-b-[#333] border-l-0 border-r-0 border-t-0`}>
                     <thead className="flex min-w-max" style={{}}>
                         <TableHeader
                             onHeaderClick={onHeaderClick}
