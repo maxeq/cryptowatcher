@@ -203,4 +203,98 @@
   display: block;
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.table-header_table {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.table__start_table {
+  text-align: left;
+}
+
+.table__end_table{
+  text-align: right;
+}
+
+.th-rank_table {
+  width: 60px;
+}
+
+.th-name_table {
+  width: 150px;
+}
+
+.th-price_table {
+  width: 100px;
+}
+
+.th-change_table {
+  width: 100px;
+}
+
+.th-marketcap_table {
+  width: 150px;
+}
+
+.th-volume_table {
+  width: 200px;
+}
+
+.th-supply_table {
+  width: 200px;
+}
+
+.th-chart_table {
+  width: 150px;
+  vertical-align: middle;
+}
+
+/* For mobile */
+@media (max-width: 640px) {
+
+  .sticky_table {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  .table-header_table {
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+}
+
+  .table__start_table {
+    text-align: left;
+    background-color: #222531;
+    z-index: 10;
+  }
+
+  .table_table th, td {
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .title_table {
+    font-size: 16px;
+    font-weight: 900;
+
+  }
+
+}

@@ -104,31 +104,31 @@ const TableHeader: React.FC<TableHeaderProps> = ({ onHeaderClick, sortKey, sortD
     };
 
     return (
-        <thead className="table-header h-10 flex items-center">
+        <thead className="table-header_table h-10 flex items-center">
             <tr className="">
-                <th className="th-rank hidden md:table-cell table__start backdrop-opacity-0 cursor-pointer" onClick={() => onHeaderClick('market_cap_rank')}>
+                <th className="th-rank_table hidden md:table-cell table__start_table backdrop-opacity-0 cursor-pointer" onClick={() => onHeaderClick('market_cap_rank')}>
                     <div className="h-full w-full flex items-center justify-center">
                         #
                     </div>
                 </th>
-                <th className="th-name table__start backdrop-opacity-0 cursor-pointer" onClick={() => onHeaderClick('name')}>
+                <th className="th-name_table table__start_table backdrop-opacity-0 cursor-pointer" onClick={() => onHeaderClick('name')}>
                     Name
                 </th>
-                <th className="th-price table__end whitespace-nowrap text-right" onClick={() => onHeaderClick('current_price')}>
+                <th className="th-price_table table__end_table whitespace-nowrap text-right" onClick={() => onHeaderClick('current_price')}>
                     <div className="flex items-center justify-end cursor-pointer">
                         {renderSortIcon('current_price')} Price (USD)
                     </div>
                 </th>
-                <th className="th-change table__end" onClick={() => onHeaderClick('price_change_percentage_1h_in_currency')}>
+                <th className="th-change_table table__end_table" onClick={() => onHeaderClick('price_change_percentage_1h_in_currency')}>
                     <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_1h_in_currency')}1h %</div>
                 </th>
-                <th className="th-change table__end" onClick={() => onHeaderClick('price_change_percentage_24h')}>
+                <th className="th-change_table table__end_table" onClick={() => onHeaderClick('price_change_percentage_24h')}>
                     <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_24h')}24h %</div>
                 </th>
-                <th className="th-change table__end" onClick={() => onHeaderClick('price_change_percentage_7d_in_currency')}>
+                <th className="th-change_table table__end_table" onClick={() => onHeaderClick('price_change_percentage_7d_in_currency')}>
                     <div className="flex items-center justify-end cursor-pointer">{renderSortIcon('price_change_percentage_7d_in_currency')}7d %</div>
                 </th>
-                <th className="th-marketcap table__end" onClick={() => onHeaderClick('market_cap')}>
+                <th className="th-marketcap_table table__end_table" onClick={() => onHeaderClick('market_cap')}>
                     <div className="flex items-center justify-end cursor-pointer">
                         {renderSortIcon('market_cap')}
                         <div className="relative inline-flex items-center cursor-pointer" onClick={() => onHeaderClick('market_cap')}>
@@ -150,7 +150,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ onHeaderClick, sortKey, sortD
                         </div>
                     </div>
                 </th>
-                <th className="th-volume table__end" onClick={() => onHeaderClick('total_volume')}>
+                <th className="th-volume_table table__end_table" onClick={() => onHeaderClick('total_volume')}>
                     <div className="flex items-center justify-end">
                         {renderSortIcon('total_volume')}
                         <div className="relative inline-flex items-center cursor-pointer" onClick={() => onHeaderClick('total_volume')}>
@@ -170,7 +170,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ onHeaderClick, sortKey, sortD
                         </div>
                     </div>
                 </th>
-                <th className="th-supply table__end" onClick={() => onHeaderClick('circulating_supply')}>
+                <th className="th-supply_table table__end_table" onClick={() => onHeaderClick('circulating_supply')}>
                     <div className="flex items-center justify-end">
                         {renderSortIcon('circulating_supply')}
 
@@ -191,7 +191,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ onHeaderClick, sortKey, sortD
                         </div>
                     </div>
                 </th>
-                <th className="th-chart table__end">Last 7 days</th>
+                <th className="th-chart_table table__end_table">Last 7 days</th>
             </tr>
         </thead>
 
@@ -210,12 +210,12 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
         return (
 
             <tr key={rowData.id} className="border-t-[#333] border border-b-0 border-l-0 border-r-0 md:hover:bg-[hsla(200,2%,67%,.1)] " style={{ ...style, display: 'flex', justifyContent: 'space-between', alignItems: 'center', }}>
-                <td className="th-rank hidden md:table-cell table__start backdrop-opacity-0">
+                <td className="th-rank_table hidden md:table-cell table__start_table backdrop-opacity-0">
                     <td className="h-full w-full flex items-center justify-center">
                         {rowData.market_cap_rank}
                     </td>
                 </td>
-                <td className="th-name table__start backdrop-opacity-0">
+                <td className="th-name_table table__start_table backdrop-opacity-0">
                     <div className={`flex items-center mr-5 md:mr-0`}>
                         <Image
                             src={rowData.image}
@@ -236,25 +236,25 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
                         </Link>
                     </div>
                 </td>
-                <td className="th-price table__end">
+                <td className="th-price_table table__end_table">
                     {formatPrice(rowData.current_price)}
                 </td>
                 <td
-                    className={`th-change table__end`}>
+                    className={`th-change_table table__end_table`}>
                     <PriceChange value={rowData.price_change_percentage_1h_in_currency} />
                 </td>
                 <td
-                    className={`th-change table__end`}>
+                    className={`th-change_table table__end_table`}>
                     <PriceChange value={rowData.price_change_percentage_24h} />
                 </td>
                 <td
-                    className={`th-change table__end`}>
+                    className={`th-change_table table__end_table`}>
                     <PriceChange value={rowData.price_change_percentage_7d_in_currency} />
                 </td>
-                <td className="th-marketcap table__end">
+                <td className="th-marketcap_table table__end_table">
                     {formatPrice(rowData.market_cap)}
                 </td>
-                <td className="th-volume table__end">
+                <td className="th-volume_table table__end_table">
                     <div>
                         {formatPrice(rowData.total_volume)}
                     </div>
@@ -262,7 +262,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
                         {formatPrice(rowData.total_volume / rowData.current_price, false)} {rowData.symbol.toUpperCase()}
                     </div>
                 </td>
-                <td className="th-supply table__end whitespace-nowrap">
+                <td className="th-supply_table table__end_table whitespace-nowrap">
                     {formatPrice(rowData.circulating_supply).replace('$', '')} {rowData.symbol.toUpperCase()}
                     {rowData.max_supply !== 0 && rowData.circulating_supply !== 0 && isFinite(rowData.circulating_supply / rowData.max_supply) ? (
                         <div
@@ -311,7 +311,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
                         </div>
                     ) : null}
                 </td>
-                <td className={`th-chart table__end md:pl-7 md:mr-4`} style={{ width: '150px', height: '75px' }}>
+                <td className={`th-chart_table table__end_table md:pl-7 md:mr-4`} style={{ width: '150px', height: '75px' }}>
                     <ChartFetcher _id={rowData.id} width='125px' height='70px' />
                 </td>
             </tr>
@@ -321,7 +321,7 @@ const TableComponent: React.FC<TableComponentProps> = ({ data, onItemsRendered, 
     return (
         <>
             <div className="overflow-x-auto">
-                <table className={`table mobile-solid-background w-full justify-evenly border border-t-[#333] border-l-0 border-r-0 border-b-0`}>
+                <table className={`table_table mobile-solid-background w-full justify-evenly border border-t-[#333] border-l-0 border-r-0 border-b-0`}>
                     <thead className="flex min-w-max" style={{}}>
                         <TableHeader
                             onHeaderClick={onHeaderClick}
