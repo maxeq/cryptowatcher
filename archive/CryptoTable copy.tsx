@@ -28,7 +28,6 @@ export default function CryptoTableList() {
     );
   };
 
-
   //default sort
   const [sortKey, setSortKey] = useState('market_cap_rank');
   const [sortDirection, setSortDirection] = useState('asc');
@@ -86,7 +85,6 @@ export default function CryptoTableList() {
   if (error) {
     return <CryptoLoadingSkeleton />;
   }
-
 
   return (
     <InfiniteScroll

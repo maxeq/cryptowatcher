@@ -1,6 +1,6 @@
 import SliderData from '@/components/sliders/SliderData';
 import H1Template from '@/components/UI/HeaderTemplate';
-import TableComponent from '@/components/UI/cryptotable/TableWindowed';
+import TableComponent from '@/archive/TableWindowed/TableWindowed';
 import Head from 'next/head';
 
 export default function Trade() {

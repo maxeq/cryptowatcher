@@ -1,6 +1,6 @@
 import React, { useState, CSSProperties, ReactNode } from 'react';
 import usePagination from '@/lib/usePagination';
-import CryptoLoadingSkeleton from './CryptoTableSkeleton';
+import CryptoLoadingSkeleton from '../../components/UI/cryptotable/CryptoTableSkeleton';
 import InfiniteLoader from 'react-window-infinite-loader';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import { IoInformationCircle } from 'react-icons/io5';
@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { formatPrice } from '@/utils/NumberFormatter';
 import PriceChange from '@/utils/PriceArrowFormatter';
-import ChartFetcher from '../../charts/ChartFetcher';
+import ChartFetcher from '../../components/charts/ChartFetcher';
 
 
 type DataRow = {

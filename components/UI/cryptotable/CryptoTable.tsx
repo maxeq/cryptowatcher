@@ -35,7 +35,6 @@ export default function CryptoTableList() {
     sortDirection
   );
 
-
   if (error) {
     return <CryptoLoadingSkeleton />;
   }
