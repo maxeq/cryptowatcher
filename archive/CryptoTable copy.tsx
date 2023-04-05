@@ -9,7 +9,7 @@ import { IoInformationCircle } from 'react-icons/io5';
 import { useState } from 'react';
 import PriceChange from '@/utils/PriceArrowFormatter';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
-import CryptoLoadingSkeleton from '../components/UI/CryptoTableSkeleton';
+import CryptoLoadingSkeleton from '../components/UI/cryptotable/CryptoTableSkeleton';
 
 export default function CryptoTableList() {
 
