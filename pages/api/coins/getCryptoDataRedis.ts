@@ -76,3 +76,9 @@ process.on('SIGTERM', () => {
   redis.disconnect();
   process.exit();
 });
+
+process.on('exit', () => {
+  console.log('Closing Redis connection...');
+  redis.disconnect();
+});
+

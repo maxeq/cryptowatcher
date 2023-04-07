@@ -92,11 +92,18 @@ export default handler;
 
 // Handle application termination for closing Redis connection
 process.on('SIGINT', () => {
+    console.log('Closing Redis connection...');
     redis.disconnect();
-    process.exit(0);
+    process.exit();
 });
 
 process.on('SIGTERM', () => {
+    console.log('Closing Redis connection...');
     redis.disconnect();
-    process.exit(0);
+    process.exit();
+});
+
+process.on('exit', () => {
+    console.log('Closing Redis connection...');
+    redis.disconnect();
 });

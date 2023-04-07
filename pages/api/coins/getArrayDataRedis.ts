@@ -82,6 +82,19 @@ setInterval(refreshCache, 5 * 60 * 1000); // Refresh cache every 5 minutes
 
 export default handler;
 
+process.on('SIGINT', () => {
+  console.log('Closing Redis connection...');
+  redis.disconnect();
+  process.exit();
+});
+
+process.on('SIGTERM', () => {
+  console.log('Closing Redis connection...');
+  redis.disconnect();
+  process.exit();
+});
+
 process.on('exit', () => {
+  console.log('Closing Redis connection...');
   redis.disconnect();
 });
