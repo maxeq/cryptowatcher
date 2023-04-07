@@ -29,7 +29,7 @@ export default function Dashboard(): JSX.Element {
     fetcher,
     {
       revalidateOnMount: true,
-      dedupingInterval: 5000, // Cache for 5 minutes
+      dedupingInterval: 300000, // Cache for 5 minutes
     }
   );
 
