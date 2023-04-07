@@ -1,12 +1,7 @@
 import usePagination from '@/lib/usePagination';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from '../../icons/Loader';
-import Image from 'next/image';
-import Link from 'next/link';
-import ChartFetcher from '../../charts/ChartFetcher';
-import { formatPrice } from '../../../utils/NumberFormatter';
 import { useState } from 'react';
-import PriceChange from '@/utils/PriceArrowFormatter';
 import CryptoLoadingSkeleton from './CryptoTableSkeleton';
 import CryptoTableHeader from './CryptoTableHeader';
 import CryptoTableBody from './CryptoTableBody';
