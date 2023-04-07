@@ -82,10 +82,11 @@ const handler = async (
 
 const fetchAndCacheDataEveryFiveMinutes = async () => {
     await cacheAllData();
-    setTimeout(fetchAndCacheDataEveryFiveMinutes, 4.5 * 60 * 1000); // 4.5 minutes in milliseconds
 };
 
 fetchAndCacheDataEveryFiveMinutes();
+
+setInterval(fetchAndCacheDataEveryFiveMinutes, 5 * 60 * 1000); // 5 minutes in milliseconds
 
 export default handler;
 
